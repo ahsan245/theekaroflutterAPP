@@ -47,7 +47,7 @@ class APIService {
       queryString["categoryId"] = techFilterModel.categoryId!;
     }
 
-    var url = Uri.http(Config.apiURL, Config.categoryAPI, queryString);
+    var url = Uri.http(Config.apiURL, Config.techAPI, queryString);
 
     var response = await client.get(url, headers: requestHeaders);
 
