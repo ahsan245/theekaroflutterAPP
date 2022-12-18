@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:theek_karo/models/category.dart';
 import 'package:theek_karo/models/pagination.dart';
-import 'package:theek_karo/providers/category_provider.dart';
+import 'package:theek_karo/providers.dart';
 
 class HomeCategoriesWidget extends ConsumerWidget {
   const HomeCategoriesWidget({Key? key}) : super(key: key);
