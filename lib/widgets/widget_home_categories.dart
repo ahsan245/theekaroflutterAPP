@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:theek_karo/models/category.dart';
 import 'package:theek_karo/models/pagination.dart';
+import 'package:theek_karo/models/tech_filter.dart';
 import 'package:theek_karo/providers.dart';
 
 class HomeCategoriesWidget extends ConsumerWidget {
@@ -36,7 +37,7 @@ class HomeCategoriesWidget extends ConsumerWidget {
     );
     return categories.when(
       data: (list) {
-        return _builCategoryList(list!);
+        return _builCategoryList(list!, ref);
       },
       error: (_, __) => const Center(
         child: Text("ERR"),
@@ -45,7 +46,7 @@ class HomeCategoriesWidget extends ConsumerWidget {
     );
   }
 
-  Widget _builCategoryList(List<Category> categories) {
+  Widget _builCategoryList(List<Category> categories, WidgetRef ref) {
     return Container(
       height: 100,
       alignment: Alignment.centerLeft,
@@ -57,7 +58,21 @@ class HomeCategoriesWidget extends ConsumerWidget {
         itemBuilder: (context, index) {
           var data = categories[index];
           return GestureDetector(
-            onTap: () {},
+            onTap: () {
+              TechFilterModel filterModel = TechFilterModel(
+                  paginationModel: PaginationModel(page: 1, pageSize: 10),
+                  categoryId: data.categoryId);
+
+              ref.read(techsFilterProvider.notifier).setTechFilter(filterModel);
+              ref.read(techsNotifierProvider.notifier).getTechs();
+              Navigator.of(context).pushNamed(
+                "/techs",
+                arguments: {
+                  'categoryId': data.categoryId,
+                  'categoryName': data.categoryName,
+                },
+              );
+            },
             child: Padding(
               padding: EdgeInsets.all(8),
               child: Column(

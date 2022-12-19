@@ -47,6 +47,10 @@ class APIService {
       queryString["categoryId"] = techFilterModel.categoryId!;
     }
 
+    if (techFilterModel.sortBy != null) {
+      queryString["sort"] = techFilterModel.sortBy!;
+    }
+
     var url = Uri.http(Config.apiURL, Config.techAPI, queryString);
 
     var response = await client.get(url, headers: requestHeaders);
