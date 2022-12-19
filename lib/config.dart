@@ -5,5 +5,5 @@ class Config {
   static const String categoryAPI = "api/category";
   static const String techAPI = "api/tech";
   static const int pageSize = 10;
-  static const String currency = "";
+  static const String currency = "₹";
 }
