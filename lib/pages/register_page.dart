@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -90,7 +91,7 @@ class _RegisterPageState extends State<RegisterPage> {
           FormHelper.inputFieldWidget(
               context,
               const Icon(Icons.face, color: Colors.black),
-              "FUllname",
+              "Fullname",
               "Enter full Name", (onValidateVal) {
             if (onValidateVal.isEmpty) {
               return "* Required";
@@ -103,6 +104,7 @@ class _RegisterPageState extends State<RegisterPage> {
               borderRadius: 10,
               fontSize: 14,
               borderColor: Colors.grey.shade400,
+              prefixIconPaddingLeft: 10,
               prefixIconColor: Colors.black,
               borderFocusColor: Colors.grey.shade200),
           const SizedBox(
@@ -110,7 +112,7 @@ class _RegisterPageState extends State<RegisterPage> {
           ),
           FormHelper.inputFieldWidget(
               context,
-              const Icon(Icons.email_outlined, color: Colors.black),
+              const Icon(Icons.email_rounded, color: Colors.black),
               "Email",
               "Enter Email ", (onValidateVal) {
             if (onValidateVal.isEmpty) {
@@ -131,6 +133,7 @@ class _RegisterPageState extends State<RegisterPage> {
               borderRadius: 10,
               fontSize: 14,
               borderColor: Colors.grey.shade400,
+              prefixIconPaddingLeft: 10,
               prefixIconColor: Colors.black,
               borderFocusColor: Colors.grey.shade200),
           const SizedBox(
@@ -138,7 +141,7 @@ class _RegisterPageState extends State<RegisterPage> {
           ),
           FormHelper.inputFieldWidget(
             context,
-            const Icon(Icons.password_outlined, color: Colors.black),
+            const Icon(Icons.lock_open, color: Colors.black),
             "Password",
             "Enter Password",
             (onValidateVal) {
@@ -154,6 +157,7 @@ class _RegisterPageState extends State<RegisterPage> {
             borderRadius: 10,
             fontSize: 14,
             borderColor: Colors.grey.shade400,
+            prefixIconPaddingLeft: 10,
             prefixIconColor: Colors.black,
             borderFocusColor: Colors.grey.shade200,
             obscureText: hidePassword,
@@ -176,7 +180,7 @@ class _RegisterPageState extends State<RegisterPage> {
           ),
           FormHelper.inputFieldWidget(
             context,
-            const Icon(Icons.password_outlined, color: Colors.black),
+            const Icon(Icons.lock_open, color: Colors.black),
             "Confirm Password",
             "Confirm Password",
             (onValidateVal) {
@@ -196,7 +200,9 @@ class _RegisterPageState extends State<RegisterPage> {
             borderRadius: 10,
             fontSize: 14,
             borderColor: Colors.grey.shade400,
+            prefixIconPaddingLeft: 10,
             prefixIconColor: Colors.black,
+            hintFontSize: 14,
             borderFocusColor: Colors.grey.shade200,
             obscureText: hideConfirmPassword,
             suffixIcon: IconButton(
@@ -236,6 +242,10 @@ class _RegisterPageState extends State<RegisterPage> {
                         "Ok",
                         () {
                           Navigator.of(context).pop();
+                          Navigator.of(context).pushNamedAndRemoveUntil(
+                            "/login",
+                            (route) => false,
+                          );
                         },
                       );
                     } else {
@@ -277,6 +287,13 @@ class _RegisterPageState extends State<RegisterPage> {
                       color: Colors.deepOrange,
                       fontWeight: FontWeight.bold,
                     ),
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () {
+                        Navigator.of(context).pushNamedAndRemoveUntil(
+                          "/login",
+                          (route) => false,
+                        );
+                      },
                   ),
                 ],
               ),

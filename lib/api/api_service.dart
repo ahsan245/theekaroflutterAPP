@@ -4,8 +4,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
 import 'package:theek_karo/config.dart';
 import 'package:theek_karo/models/category.dart';
+import 'package:theek_karo/models/login_response_model.dart';
 import 'package:theek_karo/models/tech.dart';
 import 'package:theek_karo/models/tech_filter.dart';
+import 'package:theek_karo/utils/shared_service.dart';
 
 final apiService = Provider((ref) => APIService());
 
@@ -82,6 +84,30 @@ class APIService {
     );
 
     if (response.statusCode == 200) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  static Future<bool> loginUser(
+    String email,
+    String password,
+  ) async {
+    Map<String, String> requestHeaders = {'Content-Type': 'application/json'};
+
+    var url = Uri.http(Config.apiURL, Config.loginAPI);
+
+    var response = await client.post(
+      url,
+      headers: requestHeaders,
+      body: jsonEncode(
+        {"email": email, "password": password},
+      ),
+    );
+
+    if (response.statusCode == 200) {
+      await SharedService.setLoginDetails(loginResponseJson(response.body));
       return true;
     } else {
       return false;
