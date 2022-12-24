@@ -39,6 +39,8 @@ dependencies:
   snippet_coder_utils: ^1.0.4
   sqflite_common_ffi: ^2.2.0+1
   api_cache_manager: ^1.0.2
+  carousel_slider: ^4.2.1
+  sqflite: ^2.2.2
   
 
 dev_dependencies:

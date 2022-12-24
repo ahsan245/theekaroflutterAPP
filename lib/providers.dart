@@ -5,6 +5,7 @@ import 'package:theek_karo/application/notifier/tech_notifier.dart';
 import 'package:theek_karo/application/state/tech_state.dart';
 import 'package:theek_karo/models/category.dart';
 import 'package:theek_karo/models/pagination.dart';
+import 'package:theek_karo/models/slider.dart';
 import 'package:theek_karo/models/tech.dart';
 import 'package:theek_karo/models/tech_filter.dart';
 import 'package:theek_karo/widgets/widget_home_categories.dart';
@@ -36,4 +37,14 @@ final techsNotifierProvider = StateNotifierProvider<TechNotifier, TechsState>(
     ref.watch(apiService),
     ref.watch(techsFilterProvider),
   ),
+);
+
+final slidersProvider =
+    FutureProvider.family<List<SliderModel>?, PaginationModel>(
+  (ref, paginationModel) {
+    final sliderRepo = ref.watch(apiService);
+
+    return sliderRepo.getSliders(
+        paginationModel.page, paginationModel.pageSize);
+  },
 );

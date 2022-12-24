@@ -3,6 +3,7 @@ import 'package:theek_karo/models/category.dart';
 import 'package:theek_karo/models/tech.dart';
 import 'package:theek_karo/components/tech_card.dart';
 import 'package:theek_karo/widgets/widget_home_categories.dart';
+import 'package:theek_karo/widgets/widget_home_slider.dart';
 import 'package:theek_karo/widgets/widget_home_techs.dart';
 
 class HomePage extends StatelessWidget {
@@ -14,6 +15,7 @@ class HomePage extends StatelessWidget {
       body: Container(
         child: ListView(
           children: [
+            const HomeSliderWidget(),
             const HomeCategoriesWidget(),
             const HomeTechsWidget(),
           ],

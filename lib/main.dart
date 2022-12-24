@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:theek_karo/pages/dashboard_page.dart';
 import 'package:theek_karo/pages/home_page.dart';
 import 'package:theek_karo/pages/login_page.dart';
 import 'package:theek_karo/pages/register_page.dart';
 import 'package:theek_karo/pages/techs_page.dart';
 import 'package:theek_karo/utils/shared_service.dart';
 
-Widget _defaultHome = const LoginPage();
-void main() async {
+Widget _defaultHome = const HomePage();
+void main() //async
+{
   WidgetsFlutterBinding.ensureInitialized();
-  bool _result = await SharedService.isLoggedIn();
+  // bool _result = await SharedService.isLoggedIn();
 
-  if (_result) {
-    _defaultHome = const HomePage();
-  }
+  // if (_result) {
+  //   _defaultHome = const HomePage();
+  // }
+  _defaultHome = const DashboardPage();
   runApp(const ProviderScope(child: MyApp()));
 }
 
@@ -28,7 +31,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      //home: const RegisterPage(),
+      // home: _defaultHome,
       routes: <String, WidgetBuilder>{
         "/": (context) => _defaultHome,
         "/register": (BuildContext context) => const RegisterPage(),

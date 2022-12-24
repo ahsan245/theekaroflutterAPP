@@ -1,10 +1,12 @@
 import 'dart:convert';
 import 'dart:core';
+import 'dart:html';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
 import 'package:theek_karo/config.dart';
 import 'package:theek_karo/models/category.dart';
 import 'package:theek_karo/models/login_response_model.dart';
+import 'package:theek_karo/models/slider.dart';
 import 'package:theek_karo/models/tech.dart';
 import 'package:theek_karo/models/tech_filter.dart';
 import 'package:theek_karo/utils/shared_service.dart';
@@ -111,6 +113,27 @@ class APIService {
       return true;
     } else {
       return false;
+    }
+  }
+
+  Future<List<SliderModel>?> getSliders(page, pageSize) async {
+    Map<String, String> requestHeaders = {'Content-Type': 'application/json'};
+
+    Map<String, String> queryString = {
+      'page': page.toString(),
+      'pageSize': pageSize.toString()
+    };
+
+    var url = Uri.http(Config.apiURL, Config.sliderAPI, queryString);
+
+    var response = await client.get(url, headers: requestHeaders);
+
+    if (response.statusCode == 200) {
+      var data = jsonDecode(response.body);
+
+      return slidersFromJson(data["data"]);
+    } else {
+      return null;
     }
   }
 }
