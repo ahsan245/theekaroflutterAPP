@@ -10,17 +10,17 @@ List<Tech> techsFromJson(dynamic str) =>
 
 @freezed
 abstract class Tech with _$Tech {
-  factory Tech({
-    required String techName,
-    required Category category,
-    required String techShortDescription,
-    required double techPrice,
-    required double techSalePrice,
-    required String techImage,
-    required String techType,
-    required String techStatus,
-    required String techId,
-  }) = _Tech;
+  factory Tech(
+      {required String techName,
+      required Category category,
+      required String techShortDescription,
+      required double techPrice,
+      required double techSalePrice,
+      required String techImage,
+      required String techType,
+      required String techStatus,
+      required String techId,
+      List<String>? relatedTechs}) = _Tech;
 
   factory Tech.fromJson(Map<String, dynamic> json) => _$TechFromJson(json);
 }

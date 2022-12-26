@@ -48,3 +48,18 @@ final slidersProvider =
         paginationModel.page, paginationModel.pageSize);
   },
 );
+
+final techDetailsProvider = FutureProvider.family<Tech?, String>(
+  (ref, techId) {
+    final apiRepository = ref.watch(apiService);
+    return apiRepository.getTechDetails(techId);
+  },
+);
+
+final relatedTechsProvider =
+    FutureProvider.family<List<Tech>?, TechFilterModel>(
+  (ref, techFilterModel) {
+    final apiRepository = ref.watch(apiService);
+    return apiRepository.getTechs(techFilterModel);
+  },
+);

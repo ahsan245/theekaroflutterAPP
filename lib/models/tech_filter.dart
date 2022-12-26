@@ -8,5 +8,6 @@ abstract class TechFilterModel with _$TechFilterModel {
     required PaginationModel paginationModel,
     String? categoryId,
     String? sortBy,
+    List<String>? techIds,
   }) = _TechFilterModel;
 }

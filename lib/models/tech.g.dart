@@ -16,6 +16,9 @@ _$_Tech _$$_TechFromJson(Map<String, dynamic> json) => _$_Tech(
       techType: json['techType'] as String,
       techStatus: json['techStatus'] as String,
       techId: json['techId'] as String,
+      relatedTechs: (json['relatedTechs'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
     );
 
 Map<String, dynamic> _$$_TechToJson(_$_Tech instance) => <String, dynamic>{
@@ -28,4 +31,5 @@ Map<String, dynamic> _$$_TechToJson(_$_Tech instance) => <String, dynamic>{
       'techType': instance.techType,
       'techStatus': instance.techStatus,
       'techId': instance.techId,
+      'relatedTechs': instance.relatedTechs,
     };

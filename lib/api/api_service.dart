@@ -54,6 +54,9 @@ class APIService {
     if (techFilterModel.sortBy != null) {
       queryString["sort"] = techFilterModel.sortBy!;
     }
+    if (techFilterModel.techIds != null) {
+      queryString["techIds"] = techFilterModel.techIds!.join(",");
+    }
 
     var url = Uri.http(Config.apiURL, Config.techAPI, queryString);
 
@@ -132,6 +135,21 @@ class APIService {
       var data = jsonDecode(response.body);
 
       return slidersFromJson(data["data"]);
+    } else {
+      return null;
+    }
+  }
+
+  Future<Tech?> getTechDetails(String techId) async {
+    Map<String, String> requestHeaders = {'Content-Type': 'application/json'};
+
+    var url = Uri.http(Config.apiURL, '${Config.techAPI}/$techId');
+    var response = await client.get(url, headers: requestHeaders);
+
+    if (response.statusCode == 200) {
+      var data = jsonDecode(response.body);
+
+      return Tech.fromJson(data["data"]);
     } else {
       return null;
     }

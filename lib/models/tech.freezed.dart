@@ -29,6 +29,7 @@ mixin _$Tech {
   String get techType => throw _privateConstructorUsedError;
   String get techStatus => throw _privateConstructorUsedError;
   String get techId => throw _privateConstructorUsedError;
+  List<String>? get relatedTechs => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -49,7 +50,8 @@ abstract class $TechCopyWith<$Res> {
       String techImage,
       String techType,
       String techStatus,
-      String techId});
+      String techId,
+      List<String>? relatedTechs});
 
   $CategoryCopyWith<$Res> get category;
 }
@@ -76,6 +78,7 @@ class _$TechCopyWithImpl<$Res, $Val extends Tech>
     Object? techType = null,
     Object? techStatus = null,
     Object? techId = null,
+    Object? relatedTechs = freezed,
   }) {
     return _then(_value.copyWith(
       techName: null == techName
@@ -114,6 +117,10 @@ class _$TechCopyWithImpl<$Res, $Val extends Tech>
           ? _value.techId
           : techId // ignore: cast_nullable_to_non_nullable
               as String,
+      relatedTechs: freezed == relatedTechs
+          ? _value.relatedTechs
+          : relatedTechs // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
     ) as $Val);
   }
 
@@ -141,7 +148,8 @@ abstract class _$$_TechCopyWith<$Res> implements $TechCopyWith<$Res> {
       String techImage,
       String techType,
       String techStatus,
-      String techId});
+      String techId,
+      List<String>? relatedTechs});
 
   @override
   $CategoryCopyWith<$Res> get category;
@@ -165,6 +173,7 @@ class __$$_TechCopyWithImpl<$Res> extends _$TechCopyWithImpl<$Res, _$_Tech>
     Object? techType = null,
     Object? techStatus = null,
     Object? techId = null,
+    Object? relatedTechs = freezed,
   }) {
     return _then(_$_Tech(
       techName: null == techName
@@ -203,6 +212,10 @@ class __$$_TechCopyWithImpl<$Res> extends _$TechCopyWithImpl<$Res, _$_Tech>
           ? _value.techId
           : techId // ignore: cast_nullable_to_non_nullable
               as String,
+      relatedTechs: freezed == relatedTechs
+          ? _value._relatedTechs
+          : relatedTechs // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
     ));
   }
 }
@@ -219,7 +232,9 @@ class _$_Tech implements _Tech {
       required this.techImage,
       required this.techType,
       required this.techStatus,
-      required this.techId});
+      required this.techId,
+      final List<String>? relatedTechs})
+      : _relatedTechs = relatedTechs;
 
   factory _$_Tech.fromJson(Map<String, dynamic> json) => _$$_TechFromJson(json);
 
@@ -241,10 +256,19 @@ class _$_Tech implements _Tech {
   final String techStatus;
   @override
   final String techId;
+  final List<String>? _relatedTechs;
+  @override
+  List<String>? get relatedTechs {
+    final value = _relatedTechs;
+    if (value == null) return null;
+    if (_relatedTechs is EqualUnmodifiableListView) return _relatedTechs;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'Tech(techName: $techName, category: $category, techShortDescription: $techShortDescription, techPrice: $techPrice, techSalePrice: $techSalePrice, techImage: $techImage, techType: $techType, techStatus: $techStatus, techId: $techId)';
+    return 'Tech(techName: $techName, category: $category, techShortDescription: $techShortDescription, techPrice: $techPrice, techSalePrice: $techSalePrice, techImage: $techImage, techType: $techType, techStatus: $techStatus, techId: $techId, relatedTechs: $relatedTechs)';
   }
 
   @override
@@ -268,7 +292,9 @@ class _$_Tech implements _Tech {
                 other.techType == techType) &&
             (identical(other.techStatus, techStatus) ||
                 other.techStatus == techStatus) &&
-            (identical(other.techId, techId) || other.techId == techId));
+            (identical(other.techId, techId) || other.techId == techId) &&
+            const DeepCollectionEquality()
+                .equals(other._relatedTechs, _relatedTechs));
   }
 
   @JsonKey(ignore: true)
@@ -283,7 +309,8 @@ class _$_Tech implements _Tech {
       techImage,
       techType,
       techStatus,
-      techId);
+      techId,
+      const DeepCollectionEquality().hash(_relatedTechs));
 
   @JsonKey(ignore: true)
   @override
@@ -309,7 +336,8 @@ abstract class _Tech implements Tech {
       required final String techImage,
       required final String techType,
       required final String techStatus,
-      required final String techId}) = _$_Tech;
+      required final String techId,
+      final List<String>? relatedTechs}) = _$_Tech;
 
   factory _Tech.fromJson(Map<String, dynamic> json) = _$_Tech.fromJson;
 
@@ -331,6 +359,8 @@ abstract class _Tech implements Tech {
   String get techStatus;
   @override
   String get techId;
+  @override
+  List<String>? get relatedTechs;
   @override
   @JsonKey(ignore: true)
   _$$_TechCopyWith<_$_Tech> get copyWith => throw _privateConstructorUsedError;

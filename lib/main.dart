@@ -4,6 +4,7 @@ import 'package:theek_karo/pages/dashboard_page.dart';
 import 'package:theek_karo/pages/home_page.dart';
 import 'package:theek_karo/pages/login_page.dart';
 import 'package:theek_karo/pages/register_page.dart';
+import 'package:theek_karo/pages/tech_details_page.dart';
 import 'package:theek_karo/pages/techs_page.dart';
 import 'package:theek_karo/utils/shared_service.dart';
 
@@ -38,6 +39,7 @@ class MyApp extends StatelessWidget {
         "/login": (BuildContext context) => const LoginPage(),
         "/home": (BuildContext context) => const HomePage(),
         "/techs": (BuildContext context) => const TechsPage(),
+        "/tech-details": (BuildContext context) => const TechDetailsPage(),
       },
     );
   }
