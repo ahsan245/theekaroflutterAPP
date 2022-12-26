@@ -8,16 +8,14 @@ import 'package:theek_karo/pages/tech_details_page.dart';
 import 'package:theek_karo/pages/techs_page.dart';
 import 'package:theek_karo/utils/shared_service.dart';
 
-Widget _defaultHome = const HomePage();
-void main() //async
-{
+Widget _defaultHome = const LoginPage();
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // bool _result = await SharedService.isLoggedIn();
+  bool _result = await SharedService.isLoggedIn();
 
-  // if (_result) {
-  //   _defaultHome = const HomePage();
-  // }
-  _defaultHome = const DashboardPage();
+  if (_result) {
+    _defaultHome = const DashboardPage();
+  }
   runApp(const ProviderScope(child: MyApp()));
 }
 
