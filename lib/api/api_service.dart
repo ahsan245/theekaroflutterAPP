@@ -9,6 +9,8 @@ import 'package:theek_karo/models/login_response_model.dart';
 import 'package:theek_karo/models/slider.dart';
 import 'package:theek_karo/models/tech.dart';
 import 'package:theek_karo/models/tech_filter.dart';
+import 'package:theek_karo/models/user.dart';
+import 'package:theek_karo/models/user_filter.dart';
 import 'package:theek_karo/utils/shared_service.dart';
 
 final apiService = Provider((ref) => APIService());
@@ -71,6 +73,33 @@ class APIService {
     }
   }
 
+  Future<List<User>?> getUsers(
+    UserFilterModel userFilterModel,
+  ) async {
+    Map<String, String> requestHeaders = {'Content-Type': 'application/json'};
+
+    Map<String, String> queryString = {
+      'page': userFilterModel.paginationModel.page.toString(),
+      'pageSize': userFilterModel.paginationModel.pageSize.toString()
+    };
+
+    if (userFilterModel.userId != null) {
+      queryString["userId"] = userFilterModel.userId!.join(",");
+    }
+
+    var url = Uri.http(Config.apiURL, Config.loginAPI, queryString);
+
+    var response = await client.get(url, headers: requestHeaders);
+
+    if (response.statusCode == 200) {
+      var data = jsonDecode(response.body);
+
+      return usersFromJson(data["data"]);
+    } else {
+      return null;
+    }
+  }
+
   static Future<bool> registerUser(
     String fullName,
     String email,
@@ -95,7 +124,7 @@ class APIService {
     }
   }
 
-  static Future<bool> loginUser(
+  static Future<Data?> loginUser(
     String email,
     String password,
   ) async {
@@ -112,10 +141,12 @@ class APIService {
     );
 
     if (response.statusCode == 200) {
+      var data = jsonDecode(response.body);
+
       // await SharedService.setLoginDetails(loginResponseJson(response.body));
-      return true;
+      return Data.fromJson(data["data"]);
     } else {
-      return false;
+      return null;
     }
   }
 
@@ -150,6 +181,21 @@ class APIService {
       var data = jsonDecode(response.body);
 
       return Tech.fromJson(data["data"]);
+    } else {
+      return null;
+    }
+  }
+
+  Future<User?> getUserDetails(String userId) async {
+    Map<String, String> requestHeaders = {'Content-Type': 'application/json'};
+
+    var url = Uri.http(Config.apiURL, '${Config.loginAPI}/$userId');
+    var response = await client.get(url, headers: requestHeaders);
+
+    if (response.statusCode == 200) {
+      var data = jsonDecode(response.body);
+
+      return User.fromJson(data["data"]);
     } else {
       return null;
     }

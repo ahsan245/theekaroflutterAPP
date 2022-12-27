@@ -8,6 +8,8 @@ import 'package:theek_karo/models/pagination.dart';
 import 'package:theek_karo/models/slider.dart';
 import 'package:theek_karo/models/tech.dart';
 import 'package:theek_karo/models/tech_filter.dart';
+import 'package:theek_karo/models/user.dart';
+import 'package:theek_karo/models/user_filter.dart';
 import 'package:theek_karo/widgets/widget_home_categories.dart';
 
 final categoriesProvider =

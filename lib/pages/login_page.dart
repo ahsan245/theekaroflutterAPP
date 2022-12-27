@@ -6,6 +6,8 @@ import 'package:snippet_coder_utils/FormHelper.dart';
 import 'package:snippet_coder_utils/ProgressHUD.dart';
 import 'package:theek_karo/api/api_service.dart';
 import 'package:theek_karo/config.dart';
+import 'package:theek_karo/models/login_response_model.dart';
+import 'package:theek_karo/models/user_filter.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -16,6 +18,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   static final GlobalKey<FormState> globalKey = GlobalKey<FormState>();
+  late final UserFilterModel model;
   bool isAsyncCallProcess = false;
   String? email;
   String? password;
@@ -168,7 +171,7 @@ class _LoginPageState extends State<LoginPage> {
                       isAsyncCallProcess = false;
                     });
 
-                    if (res) {
+                    if (res != null) {
                       FormHelper.showSimpleAlertDialog(
                         context,
                         Config.appName,

@@ -5,9 +5,11 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:theek_karo/config.dart';
 import 'package:theek_karo/models/tech.dart';
+import 'package:theek_karo/models/user.dart';
 
 class TechCard extends StatelessWidget {
   final Tech? model;
+
   const TechCard({Key? key, this.model}) : super(key: key);
 
   @override
@@ -52,8 +54,8 @@ class TechCard extends StatelessWidget {
                   ),
                   onTap: (() {
                     Navigator.of(context).pushNamed(
-                      "/tech-details",
-                      arguments: {'techId': model!.techId},
+                      "/home",
+                      arguments: {'userId': model!.techId},
                     );
                   }),
                 ),
