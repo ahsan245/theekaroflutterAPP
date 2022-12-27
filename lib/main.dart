@@ -11,11 +11,13 @@ import 'package:theek_karo/utils/shared_service.dart';
 Widget _defaultHome = const LoginPage();
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  bool _result = await SharedService.isLoggedIn();
+  //Remember to uncomment from the API service file
+  ///poora aik din zaya kia tha us comment k chakkar m
+  // bool _result = await SharedService.isLoggedIn();
 
-  if (_result) {
-    _defaultHome = const DashboardPage();
-  }
+  // if (_result) {
+  _defaultHome = const LoginPage();
+  // }
   runApp(const ProviderScope(child: MyApp()));
 }
 
