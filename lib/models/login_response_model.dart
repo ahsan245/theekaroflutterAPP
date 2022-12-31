@@ -40,6 +40,7 @@ class Data {
     email = json["email"];
     userId = json["userId"];
     token = json["token"];
+    print(json);
   }
 
   Map<String, dynamic> toJson() {

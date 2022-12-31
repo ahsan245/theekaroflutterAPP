@@ -124,7 +124,7 @@ class APIService {
     }
   }
 
-  static Future<Data?> loginUser(
+  static Future<bool> loginUser(
     String email,
     String password,
   ) async {
@@ -141,12 +141,11 @@ class APIService {
     );
 
     if (response.statusCode == 200) {
-      var data = jsonDecode(response.body);
-
-      // await SharedService.setLoginDetails(loginResponseJson(response.body));
-      return Data.fromJson(data["data"]);
+      // SharedService.setLoginDetails(loginResponseJson(response.body));
+      loginResponseJson(response.body);
+      return true;
     } else {
-      return null;
+      return false;
     }
   }
 

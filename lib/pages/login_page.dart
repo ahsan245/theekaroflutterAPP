@@ -171,7 +171,7 @@ class _LoginPageState extends State<LoginPage> {
                       isAsyncCallProcess = false;
                     });
 
-                    if (res != null) {
+                    if (res) {
                       FormHelper.showSimpleAlertDialog(
                         context,
                         Config.appName,
