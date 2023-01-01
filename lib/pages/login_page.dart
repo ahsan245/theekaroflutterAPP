@@ -168,10 +168,11 @@ class _LoginPageState extends State<LoginPage> {
                   });
                   APIService.loginUser(email!, password!).then((res) {
                     setState(() {
+                      print(res?.userId);
                       isAsyncCallProcess = false;
                     });
 
-                    if (res) {
+                    if (res != null) {
                       FormHelper.showSimpleAlertDialog(
                         context,
                         Config.appName,
@@ -181,6 +182,7 @@ class _LoginPageState extends State<LoginPage> {
                           Navigator.of(context).pop();
                           Navigator.of(context).pushNamedAndRemoveUntil(
                             "/home",
+                            arguments: {'userId': res.userId},
                             (route) => false,
                           );
                         },

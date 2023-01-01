@@ -7,6 +7,9 @@ import 'package:theek_karo/pages/tesst.dart';
 
 LoginResponseModel loginResponseJson(String str) {
   final jsonData = json.decode(str);
+  print('JSON data: $jsonData');
+  final data = Data.fromJson(jsonData['data']);
+  print('Data object: $data');
 
   return LoginResponseModel.fromJson(jsonData);
 }
@@ -16,8 +19,6 @@ class LoginResponseModel {
   late final Data data;
 
   LoginResponseModel.fromJson(Map<String, dynamic> json) {
-    print("ss");
-    print(json);
     message = json["message"];
     data = Data.fromJson(json["data"]);
   }

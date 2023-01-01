@@ -18,9 +18,9 @@ import 'package:theek_karo/utils/shared_service.dart';
 final apiService = Provider((ref) => APIService());
 
 class APIService {
-  static final StreamController<Data> _streamController =
+  static final StreamController<Data> streamController =
       StreamController<Data>.broadcast();
-  static Stream<Data> get stream => _streamController.stream;
+  static Stream<Data> get stream => streamController.stream;
   static var client = http.Client();
 
   Future<List<Category>?> getCategories(page, pageSize) async {
@@ -102,7 +102,7 @@ class APIService {
     }
   }
 
-  static Future<bool> loginUser(
+  static Future<Data?> loginUser(
     String email,
     String password,
   ) async {
@@ -124,12 +124,11 @@ class APIService {
 
       final loginResponse = loginResponseJson(response.body);
       final data = loginResponse.data;
-      print(data.fullName);
       // print(data.toJson());
-      _streamController.add(data);
-      return true;
+      streamController.add(data);
+      return data;
     } else {
-      return false;
+      return null;
     }
   }
 
