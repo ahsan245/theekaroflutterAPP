@@ -1,7 +1,11 @@
 import 'dart:convert';
 
-ComplainResponseModel complainResponseJson(String str) =>
-    ComplainResponseModel.fromJson(json.decode(str));
+ComplainResponseModel complainResponseJson(String str) {
+  final jsonData = json.decode(str);
+  final data = Dataa.fromJson(jsonData['data']);
+
+  return ComplainResponseModel.fromJson(jsonData);
+}
 
 class ComplainResponseModel {
   late final String message;
@@ -46,7 +50,6 @@ class Dataa {
     userAddress = json["userAddress"];
     userContact = json["userContact"];
     complainId = json["complainId"];
-    //print(json);
   }
 
   Map<String, dynamic> toJson() {

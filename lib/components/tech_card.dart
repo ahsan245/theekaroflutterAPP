@@ -54,7 +54,7 @@ class TechCard extends StatelessWidget {
                   ),
                   onTap: (() {
                     Navigator.of(context).pushNamed(
-                      "/home",
+                      "/tech-details",
                       arguments: {'userId': model!.techId},
                     );
                   }),

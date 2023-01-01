@@ -168,7 +168,23 @@ class APIService {
     }
   }
 
-  static Future<bool> registerComplain(
+  Future<Dataa?> getComplainDetails(String complainId) async {
+    Map<String, String> requestHeaders = {'Content-Type': 'application/json'};
+
+    var url = Uri.http(Config.apiURL, '${Config.complainAPI}/$complainId');
+    var response = await client.get(url, headers: requestHeaders);
+
+    if (response.statusCode == 200) {
+      final complainResponse = complainResponseJson(response.body);
+      final data = complainResponse.data;
+      print(data.complainName);
+      return data;
+    } else {
+      return null;
+    }
+  }
+
+  static Future<Dataa?> registerComplain(
     String userId,
     String complainName,
     String complainDescription,
@@ -189,16 +205,17 @@ class APIService {
           "complainDescription": complainDescription,
           "userAddress": userAddress,
           "userContact": userContact,
-          "complainImage": "",
         },
       ),
     );
 
     if (response.statusCode == 200) {
-      complainResponseJson(response.body);
-      return true;
+      final complainResponse = complainResponseJson(response.body);
+      final data = complainResponse.data;
+      // print(data.toJson());
+      return data;
     } else {
-      return false;
+      return null;
     }
   }
 }

@@ -3,6 +3,7 @@ import 'dart:js';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:theek_karo/models/login_response_model.dart';
+import 'package:theek_karo/pages/complain_detail_page.dart';
 import 'package:theek_karo/pages/dashboard_page.dart';
 import 'package:theek_karo/pages/home_page.dart';
 import 'package:theek_karo/pages/login_page.dart';
@@ -43,6 +44,7 @@ class MyApp extends StatelessWidget {
         "/login": (BuildContext context) => const LoginPage(),
         "/home": (BuildContext context) => TestPage(),
         "/techs": (BuildContext context) => const TechsPage(),
+        "/complain": (BuildContext context) => const ComplainDetailPage(),
         "/tech-details": (BuildContext context) => const TechDetailsPage(),
       },
     );
