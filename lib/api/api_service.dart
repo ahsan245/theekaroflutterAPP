@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:core';
 import 'dart:html';
@@ -5,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
 import 'package:theek_karo/config.dart';
 import 'package:theek_karo/models/category.dart';
+import 'package:theek_karo/models/complain_response_model.dart';
 import 'package:theek_karo/models/login_response_model.dart';
 import 'package:theek_karo/models/slider.dart';
 import 'package:theek_karo/models/tech.dart';
@@ -16,6 +18,9 @@ import 'package:theek_karo/utils/shared_service.dart';
 final apiService = Provider((ref) => APIService());
 
 class APIService {
+  static final StreamController<Data> _streamController =
+      StreamController<Data>.broadcast();
+  static Stream<Data> get stream => _streamController.stream;
   static var client = http.Client();
 
   Future<List<Category>?> getCategories(page, pageSize) async {
@@ -73,33 +78,6 @@ class APIService {
     }
   }
 
-  Future<List<User>?> getUsers(
-    UserFilterModel userFilterModel,
-  ) async {
-    Map<String, String> requestHeaders = {'Content-Type': 'application/json'};
-
-    Map<String, String> queryString = {
-      'page': userFilterModel.paginationModel.page.toString(),
-      'pageSize': userFilterModel.paginationModel.pageSize.toString()
-    };
-
-    if (userFilterModel.userId != null) {
-      queryString["userId"] = userFilterModel.userId!.join(",");
-    }
-
-    var url = Uri.http(Config.apiURL, Config.loginAPI, queryString);
-
-    var response = await client.get(url, headers: requestHeaders);
-
-    if (response.statusCode == 200) {
-      var data = jsonDecode(response.body);
-
-      return usersFromJson(data["data"]);
-    } else {
-      return null;
-    }
-  }
-
   static Future<bool> registerUser(
     String fullName,
     String email,
@@ -139,10 +117,16 @@ class APIService {
         {"email": email, "password": password},
       ),
     );
+    // print(response.body);
 
     if (response.statusCode == 200) {
       // SharedService.setLoginDetails(loginResponseJson(response.body));
-      loginResponseJson(response.body);
+
+      final loginResponse = loginResponseJson(response.body);
+      final data = loginResponse.data;
+      print(data.fullName);
+      // print(data.toJson());
+      _streamController.add(data);
       return true;
     } else {
       return false;
@@ -185,18 +169,37 @@ class APIService {
     }
   }
 
-  Future<User?> getUserDetails(String userId) async {
+  static Future<bool> registerComplain(
+    String userId,
+    String complainName,
+    String complainDescription,
+    String userAddress,
+    String userContact,
+  ) async {
     Map<String, String> requestHeaders = {'Content-Type': 'application/json'};
 
-    var url = Uri.http(Config.apiURL, '${Config.loginAPI}/$userId');
-    var response = await client.get(url, headers: requestHeaders);
+    var url = Uri.http(Config.apiURL, Config.complainAPI);
+
+    var response = await client.post(
+      url,
+      headers: requestHeaders,
+      body: jsonEncode(
+        {
+          "user": userId,
+          "complainName": complainName,
+          "complainDescription": complainDescription,
+          "userAddress": userAddress,
+          "userContact": userContact,
+          "complainImage": "",
+        },
+      ),
+    );
 
     if (response.statusCode == 200) {
-      var data = jsonDecode(response.body);
-
-      return User.fromJson(data["data"]);
+      complainResponseJson(response.body);
+      return true;
     } else {
-      return null;
+      return false;
     }
   }
 }

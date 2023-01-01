@@ -41,6 +41,7 @@ dependencies:
   api_cache_manager: ^1.0.2
   carousel_slider: ^4.2.1
   sqflite: ^2.2.2
+  provider: ^4.3.2
   
 
 dev_dependencies:

@@ -1,13 +1,23 @@
 import 'dart:convert';
+import 'dart:js';
 
-LoginResponseModel loginResponseJson(String str) =>
-    LoginResponseModel.fromJson(json.decode(str));
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:theek_karo/pages/tesst.dart';
+
+LoginResponseModel loginResponseJson(String str) {
+  final jsonData = json.decode(str);
+
+  return LoginResponseModel.fromJson(jsonData);
+}
 
 class LoginResponseModel {
   late final String message;
   late final Data data;
 
   LoginResponseModel.fromJson(Map<String, dynamic> json) {
+    print("ss");
+    print(json);
     message = json["message"];
     data = Data.fromJson(json["data"]);
   }
@@ -40,7 +50,6 @@ class Data {
     email = json["email"];
     userId = json["userId"];
     token = json["token"];
-    print(json);
   }
 
   Map<String, dynamic> toJson() {
