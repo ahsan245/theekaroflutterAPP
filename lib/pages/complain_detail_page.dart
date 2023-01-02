@@ -19,23 +19,17 @@ class ComplainDetailPage extends ConsumerStatefulWidget {
 
 class _ComplainDetailPageState extends ConsumerState<ComplainDetailPage> {
   String complainId = "";
+  String complainName = "";
+  String complainDescription = "";
+  String userAddress = "";
+  String userContact = "";
   String ahsan = "";
   bool isAsyncCallProcess = false;
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        body: ProgressHUD(
-          child: Form(
-            child: _techDetails(ref),
-          ),
-          inAsyncCall: isAsyncCallProcess,
-          opacity: .3,
-          key: UniqueKey(),
-        ),
-      ),
+      child: Scaffold(),
     );
   }
 
@@ -44,107 +38,18 @@ class _ComplainDetailPageState extends ConsumerState<ComplainDetailPage> {
     final Map? arguments = ModalRoute.of(context)!.settings.arguments as Map;
 
     if (arguments != null) {
-      complainId = arguments["complainId"];
+      complainId = arguments['complainId'];
+      complainName = arguments['complainName'];
+      complainDescription = arguments['complainDescription'];
+      userAddress = arguments['userAddress'];
+      userContact = arguments['userContact'];
+
+      print(complainName);
+      print(complainDescription);
+      print(userAddress);
+      print(userContact);
       print(complainId);
     }
     super.didChangeDependencies();
-  }
-
-  Widget _techDetails(WidgetRef ref) {
-    final details = ref.watch(complainDetailsProvider(complainId));
-    return details.when(
-        data: (model) {
-          return Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(model!.complainDescription),
-              SizedBox(
-                height: 10,
-              )
-            ],
-          );
-        },
-        error: (_, __) => const Center(child: Text("Error")),
-        loading: () => Center(
-              child: CircularProgressIndicator(),
-            ));
-  }
-
-  Widget _techDetailsUI(Dataa model) {
-    return Container(
-      color: Colors.white,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            model.complainName,
-            textAlign: TextAlign.center,
-            style: const TextStyle(
-              fontSize: 25,
-              color: Colors.black,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          Text(
-            "Status: ${model.complainDescription}",
-            textAlign: TextAlign.center,
-            style: const TextStyle(
-              fontSize: 13,
-              color: Colors.black,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 8.0),
-            child: Text(
-              "Number of Hours you Want to Book",
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontSize: 13,
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              CustomStepper(
-                lowerLimit: 1,
-                upperLimit: 20,
-                stepValue: 1,
-                iconSize: 22.0,
-                value: 1,
-                onChanged: (value) {},
-              ),
-              TextButton.icon(
-                onPressed: () {},
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.green),
-                ),
-                icon: const Icon(
-                  Icons.mobile_friendly_rounded,
-                  color: Colors.white,
-                  size: 20,
-                ),
-                label: const Text(
-                  "Book Now",
-                  style: TextStyle(color: Colors.white, fontSize: 13),
-                ),
-              )
-            ],
-          ),
-          const SizedBox(
-            height: 15,
-          ),
-          ColExpand(
-            title: "TECNICIAN DESCRIPTION",
-            content: model.userAddress,
-          ),
-        ],
-      ),
-    );
   }
 }

@@ -67,9 +67,3 @@ final relatedTechsProvider =
     return apiRepository.getTechs(techFilterModel);
   },
 );
-final complainDetailsProvider = FutureProvider.family<Dataa?, String>(
-  (ref, complainId) {
-    final apiRepository = ref.watch(apiService);
-    return apiRepository.getComplainDetails(complainId);
-  },
-);

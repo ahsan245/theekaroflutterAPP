@@ -217,7 +217,14 @@ class _TestPageState extends State<TestPage> {
                           Navigator.of(context).pop();
                           Navigator.of(context).pushNamedAndRemoveUntil(
                             "/complain",
-                            arguments: {'complainId': response.complainId},
+                            arguments: {
+                              'complainId': response.complainId,
+                              'complainName': response.complainName,
+                              'complainDescription':
+                                  response.complainDescription,
+                              'userAddress': response.userAddress,
+                              'userContact': response.userContact,
+                            },
                             (route) => false,
                           );
                         },
