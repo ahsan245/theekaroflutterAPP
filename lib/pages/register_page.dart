@@ -53,12 +53,12 @@ class _RegisterPageState extends State<RegisterPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const SizedBox(
-                height: 10,
+                height: 100,
               ),
               Align(
                 alignment: Alignment.center,
                 child: Image.asset(
-                  "assets/images/pafkietlog-54-1530711177.jpg",
+                  "assets/images/logo.png",
                   fit: BoxFit.contain,
                   width: 150,
                 ),

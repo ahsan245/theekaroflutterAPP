@@ -49,26 +49,17 @@ class _LoginPageState extends State<LoginPage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(
-            height: 10,
+            height: 100,
           ),
           Center(
             child: Image.asset(
-              "assets/images/pafkietlog-54-1530711177.jpg",
+              "assets/images/logo.png",
               fit: BoxFit.contain,
               width: 150,
             ),
           ),
           const SizedBox(
             height: 10,
-          ),
-          Center(
-            child: Text(
-              "TeekKaro App",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 35,
-              ),
-            ),
           ),
           const SizedBox(
             height: 10,

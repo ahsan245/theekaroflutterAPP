@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -30,6 +32,9 @@ class _TestPageState extends State<TestPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          title: const Text("Complains"),
+        ),
         backgroundColor: Colors.white,
         body: ProgressHUD(
           child: Form(
@@ -69,24 +74,6 @@ class _TestPageState extends State<TestPage> {
               const SizedBox(
                 height: 10,
               ),
-              Align(
-                alignment: Alignment.center,
-                child: Image.asset(
-                  "assets/images/pafkietlog-54-1530711177.jpg",
-                  fit: BoxFit.contain,
-                  width: 150,
-                ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              const Text(
-                "TeekKaro App",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 35,
-                ),
-              ),
             ],
           ),
           const Center(
@@ -100,13 +87,25 @@ class _TestPageState extends State<TestPage> {
             ),
           ),
           const SizedBox(
-            height: 10,
+            height: 50,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 20),
+            child: Text(
+              "Complain Title",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 14,
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ),
           FormHelper.inputFieldWidget(
               context,
-              const Icon(Icons.face, color: Colors.black),
+              const Icon(Icons.info, color: Colors.black),
               "ComplainTitle",
-              "Enter full Name", (onValidateVal) {
+              "Enter Complain Title", (onValidateVal) {
             if (onValidateVal.isEmpty) {
               return "* Required";
             }
@@ -115,20 +114,32 @@ class _TestPageState extends State<TestPage> {
             complainName = onSavedVal.toString().trim();
           },
               showPrefixIcon: true,
-              borderRadius: 10,
+              borderRadius: 8,
               fontSize: 14,
               borderColor: Colors.grey.shade400,
               prefixIconPaddingLeft: 10,
               prefixIconColor: Colors.black,
-              borderFocusColor: Colors.grey.shade200),
+              borderFocusColor: Colors.red.shade200),
           const SizedBox(
             height: 10,
           ),
+          Padding(
+            padding: const EdgeInsets.only(left: 20),
+            child: Text(
+              "Description",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 14,
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
           FormHelper.inputFieldWidget(
               context,
-              const Icon(Icons.face, color: Colors.black),
+              Icon(Icons.description, color: Colors.black),
               "ComplainDescription",
-              "Enter full Name", (onValidateVal) {
+              "Enter Description", (onValidateVal) {
             if (onValidateVal.isEmpty) {
               return "* Required";
             }
@@ -142,15 +153,28 @@ class _TestPageState extends State<TestPage> {
               borderColor: Colors.grey.shade400,
               prefixIconPaddingLeft: 10,
               prefixIconColor: Colors.black,
-              borderFocusColor: Colors.grey.shade200),
+              isMultiline: true,
+              borderFocusColor: Colors.red.shade200),
           const SizedBox(
             height: 10,
           ),
+          Padding(
+            padding: const EdgeInsets.only(left: 20),
+            child: Text(
+              "User Address",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 14,
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
           FormHelper.inputFieldWidget(
               context,
-              const Icon(Icons.face, color: Colors.black),
+              const Icon(Icons.home, color: Colors.black),
               "UserAddress",
-              "Enter full Name", (onValidateVal) {
+              "Enter your Address", (onValidateVal) {
             if (onValidateVal.isEmpty) {
               return "* Required";
             }
@@ -164,15 +188,30 @@ class _TestPageState extends State<TestPage> {
               borderColor: Colors.grey.shade400,
               prefixIconPaddingLeft: 10,
               prefixIconColor: Colors.black,
-              borderFocusColor: Colors.grey.shade200),
+              borderFocusColor: Colors.red.shade200),
           const SizedBox(
             height: 10,
           ),
+          Padding(
+            padding: const EdgeInsets.only(left: 20),
+            child: Text(
+              "User Contact",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 14,
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
           FormHelper.inputFieldWidget(
               context,
-              const Icon(Icons.face, color: Colors.black),
+              const Icon(
+                Icons.contact_page,
+                color: Colors.black,
+              ),
               "UserContact",
-              "Enter full Name", (onValidateVal) {
+              "Enter your Contact Info", (onValidateVal) {
             if (onValidateVal.isEmpty) {
               return "* Required";
             }
@@ -186,7 +225,7 @@ class _TestPageState extends State<TestPage> {
               borderColor: Colors.grey.shade400,
               prefixIconPaddingLeft: 10,
               prefixIconColor: Colors.black,
-              borderFocusColor: Colors.grey.shade200),
+              borderFocusColor: Colors.red.shade200),
           const SizedBox(
             height: 10,
           ),
