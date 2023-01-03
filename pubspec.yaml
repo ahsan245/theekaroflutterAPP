@@ -42,6 +42,10 @@ dependencies:
   carousel_slider: ^4.2.1
   sqflite: ^2.2.2
   provider: ^4.3.2
+  get: ^4.6.5
+  get_storage: ^2.0.3
+  hexcolor: ^2.0.5
+
   
 
 dev_dependencies:
