@@ -14,7 +14,7 @@ _$_Tech _$$_TechFromJson(Map<String, dynamic> json) => _$_Tech(
       techSalePrice: (json['techSalePrice'] as num).toDouble(),
       techImage: json['techImage'] as String,
       techType: json['techType'] as String,
-      techStatus: json['techStatus'] as String,
+      techStatus: json['techStatus'] as bool,
       techId: json['techId'] as String,
       relatedTechs: (json['relatedTechs'] as List<dynamic>?)
           ?.map((e) => e as String)

@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:theek_karo/models/user.dart';
+
 ComplainResponseModel complainResponseJson(String str) {
   final jsonData = json.decode(str);
   final data = Dataa.fromJson(jsonData['data']);
@@ -27,12 +29,13 @@ class ComplainResponseModel {
 }
 
 class Dataa {
-  late final String user;
-  late final String complainName;
-  late final String complainDescription;
-  late final String userAddress;
-  late final String userContact;
-  late final String complainId;
+  late String user;
+  late String complainName;
+  late String complainDescription;
+  late String userAddress;
+  late String userContact;
+  late String complainId;
+  late bool complainStatus;
 
   Dataa({
     required this.user,
@@ -41,6 +44,7 @@ class Dataa {
     required this.userAddress,
     required this.userContact,
     required this.complainId,
+    required this.complainStatus,
   });
 
   Dataa.fromJson(Map<String, dynamic> json) {
@@ -50,6 +54,7 @@ class Dataa {
     userAddress = json["userAddress"];
     userContact = json["userContact"];
     complainId = json["complainId"];
+    complainStatus = json["complainStatus"];
   }
 
   Map<String, dynamic> toJson() {
@@ -61,6 +66,7 @@ class Dataa {
     _data['userAddress'] = userAddress;
     _data['userContact'] = userContact;
     _data['complainId'] = complainId;
+    _data['complainStatus'] = complainStatus;
     return _data;
   }
 }

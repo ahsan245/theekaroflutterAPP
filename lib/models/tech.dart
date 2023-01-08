@@ -18,7 +18,7 @@ abstract class Tech with _$Tech {
       required double techSalePrice,
       required String techImage,
       required String techType,
-      required String techStatus,
+      required bool techStatus,
       required String techId,
       List<String>? relatedTechs}) = _Tech;
 

@@ -60,6 +60,7 @@ class HomeSliderWidget extends ConsumerWidget {
     return Container(
       color: Colors.white,
       child: _sliderList(ref),
+      height: 200,
     );
   }
 }

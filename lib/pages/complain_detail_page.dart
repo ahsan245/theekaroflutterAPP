@@ -31,6 +31,7 @@ class _ComplainDetailPageState extends ConsumerState<ComplainDetailPage> {
   String userAddress = "";
   String userContact = "";
   String ahsan = "";
+  String user = "";
   bool isAsyncCallProcess = false;
 
   @override
@@ -48,7 +49,13 @@ class _ComplainDetailPageState extends ConsumerState<ComplainDetailPage> {
           ),
           leading: IconButton(
             onPressed: () {
-              Get.back();
+              Navigator.of(context).pushNamed(
+                "/home",
+                arguments: {
+                  'complainId': complainId,
+                  'userId': user,
+                },
+              );
             },
             icon: const Icon(
               Icons.arrow_back_ios_new,
@@ -211,7 +218,7 @@ class _ComplainDetailPageState extends ConsumerState<ComplainDetailPage> {
               CircleAvatar(
                 backgroundColor: Colors.transparent,
                 child: Image.asset(
-                  'assets/user.png',
+                  'assets/images/logo.png',
                 ),
               ),
               SizedBox(
@@ -273,12 +280,14 @@ class _ComplainDetailPageState extends ConsumerState<ComplainDetailPage> {
       complainDescription = arguments['complainDescription'];
       userAddress = arguments['userAddress'];
       userContact = arguments['userContact'];
+      user = arguments['userId'];
 
       print(complainName);
       print(complainDescription);
       print(userAddress);
       print(userContact);
       print(complainId);
+      print(user);
     }
     super.didChangeDependencies();
   }

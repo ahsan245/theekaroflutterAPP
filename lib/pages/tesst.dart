@@ -63,6 +63,7 @@ class _TestPageState extends State<TestPage> {
   }
 
   Widget _registerUI(BuildContext context) {
+    print(user);
     return SingleChildScrollView(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -254,8 +255,8 @@ class _TestPageState extends State<TestPage> {
                         "Ok",
                         () {
                           Navigator.of(context).pop();
-                          Navigator.of(context).pushNamedAndRemoveUntil(
-                            "/complain",
+                          Navigator.of(context).pushNamed(
+                            "/complain-details",
                             arguments: {
                               'complainId': response.complainId,
                               'complainName': response.complainName,
@@ -263,8 +264,8 @@ class _TestPageState extends State<TestPage> {
                                   response.complainDescription,
                               'userAddress': response.userAddress,
                               'userContact': response.userContact,
+                              'userId': user,
                             },
-                            (route) => false,
                           );
                         },
                       );

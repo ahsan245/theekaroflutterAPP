@@ -27,7 +27,7 @@ mixin _$Tech {
   double get techSalePrice => throw _privateConstructorUsedError;
   String get techImage => throw _privateConstructorUsedError;
   String get techType => throw _privateConstructorUsedError;
-  String get techStatus => throw _privateConstructorUsedError;
+  bool get techStatus => throw _privateConstructorUsedError;
   String get techId => throw _privateConstructorUsedError;
   List<String>? get relatedTechs => throw _privateConstructorUsedError;
 
@@ -49,7 +49,7 @@ abstract class $TechCopyWith<$Res> {
       double techSalePrice,
       String techImage,
       String techType,
-      String techStatus,
+      bool techStatus,
       String techId,
       List<String>? relatedTechs});
 
@@ -112,7 +112,7 @@ class _$TechCopyWithImpl<$Res, $Val extends Tech>
       techStatus: null == techStatus
           ? _value.techStatus
           : techStatus // ignore: cast_nullable_to_non_nullable
-              as String,
+              as bool,
       techId: null == techId
           ? _value.techId
           : techId // ignore: cast_nullable_to_non_nullable
@@ -147,7 +147,7 @@ abstract class _$$_TechCopyWith<$Res> implements $TechCopyWith<$Res> {
       double techSalePrice,
       String techImage,
       String techType,
-      String techStatus,
+      bool techStatus,
       String techId,
       List<String>? relatedTechs});
 
@@ -207,7 +207,7 @@ class __$$_TechCopyWithImpl<$Res> extends _$TechCopyWithImpl<$Res, _$_Tech>
       techStatus: null == techStatus
           ? _value.techStatus
           : techStatus // ignore: cast_nullable_to_non_nullable
-              as String,
+              as bool,
       techId: null == techId
           ? _value.techId
           : techId // ignore: cast_nullable_to_non_nullable
@@ -253,7 +253,7 @@ class _$_Tech implements _Tech {
   @override
   final String techType;
   @override
-  final String techStatus;
+  final bool techStatus;
   @override
   final String techId;
   final List<String>? _relatedTechs;
@@ -335,7 +335,7 @@ abstract class _Tech implements Tech {
       required final double techSalePrice,
       required final String techImage,
       required final String techType,
-      required final String techStatus,
+      required final bool techStatus,
       required final String techId,
       final List<String>? relatedTechs}) = _$_Tech;
 
@@ -356,7 +356,7 @@ abstract class _Tech implements Tech {
   @override
   String get techType;
   @override
-  String get techStatus;
+  bool get techStatus;
   @override
   String get techId;
   @override
