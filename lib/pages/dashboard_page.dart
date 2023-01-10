@@ -18,7 +18,6 @@ class _DashboardPageState extends State<DashboardPage> {
     HomePage(),
     HomePage(),
     HomePage(),
-    HomePage(),
   ];
   int index = 0;
   String complainId = "";
@@ -60,9 +59,7 @@ class _DashboardPageState extends State<DashboardPage> {
           BottomNavigationBarItem(
               icon: Icon(Icons.shopping_basket), label: "store"),
           BottomNavigationBarItem(
-              icon: Icon(Icons.shopping_cart), label: "Cart"),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.favorite), label: "Favourite"),
+              icon: Icon(Icons.create_outlined), label: "Cart"),
           BottomNavigationBarItem(
               icon: Icon(Icons.supervised_user_circle), label: "My Account"),
         ],

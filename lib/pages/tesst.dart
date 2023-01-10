@@ -9,6 +9,7 @@ import 'package:snippet_coder_utils/FormHelper.dart';
 import 'package:snippet_coder_utils/ProgressHUD.dart';
 import 'package:theek_karo/api/api_service.dart';
 import 'package:theek_karo/config.dart';
+import 'package:theek_karo/pages/dashboard_page.dart';
 
 class TestPage extends StatefulWidget {
   const TestPage({super.key});
@@ -25,8 +26,6 @@ class _TestPageState extends State<TestPage> {
   String? confirmPassword;
   String? userContact;
   String? userAddress;
-
-  String user = "";
 
   @override
   Widget build(BuildContext context) {
