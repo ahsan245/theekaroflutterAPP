@@ -7,6 +7,7 @@ import 'package:theek_karo/models/tech.dart';
 import 'package:theek_karo/pages/complain_detail_page.dart';
 import 'package:theek_karo/pages/dashboard_page.dart';
 import 'package:theek_karo/pages/home_page.dart';
+import 'package:theek_karo/pages/login_otp_page.dart';
 import 'package:theek_karo/pages/login_page.dart';
 import 'package:theek_karo/pages/register_page.dart';
 import 'package:theek_karo/pages/tech_details_page.dart';
@@ -22,7 +23,7 @@ void main() async {
   // bool _result = await SharedService.isLoggedIn();
 
   // if (_result) {
-  _defaultHome = const LoginPage();
+  _defaultHome = const LoginOTPPage();
   // }
   runApp(const ProviderScope(child: MyApp()));
 }

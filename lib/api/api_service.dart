@@ -8,6 +8,7 @@ import 'package:theek_karo/config.dart';
 import 'package:theek_karo/models/category.dart';
 import 'package:theek_karo/models/complain_response_model.dart';
 import 'package:theek_karo/models/login_response_model.dart';
+import 'package:theek_karo/models/otp_login_response_mode.dart.dart';
 import 'package:theek_karo/models/slider.dart';
 import 'package:theek_karo/models/tech.dart';
 import 'package:theek_karo/models/tech_filter.dart';
@@ -217,5 +218,41 @@ class APIService {
     } else {
       return null;
     }
+  }
+
+  static Future<OtpLoginResponseModel> otpLogin(String mobileNO) async {
+    Map<String, String> requestHeaders = {
+      'Content-Type': 'application/json',
+    };
+
+    var url = Uri.http(Config.apiURL, Config.otpLoginAPI);
+
+    var response = await client.post(
+      url,
+      headers: requestHeaders,
+      body: jsonEncode({"phone": mobileNO}),
+    );
+
+    return otploginResponseJson(response.body);
+  }
+
+  static Future<OtpLoginResponseModel> verifyOTP(
+    String mobileNo,
+    String otpHash,
+    String otpCode,
+  ) async {
+    Map<String, String> requestHeaders = {
+      'Content-Type': 'application/json',
+    };
+
+    var url = Uri.http(Config.apiURL, Config.otpVerifyAPI);
+
+    var response = await client.post(
+      url,
+      headers: requestHeaders,
+      body: jsonEncode({"phone": mobileNo, "otp": otpCode, "hash": otpHash}),
+    );
+
+    return otploginResponseJson(response.body);
   }
 }
