@@ -45,7 +45,7 @@ class _LoginOTPPageState extends State<LoginOTPPage> {
           padding: const EdgeInsets.only(top: 10),
           child: Center(
             child: Text(
-              "Login with a Mobile Number",
+              "Sign-Up with a Mobile Number",
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ),
@@ -55,7 +55,7 @@ class _LoginOTPPageState extends State<LoginOTPPage> {
         ),
         const Center(
           child: Text(
-            "Enter your mobile number we will send you OTP to verift",
+            "Enter your mobile number we will send you OTP to verify",
             style: TextStyle(fontSize: 14),
           ),
         ),

@@ -9,6 +9,8 @@ import 'package:snippet_coder_utils/ProgressHUD.dart';
 import 'package:theek_karo/api/api_service.dart';
 import 'package:theek_karo/config.dart';
 
+String mobileNo = "";
+
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
 
@@ -17,6 +19,18 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  @override
+  void didChangeDependencies() {
+    final Map? arguments = ModalRoute.of(context)!.settings.arguments as Map;
+
+    if (arguments != null) {
+      mobileNo = arguments["mobileNo"];
+      print("MobileNo");
+      print(mobileNo);
+    }
+    super.didChangeDependencies();
+  }
+
   static final GlobalKey<FormState> globalKey = GlobalKey<FormState>();
   bool isAsyncCallProcess = false;
   String? fullName;
@@ -148,6 +162,37 @@ class _RegisterPageState extends State<RegisterPage> {
               if (onValidateVal.isEmpty) {
                 return "* Required";
               }
+
+              var hasUppercase = onValidateVal.contains(new RegExp(r'[A-Z]'));
+              var hasLowercase = onValidateVal.contains(new RegExp(r'[a-z]'));
+              var hasNumber = onValidateVal.contains(new RegExp(r'[0-9]'));
+              var hasSpecialChar =
+                  onValidateVal.contains(new RegExp(r'[!@#$%^&*(),.?":{}|<>]'));
+
+              if (!(hasUppercase &&
+                  hasLowercase &&
+                  hasNumber &&
+                  hasSpecialChar)) {
+                showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        title: Text("Password Error"),
+                        content: Text(
+                            "Password must contain at least one uppercase letter, one lowercase letter, one number and one special character"),
+                        actions: <Widget>[
+                          OutlinedButton(
+                            child: Text("OK"),
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                          ),
+                        ],
+                      );
+                    });
+                return "Password Error";
+              }
+
               return null;
             },
             (onSavedVal) {
@@ -228,7 +273,8 @@ class _RegisterPageState extends State<RegisterPage> {
                   setState(() {
                     isAsyncCallProcess = true;
                   });
-                  APIService.registerUser(fullName!, email!, password!)
+                  APIService.registerUser(
+                          fullName!, email!, password!, "0$mobileNo")
                       .then((response) {
                     setState(() {
                       isAsyncCallProcess = false;

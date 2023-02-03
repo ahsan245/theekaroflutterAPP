@@ -47,6 +47,7 @@ class MyApp extends StatelessWidget {
         "/home": (BuildContext context) => DashboardPage(),
         "/techs": (BuildContext context) => const TechsPage(),
         "/complain": (BuildContext context) => const TestPage(),
+        "/otplogin": (BuildContext context) => LoginOTPPage(),
         "/complain-details": (BuildContext context) =>
             const ComplainDetailPage(),
         "/tech-details": (BuildContext context) => const TechDetailsPage(),

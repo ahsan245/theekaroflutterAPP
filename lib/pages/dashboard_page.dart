@@ -46,10 +46,10 @@ class _DashboardPageState extends State<DashboardPage> {
         type: BottomNavigationBarType.fixed,
         currentIndex: index,
         onTap: (_index) {
-          Navigator.of(context).pushNamed(
-            "/complain",
-            arguments: {'userId': user},
-          );
+          // Navigator.of(context).pushNamed(
+          //   "/complain",
+          //   arguments: {'userId': user},
+          // );
 
           setState(() {
             index = _index;

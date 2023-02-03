@@ -6,6 +6,7 @@ import 'package:sms_autofill/sms_autofill.dart';
 import 'package:snippet_coder_utils/FormHelper.dart';
 import 'package:snippet_coder_utils/ProgressHUD.dart';
 import 'package:snippet_coder_utils/hex_color.dart';
+import 'package:theek_karo/pages/register_page.dart';
 
 import '../api/api_service.dart';
 import '../config.dart';
@@ -146,10 +147,15 @@ class _OTPVerifyPageState extends State<OTPVerifyPage> {
                     FormHelper.showSimpleAlertDialog(
                       context,
                       Config.appName,
-                      response.message,
-                      "OK",
+                      "OTP Verified Successfully",
+                      "Ok",
                       () {
-                        Navigator.pop(context);
+                        Navigator.of(context).pop();
+                        Navigator.of(context).pushNamedAndRemoveUntil(
+                          "/register",
+                          arguments: {'mobileNo': widget.mobileNo},
+                          (route) => false,
+                        );
                       },
                     );
                   } else {

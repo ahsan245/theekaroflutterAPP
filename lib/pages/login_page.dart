@@ -219,7 +219,7 @@ class _LoginPageState extends State<LoginPage> {
                   recognizer: TapGestureRecognizer()
                     ..onTap = () {
                       Navigator.of(context).pushNamedAndRemoveUntil(
-                        "/register",
+                        "/otplogin",
                         (route) => false,
                       );
                     },

@@ -83,6 +83,7 @@ class APIService {
     String fullName,
     String email,
     String password,
+    String contact,
   ) async {
     Map<String, String> requestHeaders = {'Content-Type': 'application/json'};
 
@@ -92,7 +93,12 @@ class APIService {
       url,
       headers: requestHeaders,
       body: jsonEncode(
-        {"fullName": fullName, "email": email, "password": password},
+        {
+          "fullName": fullName,
+          "email": email,
+          "password": password,
+          "contact": contact
+        },
       ),
     );
 
