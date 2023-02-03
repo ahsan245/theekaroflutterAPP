@@ -23,7 +23,7 @@ void main() async {
   // bool _result = await SharedService.isLoggedIn();
 
   // if (_result) {
-  _defaultHome = const LoginOTPPage();
+  _defaultHome = const LoginPage();
   // }
   runApp(const ProviderScope(child: MyApp()));
 }
