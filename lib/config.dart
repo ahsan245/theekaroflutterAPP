@@ -1,7 +1,7 @@
 class Config {
   static const String appName = "Theek Karo";
-  static const String apiURL = "192.168.10.6:4000";
-  static const String imageURL = "http://192.168.10.6:4000";
+  static const String apiURL = "https://theek-karo-api.herokuapp.com/";
+  static const String imageURL = "https://theek-karo-api.herokuapp.com";
   static const String categoryAPI = "api/category";
   static const String techAPI = "api/tech";
   static const String registerAPI = "api/register";
