@@ -26,7 +26,7 @@ class _TestPageState extends State<TestPage> {
   String? confirmPassword;
   String? userContact;
   String? userAddress;
-  String? selectedValue;
+  String? category;
 
   @override
   Widget build(BuildContext context) {
@@ -205,28 +205,100 @@ class _TestPageState extends State<TestPage> {
               ),
             ),
           ),
-          FormHelper.inputFieldWidget(
-              context,
-              const Icon(
-                Icons.contact_page,
+          const SizedBox(
+            height: 10,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 20),
+            child: Text(
+              "Choose Category",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 14,
                 color: Colors.black,
+                fontWeight: FontWeight.bold,
               ),
-              "UserContact",
-              "Enter your Contact Info", (onValidateVal) {
-            if (onValidateVal.isEmpty) {
-              return "* Required";
-            }
-            return null;
-          }, (onSavedVal) {
-            userContact = onSavedVal.toString().trim();
-          },
-              showPrefixIcon: true,
-              borderRadius: 10,
-              fontSize: 14,
-              borderColor: Colors.grey.shade400,
-              prefixIconPaddingLeft: 10,
-              prefixIconColor: Colors.black,
-              borderFocusColor: Colors.red.shade200),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 10, top: 10, left: 20.0),
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20.0),
+                color: Color.fromARGB(255, 200, 200, 200),
+              ),
+              child: DropdownButton(
+                value: category,
+                items: [
+                  DropdownMenuItem(
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10.0),
+                          child: Icon(Icons.computer_rounded),
+                        ),
+                        SizedBox(width: 2.0),
+                        Text(
+                          "Data Recovery",
+                          style: TextStyle(
+                            fontSize: 18.0,
+                            color: Colors.black,
+                            fontFamily: 'Roboto',
+                          ),
+                        ),
+                      ],
+                    ),
+                    value: "Data Recovery",
+                  ),
+                  DropdownMenuItem(
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10.0),
+                          child: Icon(Icons.upgrade_rounded),
+                        ),
+                        SizedBox(width: 2.0),
+                        Text(
+                          "BIOS Updation",
+                          style: TextStyle(
+                            fontSize: 18.0,
+                            color: Colors.black,
+                            fontFamily: 'Roboto',
+                          ),
+                        ),
+                      ],
+                    ),
+                    value: "BIOS Updation",
+                  ),
+                  DropdownMenuItem(
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10.0),
+                          child: Icon(Icons.cast_connected_rounded),
+                        ),
+                        SizedBox(width: 2.0),
+                        Text(
+                          "Connectivity",
+                          style: TextStyle(
+                            fontSize: 18.0,
+                            color: Colors.black,
+                            fontFamily: 'Roboto',
+                          ),
+                        ),
+                      ],
+                    ),
+                    value: "Connectivity",
+                  ),
+                ],
+                onChanged: (value) {
+                  setState(() {
+                    category = value;
+                  });
+                },
+              ),
+            ),
+          ),
           const SizedBox(
             height: 10,
           ),
@@ -239,7 +311,7 @@ class _TestPageState extends State<TestPage> {
                     isAsyncCallProcess = true;
                   });
                   APIService.registerComplain(user, complainName!,
-                          complainDescription!, userAddress!, userContact!)
+                          complainDescription!, userAddress!, category!)
                       .then((response) {
                     setState(() {
                       print("afasf");
@@ -264,6 +336,7 @@ class _TestPageState extends State<TestPage> {
                                   response.complainDescription,
                               'userAddress': response.userAddress,
                               'userContact': response.userContact,
+                              'category': response.category,
                             },
                           );
                         },

@@ -196,7 +196,7 @@ class APIService {
     String complainName,
     String complainDescription,
     String userAddress,
-    String userContact,
+    String category,
   ) async {
     Map<String, String> requestHeaders = {'Content-Type': 'application/json'};
 
@@ -211,7 +211,7 @@ class APIService {
           "complainName": complainName,
           "complainDescription": complainDescription,
           "userAddress": userAddress,
-          "userContact": userContact,
+          "category": category,
         },
       ),
     );

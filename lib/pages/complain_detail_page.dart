@@ -31,6 +31,7 @@ class _ComplainDetailPageState extends ConsumerState<ComplainDetailPage> {
   String complainDescription = "";
   String userAddress = "";
   String userContact = "";
+  String category = "";
   String ahsan = "";
   bool isAsyncCallProcess = false;
 
@@ -280,12 +281,14 @@ class _ComplainDetailPageState extends ConsumerState<ComplainDetailPage> {
       complainDescription = arguments['complainDescription'];
       userAddress = arguments['userAddress'];
       userContact = arguments['userContact'];
+      category = arguments['category'];
 
       print(complainName);
       print(complainDescription);
       print(userAddress);
       print(userContact);
       print(complainId);
+      print(category);
       print(user);
     }
     super.didChangeDependencies();
