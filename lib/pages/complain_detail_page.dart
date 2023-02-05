@@ -8,6 +8,7 @@ import 'package:theek_karo/components/widget_col_exp.dart';
 import 'package:theek_karo/components/widget_custom_stepper.dart';
 import 'package:theek_karo/config.dart';
 import 'package:theek_karo/models/complain_response_model.dart';
+import 'package:theek_karo/pages/dashboard_page.dart';
 import 'package:theek_karo/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -31,7 +32,6 @@ class _ComplainDetailPageState extends ConsumerState<ComplainDetailPage> {
   String userAddress = "";
   String userContact = "";
   String ahsan = "";
-  String user = "";
   bool isAsyncCallProcess = false;
 
   @override
@@ -280,7 +280,6 @@ class _ComplainDetailPageState extends ConsumerState<ComplainDetailPage> {
       complainDescription = arguments['complainDescription'];
       userAddress = arguments['userAddress'];
       userContact = arguments['userContact'];
-      user = arguments['userId'];
 
       print(complainName);
       print(complainDescription);

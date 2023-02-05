@@ -26,6 +26,7 @@ class _TestPageState extends State<TestPage> {
   String? confirmPassword;
   String? userContact;
   String? userAddress;
+  String? selectedValue;
 
   @override
   Widget build(BuildContext context) {
@@ -48,20 +49,20 @@ class _TestPageState extends State<TestPage> {
     );
   }
 
-  @override
-  void didChangeDependencies() {
-    final Map? arguments = ModalRoute.of(context)!.settings.arguments as Map;
+  // @override
+  // void didChangeDependencies() {
+  //   final Map? arguments = ModalRoute.of(context)!.settings.arguments as Map;
 
-    if (arguments != null) {
-      user = arguments["userId"];
-      print("merrrr");
-
-      print(user);
-    }
-    super.didChangeDependencies();
-  }
+  //   if (arguments != null) {
+  //     user = arguments["userId"];
+  //     print("merrrr");
+  //     print(user);
+  //   }
+  //   super.didChangeDependencies();
+  // }
 
   Widget _registerUI(BuildContext context) {
+    print("k");
     print(user);
     return SingleChildScrollView(
       child: Column(
@@ -263,7 +264,6 @@ class _TestPageState extends State<TestPage> {
                                   response.complainDescription,
                               'userAddress': response.userAddress,
                               'userContact': response.userContact,
-                              'userId': user,
                             },
                           );
                         },

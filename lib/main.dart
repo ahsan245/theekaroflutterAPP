@@ -9,6 +9,7 @@ import 'package:theek_karo/pages/dashboard_page.dart';
 import 'package:theek_karo/pages/home_page.dart';
 import 'package:theek_karo/pages/login_otp_page.dart';
 import 'package:theek_karo/pages/login_page.dart';
+import 'package:theek_karo/pages/otp_verify_page.dart';
 import 'package:theek_karo/pages/register_page.dart';
 import 'package:theek_karo/pages/tech_details_page.dart';
 import 'package:theek_karo/pages/techs_page.dart';
@@ -48,6 +49,7 @@ class MyApp extends StatelessWidget {
         "/techs": (BuildContext context) => const TechsPage(),
         "/complain": (BuildContext context) => const TestPage(),
         "/otplogin": (BuildContext context) => LoginOTPPage(),
+        "/otpverify": (BuildContext context) => OTPVerifyPage(),
         "/complain-details": (BuildContext context) =>
             const ComplainDetailPage(),
         "/tech-details": (BuildContext context) => const TechDetailsPage(),

@@ -38,12 +38,14 @@ class Data {
   late final String email;
   late final String userId;
   late final String token;
+  late final String contact;
 
   Data({
     required this.fullName,
     required this.email,
     required this.userId,
     required this.token,
+    required this.contact,
   });
 
   Data.fromJson(Map<String, dynamic> json) {
@@ -51,6 +53,7 @@ class Data {
     email = json["email"];
     userId = json["userId"];
     token = json["token"];
+    contact = json["contact"];
   }
 
   Map<String, dynamic> toJson() {
@@ -60,6 +63,7 @@ class Data {
     _data['email'] = email;
     _data['userId'] = userId;
     _data['token'] = token;
+    _data['contact'] = contact;
     return _data;
   }
 }

@@ -28,7 +28,7 @@ class HomePage extends StatelessWidget {
                 onPressed: () {
                   Navigator.of(context).pushNamed(
                     "/complain",
-                    arguments: {'userId': user},
+                    // arguments: {'userId': user},
                   );
                 },
                 child: Icon(Icons.add),

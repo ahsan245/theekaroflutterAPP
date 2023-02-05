@@ -1,4 +1,7 @@
+import 'dart:html';
+
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -6,6 +9,7 @@ import 'package:snippet_coder_utils/FormHelper.dart';
 import 'package:snippet_coder_utils/ProgressHUD.dart';
 import 'package:snippet_coder_utils/hex_color.dart';
 import 'package:theek_karo/api/api_service.dart';
+import 'package:theek_karo/config.dart';
 import 'package:theek_karo/pages/otp_verify_page.dart';
 
 class LoginOTPPage extends StatefulWidget {
@@ -152,14 +156,53 @@ class _LoginOTPPageState extends State<LoginOTPPage> {
                     );
                   }
                 });
+              } else {
+                FormHelper.showSimpleAlertDialog(
+                  context,
+                  Config.appName,
+                  "Please Enter a Valid Number",
+                  "Ok",
+                  () {
+                    Navigator.of(context).pop();
+                  },
+                );
               }
             },
-            borderColor: HexColor("#78D0B1"),
-            btnColor: HexColor("#78D0B1"),
+            borderColor: Colors.deepOrangeAccent,
+            btnColor: Colors.deepOrangeAccent,
             txtColor: HexColor("#000000"),
             borderRadius: 20,
           ),
-        )
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        Center(
+          child: RichText(
+              text: TextSpan(
+            children: <TextSpan>[
+              TextSpan(
+                text: "Back to Login ",
+                style: TextStyle(
+                  color: Colors.black,
+                ),
+              ),
+              TextSpan(
+                text: "Login In",
+                style: TextStyle(
+                  color: Colors.deepOrangeAccent,
+                ),
+                recognizer: TapGestureRecognizer()
+                  ..onTap = () {
+                    Navigator.of(context).pushNamedAndRemoveUntil(
+                      "/login",
+                      (route) => false,
+                    );
+                  },
+              )
+            ],
+          )),
+        ),
       ],
     );
   }

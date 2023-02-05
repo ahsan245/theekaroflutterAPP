@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -172,13 +173,40 @@ class _OTPVerifyPageState extends State<OTPVerifyPage> {
                 });
               }
             },
-            btnColor: HexColor("#78D0B1"),
-            borderColor: HexColor("#78D0B1"),
-            txtColor: HexColor(
-              "#000000",
-            ),
+            borderColor: Colors.deepOrangeAccent,
+            btnColor: Colors.deepOrangeAccent,
+            txtColor: Colors.white,
             borderRadius: 20,
           ),
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        Center(
+          child: RichText(
+              text: TextSpan(
+            children: <TextSpan>[
+              TextSpan(
+                text: "Want to Update Number ",
+                style: TextStyle(
+                  color: Colors.black,
+                ),
+              ),
+              TextSpan(
+                text: "Go back",
+                style: TextStyle(
+                  color: Colors.deepOrangeAccent,
+                ),
+                recognizer: TapGestureRecognizer()
+                  ..onTap = () {
+                    Navigator.of(context).pushNamedAndRemoveUntil(
+                      "/otplogin",
+                      (route) => false,
+                    );
+                  },
+              )
+            ],
+          )),
         ),
       ],
     );
