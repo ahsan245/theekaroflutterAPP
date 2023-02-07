@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:theek_karo/models/complain_response_model.dart';
+import 'package:theek_karo/pages/complain_detail_page.dart';
 import 'package:theek_karo/pages/home_page.dart';
+import 'package:theek_karo/pages/user_details_page.dart';
 
 String user = "";
+String complainId = "";
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
@@ -15,12 +18,11 @@ class DashboardPage extends StatefulWidget {
 
 class _DashboardPageState extends State<DashboardPage> {
   final List<Widget> widgetList = const [
+    ComplainDetailPage(),
     HomePage(),
-    HomePage(),
-    HomePage(),
+    UserDetailsPage(),
   ];
-  int index = 0;
-  String complainId = "";
+  int index = 1;
 
   @override
   void didChangeDependencies() {
@@ -57,11 +59,11 @@ class _DashboardPageState extends State<DashboardPage> {
         },
         items: const [
           BottomNavigationBarItem(
-              icon: Icon(Icons.shopping_basket), label: "store"),
+              icon: Icon(Icons.history_rounded), label: "Complains"),
           BottomNavigationBarItem(
-              icon: Icon(Icons.create_outlined), label: "Cart"),
+              icon: Icon(Icons.home_rounded), label: "Home"),
           BottomNavigationBarItem(
-              icon: Icon(Icons.supervised_user_circle), label: "My Account"),
+              icon: Icon(Icons.account_box_rounded), label: "Profile"),
         ],
       ),
       body: widgetList[index],

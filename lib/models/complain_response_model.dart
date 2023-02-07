@@ -36,7 +36,8 @@ class Dataa {
   late String userContact;
   late String complainId;
   late bool complainStatus;
-  late bool category;
+  late String complainCategory;
+  late String assignedTech;
 
   Dataa({
     required this.user,
@@ -46,7 +47,8 @@ class Dataa {
     required this.userContact,
     required this.complainId,
     required this.complainStatus,
-    required this.category,
+    required this.complainCategory,
+    required this.assignedTech,
   });
 
   Dataa.fromJson(Map<String, dynamic> json) {
@@ -57,7 +59,8 @@ class Dataa {
     userContact = json["userContact"];
     complainId = json["complainId"];
     complainStatus = json["complainStatus"];
-    category = json["category"];
+    complainCategory = json["complainCategory"];
+    assignedTech = json["assignedTech"];
   }
 
   Map<String, dynamic> toJson() {
@@ -70,7 +73,8 @@ class Dataa {
     _data['userContact'] = userContact;
     _data['complainId'] = complainId;
     _data['complainStatus'] = complainStatus;
-    _data['category'] = category;
+    _data['complainCategory'] = complainCategory;
+    _data['assignedTech'] = assignedTech;
     return _data;
   }
 }

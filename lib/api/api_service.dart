@@ -175,6 +175,36 @@ class APIService {
     }
   }
 
+  Future<Dataa?> getcomplainDetails(String complainId) async {
+    Map<String, String> requestHeaders = {'Content-Type': 'application/json'};
+
+    var url = Uri.http(Config.apiURL, '${Config.complainAPI}/$complainId');
+    var response = await client.get(url, headers: requestHeaders);
+
+    if (response.statusCode == 200) {
+      var data = jsonDecode(response.body);
+
+      return data;
+    } else {
+      return null;
+    }
+  }
+
+  Future<User?> getUserDetails(String userId) async {
+    Map<String, String> requestHeaders = {'Content-Type': 'application/json'};
+
+    var url = Uri.http(Config.apiURL, '${Config.loginAPI}/$userId');
+    var response = await client.get(url, headers: requestHeaders);
+
+    if (response.statusCode == 200) {
+      var data = jsonDecode(response.body);
+
+      return User.fromJson(data["data"]);
+    } else {
+      return null;
+    }
+  }
+
   Future<Dataa?> getComplainDetails(String complainId) async {
     Map<String, String> requestHeaders = {'Content-Type': 'application/json'};
 
@@ -196,7 +226,7 @@ class APIService {
     String complainName,
     String complainDescription,
     String userAddress,
-    String category,
+    String complainCategory,
   ) async {
     Map<String, String> requestHeaders = {'Content-Type': 'application/json'};
 
@@ -211,7 +241,7 @@ class APIService {
           "complainName": complainName,
           "complainDescription": complainDescription,
           "userAddress": userAddress,
-          "category": category,
+          "complainCategory": complainCategory,
         },
       ),
     );

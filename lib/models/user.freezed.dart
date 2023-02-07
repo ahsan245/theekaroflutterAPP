@@ -25,6 +25,7 @@ mixin _$User {
   String get email => throw _privateConstructorUsedError;
   String get userId => throw _privateConstructorUsedError;
   String get token => throw _privateConstructorUsedError;
+  String get contact => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -41,7 +42,8 @@ abstract class $UserCopyWith<$Res> {
       String password,
       String email,
       String userId,
-      String token});
+      String token,
+      String contact});
 }
 
 /// @nodoc
@@ -62,6 +64,7 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
     Object? email = null,
     Object? userId = null,
     Object? token = null,
+    Object? contact = null,
   }) {
     return _then(_value.copyWith(
       fullName: null == fullName
@@ -84,6 +87,10 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
               as String,
+      contact: null == contact
+          ? _value.contact
+          : contact // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -99,7 +106,8 @@ abstract class _$$_UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       String password,
       String email,
       String userId,
-      String token});
+      String token,
+      String contact});
 }
 
 /// @nodoc
@@ -116,6 +124,7 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
     Object? email = null,
     Object? userId = null,
     Object? token = null,
+    Object? contact = null,
   }) {
     return _then(_$_User(
       fullName: null == fullName
@@ -138,6 +147,10 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
               as String,
+      contact: null == contact
+          ? _value.contact
+          : contact // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -150,7 +163,8 @@ class _$_User implements _User {
       required this.password,
       required this.email,
       required this.userId,
-      required this.token});
+      required this.token,
+      required this.contact});
 
   factory _$_User.fromJson(Map<String, dynamic> json) => _$$_UserFromJson(json);
 
@@ -164,10 +178,12 @@ class _$_User implements _User {
   final String userId;
   @override
   final String token;
+  @override
+  final String contact;
 
   @override
   String toString() {
-    return 'User(fullName: $fullName, password: $password, email: $email, userId: $userId, token: $token)';
+    return 'User(fullName: $fullName, password: $password, email: $email, userId: $userId, token: $token, contact: $contact)';
   }
 
   @override
@@ -181,13 +197,14 @@ class _$_User implements _User {
                 other.password == password) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.userId, userId) || other.userId == userId) &&
-            (identical(other.token, token) || other.token == token));
+            (identical(other.token, token) || other.token == token) &&
+            (identical(other.contact, contact) || other.contact == contact));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, fullName, password, email, userId, token);
+  int get hashCode => Object.hash(
+      runtimeType, fullName, password, email, userId, token, contact);
 
   @JsonKey(ignore: true)
   @override
@@ -209,7 +226,8 @@ abstract class _User implements User {
       required final String password,
       required final String email,
       required final String userId,
-      required final String token}) = _$_User;
+      required final String token,
+      required final String contact}) = _$_User;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
 
@@ -223,6 +241,8 @@ abstract class _User implements User {
   String get userId;
   @override
   String get token;
+  @override
+  String get contact;
   @override
   @JsonKey(ignore: true)
   _$$_UserCopyWith<_$_User> get copyWith => throw _privateConstructorUsedError;

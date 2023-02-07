@@ -12,6 +12,7 @@ _$_User _$$_UserFromJson(Map<String, dynamic> json) => _$_User(
       email: json['email'] as String,
       userId: json['userId'] as String,
       token: json['token'] as String,
+      contact: json['contact'] as String,
     );
 
 Map<String, dynamic> _$$_UserToJson(_$_User instance) => <String, dynamic>{
@@ -20,4 +21,5 @@ Map<String, dynamic> _$$_UserToJson(_$_User instance) => <String, dynamic>{
       'email': instance.email,
       'userId': instance.userId,
       'token': instance.token,
+      'contact': instance.contact,
     };

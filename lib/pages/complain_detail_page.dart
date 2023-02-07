@@ -4,6 +4,8 @@ import 'package:http/http.dart';
 import 'package:snippet_coder_utils/FormHelper.dart';
 import 'package:snippet_coder_utils/ProgressHUD.dart';
 import 'package:theek_karo/api/api_service.dart';
+import 'package:theek_karo/components/tech_card.dart';
+import 'package:theek_karo/components/tech_short_card.dart';
 import 'package:theek_karo/components/widget_col_exp.dart';
 import 'package:theek_karo/components/widget_custom_stepper.dart';
 import 'package:theek_karo/config.dart';
@@ -17,6 +19,10 @@ import 'package:theek_karo/utils/apptext.dart';
 import 'package:theek_karo/utils/custombutton.dart';
 import 'package:theek_karo/utils/star_rating.dart';
 
+import '../components/tech_short_card.dart';
+import '../models/tech.dart';
+import '../models/user.dart';
+
 class ComplainDetailPage extends ConsumerStatefulWidget {
   const ComplainDetailPage({super.key});
 
@@ -27,12 +33,13 @@ class ComplainDetailPage extends ConsumerStatefulWidget {
 class _ComplainDetailPageState extends ConsumerState<ComplainDetailPage> {
   double rating = 3.5;
   String complainId = "";
+  String assignedTech = "63a038cc04215f8b4c65f836";
   String complainName = "";
   String complainDescription = "";
   String userAddress = "";
   String userContact = "";
   String category = "";
-  String ahsan = "";
+  String ahsan = "63a03a8e1122e074d0ade375";
   bool isAsyncCallProcess = false;
 
   @override
@@ -44,7 +51,7 @@ class _ComplainDetailPageState extends ConsumerState<ComplainDetailPage> {
           titleSpacing: 0,
           elevation: 0,
           title: Text(
-            AppText.back,
+            "Complain Details",
             style:
                 TextStyle(color: AppColors.white, fontSize: Get.height * 0.024),
           ),
@@ -66,6 +73,12 @@ class _ComplainDetailPageState extends ConsumerState<ComplainDetailPage> {
       body: ListView(
         padding: EdgeInsets.all(Get.height * 0.024),
         children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: SingleChildScrollView(
+              child: _userDetails(ref),
+            ),
+          ),
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -216,30 +229,17 @@ class _ComplainDetailPageState extends ConsumerState<ComplainDetailPage> {
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              CircleAvatar(
-                backgroundColor: Colors.transparent,
-                child: Image.asset(
-                  'assets/images/logo.png',
-                ),
-              ),
-              SizedBox(
-                width: Get.height * 0.02,
-              ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    'Joseph Aina',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+                  _techDetails(ref),
+                  // const Text(
+                  //   'Joseph Aina',
+                  //   style: TextStyle(
+                  //     fontWeight: FontWeight.bold,
+                  //   ),
+                  // ),
                   SizedBox(height: Get.height * 0.005),
-                  Text(
-                    'Professional Health Expert',
-                    style: TextStyle(
-                        color: Colors.black54, fontSize: Get.height * 0.016),
-                  )
                 ],
               ),
               const Spacer(),
@@ -259,13 +259,6 @@ class _ComplainDetailPageState extends ConsumerState<ComplainDetailPage> {
               ),
             ],
           ),
-          SizedBox(
-            height: Get.height * 0.03,
-          ),
-          CustomButton(
-            btnAction: () {},
-            btnText: 'Confirm Technician',
-          )
         ],
       ),
     );
@@ -277,20 +270,166 @@ class _ComplainDetailPageState extends ConsumerState<ComplainDetailPage> {
 
     if (arguments != null) {
       complainId = arguments['complainId'];
-      complainName = arguments['complainName'];
-      complainDescription = arguments['complainDescription'];
-      userAddress = arguments['userAddress'];
-      userContact = arguments['userContact'];
-      category = arguments['category'];
+      // assignedTech = arguments['assignedTech'];
+      // complainName = arguments['complainName'];
+      // complainDescription = arguments['complainDescription'];
+      // userAddress = arguments['userAddress'];
+      // userContact = arguments['userContact'];
+      // category = arguments['category'];
 
-      print(complainName);
-      print(complainDescription);
-      print(userAddress);
-      print(userContact);
+      // print(complainName);
+      // print(complainDescription);
+      // print(userAddress);
+      // print(userContact);
+      // print(category);
+
       print(complainId);
-      print(category);
       print(user);
+      print(assignedTech);
     }
     super.didChangeDependencies();
+  }
+
+  Widget _techDetails(WidgetRef ref) {
+    final details = ref.watch(techDetailsProvider(assignedTech));
+    return details.when(
+        data: (model) {
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _techDetailsUI(model!),
+            ],
+          );
+        },
+        error: (_, __) => const Center(child: Text("Error")),
+        loading: () => Center(
+              child: CircularProgressIndicator(),
+            ));
+  }
+
+  Widget _techDetailsUI(Tech model) {
+    return Container(
+      color: Colors.white,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          CardTech(
+            model: model,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _userDetails(WidgetRef ref) {
+    final details = ref.watch(userDetailsProvider(ahsan));
+    return details.when(
+        data: (model) {
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _userDetailsUI(model!),
+            ],
+          );
+        },
+        error: (_, __) => const Center(child: Text("Error")),
+        loading: () => Center(
+              child: CircularProgressIndicator(),
+            ));
+  }
+
+  Widget _userDetailsUI(User model) {
+    return Container(
+      color: Colors.white,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            margin: EdgeInsets.symmetric(vertical: Get.height * 0.02),
+            decoration: BoxDecoration(
+                border:
+                    Border(bottom: BorderSide(color: AppColors.dividerColors))),
+          ),
+          const Text(
+            "Customer Details",
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Row(
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Name',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                    height: Get.height * 0.005,
+                  ),
+                  Text(model.fullName),
+                ],
+              ),
+              SizedBox(
+                width: Get.height * 0.03,
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Email',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                    height: Get.height * 0.005,
+                  ),
+                  Text(model.email),
+                ],
+              ),
+              // Container(
+              //   height: 100,
+              //   width: MediaQuery.of(context).size.width,
+              //   decoration: BoxDecoration(
+              //     borderRadius: BorderRadius.circular(25),
+              //     image: DecorationImage(
+              //       image: NetworkImage(model.fullImagePath),
+              //       fit: BoxFit.cover,
+              //     ),
+              //   ),
+              // ),
+            ],
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Contact',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                height: Get.height * 0.005,
+              ),
+              Text(model.contact),
+            ],
+          ),
+          // Text(
+          //   model.fullName,
+          //   style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
+          // ),
+          Container(
+            margin: EdgeInsets.symmetric(vertical: Get.height * 0.02),
+            decoration: BoxDecoration(
+                border:
+                    Border(bottom: BorderSide(color: AppColors.dividerColors))),
+          ),
+        ],
+      ),
+    );
   }
 }

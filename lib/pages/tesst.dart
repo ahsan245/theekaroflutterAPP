@@ -26,7 +26,7 @@ class _TestPageState extends State<TestPage> {
   String? confirmPassword;
   String? userContact;
   String? userAddress;
-  String? category;
+  String? complainCategory;
 
   @override
   Widget build(BuildContext context) {
@@ -49,17 +49,17 @@ class _TestPageState extends State<TestPage> {
     );
   }
 
-  // @override
-  // void didChangeDependencies() {
-  //   final Map? arguments = ModalRoute.of(context)!.settings.arguments as Map;
+  @override
+  void didChangeDependencies() {
+    final Map? arguments = ModalRoute.of(context)!.settings.arguments as Map;
 
-  //   if (arguments != null) {
-  //     user = arguments["userId"];
-  //     print("merrrr");
-  //     print(user);
-  //   }
-  //   super.didChangeDependencies();
-  // }
+    if (arguments != null) {
+      user = arguments["userId"];
+      print("merrrr");
+      print(user);
+    }
+    super.didChangeDependencies();
+  }
 
   Widget _registerUI(BuildContext context) {
     print("k");
@@ -228,7 +228,7 @@ class _TestPageState extends State<TestPage> {
                 color: Color.fromARGB(255, 200, 200, 200),
               ),
               child: DropdownButton(
-                value: category,
+                value: complainCategory,
                 items: [
                   DropdownMenuItem(
                     child: Row(
@@ -293,7 +293,7 @@ class _TestPageState extends State<TestPage> {
                 ],
                 onChanged: (value) {
                   setState(() {
-                    category = value;
+                    complainCategory = value;
                   });
                 },
               ),
@@ -311,7 +311,7 @@ class _TestPageState extends State<TestPage> {
                     isAsyncCallProcess = true;
                   });
                   APIService.registerComplain(user, complainName!,
-                          complainDescription!, userAddress!, category!)
+                          complainDescription!, userAddress!, complainCategory!)
                       .then((response) {
                     setState(() {
                       print("afasf");
@@ -331,12 +331,13 @@ class _TestPageState extends State<TestPage> {
                             "/complain-details",
                             arguments: {
                               'complainId': response.complainId,
-                              'complainName': response.complainName,
-                              'complainDescription':
-                                  response.complainDescription,
-                              'userAddress': response.userAddress,
-                              'userContact': response.userContact,
-                              'category': response.category,
+                              'assignedTech': response.assignedTech,
+                              // 'complainName': response.complainName,
+                              // 'complainDescription':
+                              //     response.complainDescription,
+                              // 'userAddress': response.userAddress,
+                              // 'userContact': response.userContact,
+                              // 'complainCategory': response.complainCategory,
                             },
                           );
                         },

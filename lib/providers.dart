@@ -12,6 +12,7 @@ import 'package:theek_karo/models/tech.dart';
 import 'package:theek_karo/models/tech_filter.dart';
 import 'package:theek_karo/models/user.dart';
 import 'package:theek_karo/models/user_filter.dart';
+import 'package:theek_karo/pages/dashboard_page.dart';
 import 'package:theek_karo/widgets/widget_home_categories.dart';
 
 final categoriesProvider =
@@ -57,6 +58,19 @@ final techDetailsProvider = FutureProvider.family<Tech?, String>(
   (ref, techId) {
     final apiRepository = ref.watch(apiService);
     return apiRepository.getTechDetails(techId);
+  },
+);
+final complainDetailsProvider = FutureProvider.family<Dataa?, String>(
+  (ref, complainId) {
+    final apiRepository = ref.watch(apiService);
+    return apiRepository.getcomplainDetails(complainId);
+  },
+);
+
+final userDetailsProvider = FutureProvider.family<User?, String>(
+  (ref, userId) {
+    final apiRepository = ref.watch(apiService);
+    return apiRepository.getUserDetails(userId);
   },
 );
 

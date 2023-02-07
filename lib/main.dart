@@ -11,9 +11,11 @@ import 'package:theek_karo/pages/login_otp_page.dart';
 import 'package:theek_karo/pages/login_page.dart';
 import 'package:theek_karo/pages/otp_verify_page.dart';
 import 'package:theek_karo/pages/register_page.dart';
+import 'package:theek_karo/pages/splash_screen.dart';
 import 'package:theek_karo/pages/tech_details_page.dart';
 import 'package:theek_karo/pages/techs_page.dart';
 import 'package:theek_karo/pages/tesst.dart';
+import 'package:theek_karo/pages/user_details_page.dart';
 import 'package:theek_karo/utils/shared_service.dart';
 
 Widget _defaultHome = const LoginPage();
@@ -45,14 +47,15 @@ class MyApp extends StatelessWidget {
         "/": (context) => _defaultHome,
         "/register": (BuildContext context) => const RegisterPage(),
         "/login": (BuildContext context) => const LoginPage(),
-        "/home": (BuildContext context) => DashboardPage(),
+        "/home": (BuildContext context) => const DashboardPage(),
         "/techs": (BuildContext context) => const TechsPage(),
         "/complain": (BuildContext context) => const TestPage(),
-        "/otplogin": (BuildContext context) => LoginOTPPage(),
+        "/otplogin": (BuildContext context) => const LoginOTPPage(),
         "/otpverify": (BuildContext context) => OTPVerifyPage(),
         "/complain-details": (BuildContext context) =>
             const ComplainDetailPage(),
         "/tech-details": (BuildContext context) => const TechDetailsPage(),
+        "/user-details": (BuildContext context) => const UserDetailsPage(),
       },
     );
   }
