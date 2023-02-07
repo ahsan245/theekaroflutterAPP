@@ -4,6 +4,7 @@ import 'package:theek_karo/application/notifier/tech_filter_notifier.dart';
 import 'package:theek_karo/application/notifier/tech_notifier.dart';
 import 'package:theek_karo/application/state/tech_state.dart';
 import 'package:theek_karo/models/category.dart';
+import 'package:theek_karo/models/complain.dart';
 import 'package:theek_karo/models/complain_response_model.dart';
 import 'package:theek_karo/models/login_response_model.dart';
 import 'package:theek_karo/models/pagination.dart';
@@ -60,7 +61,7 @@ final techDetailsProvider = FutureProvider.family<Tech?, String>(
     return apiRepository.getTechDetails(techId);
   },
 );
-final complainDetailsProvider = FutureProvider.family<Dataa?, String>(
+final complainDetailsProvider = FutureProvider.family<Complain?, String>(
   (ref, complainId) {
     final apiRepository = ref.watch(apiService);
     return apiRepository.getcomplainDetails(complainId);

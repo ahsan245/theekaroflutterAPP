@@ -193,23 +193,8 @@ class _TestPageState extends State<TestPage> {
           const SizedBox(
             height: 10,
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 20),
-            child: Text(
-              "User Contact",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 14,
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 20),
+          const Padding(
+            padding: EdgeInsets.only(left: 20),
             child: Text(
               "Choose Category",
               textAlign: TextAlign.center,
@@ -326,12 +311,12 @@ class _TestPageState extends State<TestPage> {
                         "Complain Launched Successfully",
                         "Ok",
                         () {
+                          assignedTech = response.assignedTech;
                           Navigator.of(context).pop();
                           Navigator.of(context).pushNamed(
                             "/complain-details",
                             arguments: {
                               'complainId': response.complainId,
-                              'assignedTech': response.assignedTech,
                               // 'complainName': response.complainName,
                               // 'complainDescription':
                               //     response.complainDescription,

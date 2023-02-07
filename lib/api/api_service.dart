@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
 import 'package:theek_karo/config.dart';
 import 'package:theek_karo/models/category.dart';
+import 'package:theek_karo/models/complain.dart';
 import 'package:theek_karo/models/complain_response_model.dart';
 import 'package:theek_karo/models/login_response_model.dart';
 import 'package:theek_karo/models/otp_login_response_mode.dart.dart';
@@ -175,7 +176,7 @@ class APIService {
     }
   }
 
-  Future<Dataa?> getcomplainDetails(String complainId) async {
+  Future<Complain?> getcomplainDetails(String complainId) async {
     Map<String, String> requestHeaders = {'Content-Type': 'application/json'};
 
     var url = Uri.http(Config.apiURL, '${Config.complainAPI}/$complainId');
@@ -183,8 +184,9 @@ class APIService {
 
     if (response.statusCode == 200) {
       var data = jsonDecode(response.body);
-
-      return data;
+      // print(response.body);
+      print(Complain.fromJson(data["data"]));
+      return Complain.fromJson(data["data"]);
     } else {
       return null;
     }
@@ -205,21 +207,21 @@ class APIService {
     }
   }
 
-  Future<Dataa?> getComplainDetails(String complainId) async {
-    Map<String, String> requestHeaders = {'Content-Type': 'application/json'};
+  // Future<Dataa?> getComplainDetails(String complainId) async {
+  //   Map<String, String> requestHeaders = {'Content-Type': 'application/json'};
 
-    var url = Uri.http(Config.apiURL, '${Config.complainAPI}/$complainId');
-    var response = await client.get(url, headers: requestHeaders);
+  //   var url = Uri.http(Config.apiURL, '${Config.complainAPI}/$complainId');
+  //   var response = await client.get(url, headers: requestHeaders);
 
-    if (response.statusCode == 200) {
-      final complainResponse = complainResponseJson(response.body);
-      final data = complainResponse.data;
-      print(data.complainName);
-      return data;
-    } else {
-      return null;
-    }
-  }
+  //   if (response.statusCode == 200) {
+  //     final complainResponse = complainResponseJson(response.body);
+  //     final data = complainResponse.data;
+  //     print(data.complainName);
+  //     return data;
+  //   } else {
+  //     return null;
+  //   }
+  // }
 
   static Future<Dataa?> registerComplain(
     String userId,

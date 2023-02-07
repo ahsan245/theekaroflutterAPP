@@ -8,6 +8,7 @@ import 'package:theek_karo/pages/user_details_page.dart';
 
 String user = "";
 String complainId = "";
+String assignedTech = "";
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
@@ -35,6 +36,8 @@ class _DashboardPageState extends State<DashboardPage> {
       print(complainId);
       print("cc");
       print(user);
+      print("Tech");
+      print(assignedTech);
     }
     super.didChangeDependencies();
   }

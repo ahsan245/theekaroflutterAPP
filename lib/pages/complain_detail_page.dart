@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart';
@@ -9,6 +11,7 @@ import 'package:theek_karo/components/tech_short_card.dart';
 import 'package:theek_karo/components/widget_col_exp.dart';
 import 'package:theek_karo/components/widget_custom_stepper.dart';
 import 'package:theek_karo/config.dart';
+import 'package:theek_karo/models/complain.dart';
 import 'package:theek_karo/models/complain_response_model.dart';
 import 'package:theek_karo/pages/dashboard_page.dart';
 import 'package:theek_karo/providers.dart';
@@ -33,13 +36,12 @@ class ComplainDetailPage extends ConsumerStatefulWidget {
 class _ComplainDetailPageState extends ConsumerState<ComplainDetailPage> {
   double rating = 3.5;
   String complainId = "";
-  String assignedTech = "63a038cc04215f8b4c65f836";
   String complainName = "";
   String complainDescription = "";
   String userAddress = "";
   String userContact = "";
   String category = "";
-  String ahsan = "63a03a8e1122e074d0ade375";
+  String ahsan = "";
   bool isAsyncCallProcess = false;
 
   @override
@@ -79,140 +81,9 @@ class _ComplainDetailPageState extends ConsumerState<ComplainDetailPage> {
               child: _userDetails(ref),
             ),
           ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(Get.height * 1),
-                    color: Colors.black12),
-                padding: EdgeInsets.all(Get.height * 0.015),
-                child: Icon(
-                  Icons.home_repair_service,
-                  size: Get.height * 0.03,
-                ),
-              ),
-              const Spacer(),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    complainName,
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: Get.height * 0.024),
-                  ),
-                  SizedBox(height: Get.height * 0.005),
-                  Text(
-                    'Monday 5th January - 11:50pm',
-                    style: TextStyle(
-                        color: Colors.black54, fontSize: Get.height * 0.016),
-                  )
-                ],
-              ),
-              const Spacer(),
-              Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(Get.height * 0.02),
-                    color: AppColors.deepOrange),
-                padding: EdgeInsets.symmetric(
-                    horizontal: Get.height * 0.02, vertical: Get.height * 0.01),
-                child: Text(
-                  'Active',
-                  style: TextStyle(
-                      color: AppColors.white, fontSize: Get.height * 0.014),
-                ),
-              )
-            ],
-          ),
-          Container(
-            margin: EdgeInsets.symmetric(vertical: Get.height * 0.02),
-            decoration: BoxDecoration(
-                border:
-                    Border(bottom: BorderSide(color: AppColors.dividerColors))),
-          ),
-          Text(
-            AppText.complainTitle,
-            style: TextStyle(
-                fontSize: Get.height * 0.02, fontWeight: FontWeight.w500),
-          ),
-          SizedBox(
-            height: Get.height * 0.01,
-          ),
-          Text(
-            complainDescription,
-            style: TextStyle(
-                fontSize: Get.height * 0.016, fontWeight: FontWeight.w400),
-          ),
-          Container(
-            margin: EdgeInsets.symmetric(vertical: Get.height * 0.02),
-            decoration: BoxDecoration(
-                border:
-                    Border(bottom: BorderSide(color: AppColors.dividerColors))),
-          ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    'Date',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(
-                    height: Get.height * 0.005,
-                  ),
-                  const Text('Mon - 24th June 2023'),
-                ],
-              ),
-              SizedBox(
-                width: Get.height * 0.03,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    'Time',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(
-                    height: Get.height * 0.005,
-                  ),
-                  Text('01:31PM'),
-                ],
-              )
-            ],
-          ),
-          Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            SizedBox(
-              height: Get.height * 0.02,
-            ),
-            const Text(
-              'Address',
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-            SizedBox(
-              height: Get.height * 0.005,
-            ),
-            Text(userAddress),
-          ]),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                height: Get.height * 0.02,
-              ),
-              const Text(
-                'Total Cost',
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-              SizedBox(
-                height: Get.height * 0.005,
-              ),
-              const Text('2000 PKR'),
-            ],
-          ),
+          _complainDetails(ref),
+          //roww
+
           Container(
             margin: EdgeInsets.symmetric(vertical: Get.height * 0.02),
             decoration: BoxDecoration(
@@ -271,7 +142,7 @@ class _ComplainDetailPageState extends ConsumerState<ComplainDetailPage> {
     if (arguments != null) {
       complainId = arguments['complainId'];
       // assignedTech = arguments['assignedTech'];
-      // complainName = arguments['complainName'];
+      //complainName = arguments['complainName'];
       // complainDescription = arguments['complainDescription'];
       // userAddress = arguments['userAddress'];
       // userContact = arguments['userContact'];
@@ -288,6 +159,156 @@ class _ComplainDetailPageState extends ConsumerState<ComplainDetailPage> {
       print(assignedTech);
     }
     super.didChangeDependencies();
+  }
+
+  Widget _complainDetails(WidgetRef ref) {
+    final details = ref.watch(complainDetailsProvider(complainId));
+    return details.when(
+        data: (model) {
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _complainDetailsUI(model!),
+            ],
+          );
+        },
+        error: (_, __) => const Center(child: Text("Error")),
+        loading: () => Center(
+              child: CircularProgressIndicator(),
+            ));
+  }
+
+  Widget _complainDetailsUI(Complain model) {
+    return Container(
+      color: Colors.white,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(Get.height * 1),
+                    color: Colors.black12),
+                padding: EdgeInsets.all(Get.height * 0.015),
+                child: Icon(
+                  Icons.home_repair_service,
+                  size: Get.height * 0.03,
+                ),
+              ),
+              const SizedBox(
+                width: 10,
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    model.complainName,
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: Get.height * 0.024),
+                  ),
+                  SizedBox(height: Get.height * 0.005),
+                  Text(
+                    'Monday 5th January - 11:50pm',
+                    style: TextStyle(
+                        color: Colors.black54, fontSize: Get.height * 0.016),
+                  )
+                ],
+              ),
+              const Spacer(),
+              Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(Get.height * 0.02),
+                    color: AppColors.deepOrange),
+                padding: EdgeInsets.symmetric(
+                    horizontal: Get.height * 0.02, vertical: Get.height * 0.01),
+                child: Text(
+                  model.complainStatus ? "Not Active" : "Active",
+                  style: TextStyle(
+                      color: AppColors.white, fontSize: Get.height * 0.014),
+                ),
+              ),
+            ],
+          ),
+          Container(
+            margin: EdgeInsets.symmetric(vertical: Get.height * 0.02),
+            decoration: BoxDecoration(
+                border:
+                    Border(bottom: BorderSide(color: AppColors.dividerColors))),
+          ),
+          Text(
+            AppText.complainTitle,
+            style: TextStyle(
+                fontSize: Get.height * 0.02, fontWeight: FontWeight.w500),
+          ),
+          SizedBox(
+            height: Get.height * 0.01,
+          ),
+          Text(
+            model.complainDescription,
+            style: TextStyle(
+                fontSize: Get.height * 0.016, fontWeight: FontWeight.w400),
+          ),
+          Container(
+            margin: EdgeInsets.symmetric(vertical: Get.height * 0.02),
+            decoration: BoxDecoration(
+                border:
+                    Border(bottom: BorderSide(color: AppColors.dividerColors))),
+          ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Address',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                    height: Get.height * 0.005,
+                  ),
+                  Text(model.userAddress),
+                ],
+              ),
+              SizedBox(
+                width: Get.height * 0.03,
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Category',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                    height: Get.height * 0.005,
+                  ),
+                  Text(model.complainCategory),
+                ],
+              )
+            ],
+          ),
+          Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            SizedBox(
+              height: Get.height * 0.02,
+            ),
+            const Text(
+              'Date',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            SizedBox(
+              height: Get.height * 0.005,
+            ),
+            Text(model.complainCategory),
+          ]),
+        ],
+      ),
+    );
   }
 
   Widget _techDetails(WidgetRef ref) {
@@ -324,7 +345,7 @@ class _ComplainDetailPageState extends ConsumerState<ComplainDetailPage> {
   }
 
   Widget _userDetails(WidgetRef ref) {
-    final details = ref.watch(userDetailsProvider(ahsan));
+    final details = ref.watch(userDetailsProvider(user));
     return details.when(
         data: (model) {
           return Column(
