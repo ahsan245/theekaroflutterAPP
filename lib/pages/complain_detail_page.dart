@@ -42,6 +42,7 @@ class _ComplainDetailPageState extends ConsumerState<ComplainDetailPage> {
   String userContact = "";
   String category = "";
   String ahsan = "";
+  String assignedTech = "";
   bool isAsyncCallProcess = false;
 
   @override
@@ -141,7 +142,7 @@ class _ComplainDetailPageState extends ConsumerState<ComplainDetailPage> {
 
     if (arguments != null) {
       complainId = arguments['complainId'];
-      // assignedTech = arguments['assignedTech'];
+      assignedTech = arguments['assignedTech'];
       //complainName = arguments['complainName'];
       // complainDescription = arguments['complainDescription'];
       // userAddress = arguments['userAddress'];
@@ -156,6 +157,7 @@ class _ComplainDetailPageState extends ConsumerState<ComplainDetailPage> {
 
       print(complainId);
       print(user);
+      print("Tech");
       print(assignedTech);
     }
     super.didChangeDependencies();

@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -311,12 +309,12 @@ class _TestPageState extends State<TestPage> {
                         "Complain Launched Successfully",
                         "Ok",
                         () {
-                          assignedTech = response.assignedTech;
                           Navigator.of(context).pop();
                           Navigator.of(context).pushNamed(
                             "/complain-details",
                             arguments: {
                               'complainId': response.complainId,
+                              'assignedTech': response.assignedTech,
                               // 'complainName': response.complainName,
                               // 'complainDescription':
                               //     response.complainDescription,

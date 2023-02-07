@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:core';
-import 'dart:html';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
 import 'package:theek_karo/config.dart';
@@ -169,7 +168,7 @@ class APIService {
 
     if (response.statusCode == 200) {
       var data = jsonDecode(response.body);
-
+      print(response.body);
       return Tech.fromJson(data["data"]);
     } else {
       return null;
@@ -184,7 +183,7 @@ class APIService {
 
     if (response.statusCode == 200) {
       var data = jsonDecode(response.body);
-      // print(response.body);
+      print(response.body);
       print(Complain.fromJson(data["data"]));
       return Complain.fromJson(data["data"]);
     } else {
@@ -200,6 +199,7 @@ class APIService {
 
     if (response.statusCode == 200) {
       var data = jsonDecode(response.body);
+      print(response.body);
 
       return User.fromJson(data["data"]);
     } else {

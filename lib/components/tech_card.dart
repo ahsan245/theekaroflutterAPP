@@ -13,7 +13,7 @@ class TechCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        width: 150,
+        width: 120,
         decoration: const BoxDecoration(color: Colors.white),
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         child: Stack(
@@ -35,7 +35,7 @@ class TechCard extends StatelessWidget {
                         "${model!.calculateDiscount}% OFF",
                         style: TextStyle(
                             color: Colors.white,
-                            fontSize: 12,
+                            fontSize: 6,
                             fontWeight: FontWeight.bold),
                       ),
                     ),
@@ -110,7 +110,7 @@ class TechCard extends StatelessWidget {
                         child: const Icon(
                           Icons.favorite,
                           color: Colors.grey,
-                          size: 20,
+                          size: 5,
                         ),
                         onTap: () {},
                       )
