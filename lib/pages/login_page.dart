@@ -8,6 +8,7 @@ import 'package:theek_karo/api/api_service.dart';
 import 'package:theek_karo/config.dart';
 import 'package:theek_karo/models/login_response_model.dart';
 import 'package:theek_karo/models/user_filter.dart';
+import 'package:theek_karo/pages/dashboard_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -53,24 +54,18 @@ class _LoginPageState extends State<LoginPage> {
           ),
           Center(
             child: Image.asset(
-              "assets/images/logo.png",
-              fit: BoxFit.contain,
-              width: 150,
+              "assets/images/login.png",
+              width: 180,
+              fit: BoxFit.none,
             ),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          const SizedBox(
-            height: 10,
           ),
           Center(
             child: Text(
-              "Login ",
+              "LOGIN ",
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 20,
-                color: Colors.deepOrangeAccent,
+                fontSize: 25,
+                color: Colors.yellow.shade900,
               ),
             ),
           ),
@@ -147,7 +142,7 @@ class _LoginPageState extends State<LoginPage> {
             },
           ),
           const SizedBox(
-            height: 10,
+            height: 30,
           ),
           Center(
             child: FormHelper.submitButton(
@@ -172,7 +167,7 @@ class _LoginPageState extends State<LoginPage> {
                         () {
                           Navigator.of(context).pop();
                           Navigator.of(context).pushNamedAndRemoveUntil(
-                            "/home",
+                            '/home',
                             arguments: {'userId': res.userId},
                             (route) => false,
                           );
@@ -192,7 +187,7 @@ class _LoginPageState extends State<LoginPage> {
                   });
                 }
               },
-              btnColor: Colors.deepOrangeAccent,
+              btnColor: Colors.yellow.shade900,
               borderColor: Colors.white,
               txtColor: Colors.white,
               borderRadius: 20,
@@ -214,7 +209,7 @@ class _LoginPageState extends State<LoginPage> {
                 TextSpan(
                   text: "Sign Up",
                   style: TextStyle(
-                    color: Colors.deepOrangeAccent,
+                    color: Colors.yellow.shade900,
                   ),
                   recognizer: TapGestureRecognizer()
                     ..onTap = () {

@@ -1,47 +1,46 @@
-import 'package:animated_splash_screen/animated_splash_screen.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:theek_karo/pages/login_page.dart';
+import 'package:flutter/animation.dart';
 
-class SplashScreen extends StatelessWidget {
-  SplashScreen();
+class SplashScreen extends StatefulWidget {
+  @override
+  _SplashScreenState createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _animation;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller =
+        AnimationController(vsync: this, duration: Duration(seconds: 2));
+    _animation = Tween<double>(begin: 0.0, end: 1.0).animate(_controller);
+    _controller.forward();
+    Future.delayed(Duration(seconds: 3), () {
+      Navigator.pushReplacementNamed(context, '/login');
+    });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Theek karo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return Scaffold(
+      body: Container(
+        color: Colors.grey.shade900,
+        child: Center(
+          child: FadeTransition(
+            opacity: _animation,
+            child: Image.asset('assets/images/splash.png'),
+          ),
+        ),
       ),
-      home: Center(
-        child: AnimatedSplashScreen(
-            splash:
-                Image.asset('assets/images/logo.png', height: 300, width: 300),
-            splashIconSize: 150,
-            duration: 3000,
-            splashTransition: SplashTransition.scaleTransition,
-            backgroundColor: Colors.white,
-            // splash: Center(
-            //   child: Column(
-            //     mainAxisAlignment: MainAxisAlignment.center,
-            //     children: [
-            //       Container(
-            //         height: 100,
-            //         width: 100,
-            //         color: Colors.deepPurple,
-            //       ),
-            //       Container(
-            //         child: Text(
-            //           'Splash Screen',
-            //           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
-            //         ),
-            //       ),
-            //     ],
-            //   ),
-            // ),
-            nextScreen: const LoginPage()),
-      ),
-      debugShowCheckedModeBanner: false,
     );
   }
 }

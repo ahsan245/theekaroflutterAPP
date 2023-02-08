@@ -21,19 +21,30 @@ class HomePage extends StatelessWidget {
             const HomeCategoriesWidget(),
             const HomeTechsWidget(),
             Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: FloatingActionButton(
-                backgroundColor: Colors.orange,
-                foregroundColor: Colors.black,
-                onPressed: () {
-                  Navigator.of(context).pushNamed(
-                    "/complain",
-                    arguments: {'userId': user},
-                  );
-                },
-                child: Icon(Icons.add),
+              padding: const EdgeInsets.only(
+                  left: 290, top: 10, right: 20, bottom: 20),
+              child: Container(
+                height: 50,
+                child: FloatingActionButton(
+                  backgroundColor: Colors.yellow.shade900,
+                  child: Icon(
+                    Icons.laptop_mac_rounded,
+                    color: Colors.black,
+                  ),
+                  elevation: 20,
+                  highlightElevation: 20,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50),
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).pushNamed(
+                      "/complain",
+                      arguments: {'userId': user},
+                    );
+                  },
+                ),
               ),
-            )
+            ),
           ],
         ),
       ),

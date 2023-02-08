@@ -44,7 +44,7 @@ class _DashboardPageState extends State<DashboardPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: Colors.redAccent,
+        selectedItemColor: Colors.yellow.shade900,
         unselectedItemColor: Colors.black,
         type: BottomNavigationBarType.fixed,
         currentIndex: index,

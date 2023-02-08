@@ -173,8 +173,8 @@ class _OTPVerifyPageState extends State<OTPVerifyPage> {
                 });
               }
             },
-            borderColor: Colors.deepOrangeAccent,
-            btnColor: Colors.deepOrangeAccent,
+            borderColor: Colors.yellow.shade900,
+            btnColor: Colors.yellow.shade900,
             txtColor: Colors.white,
             borderRadius: 20,
           ),
@@ -195,7 +195,7 @@ class _OTPVerifyPageState extends State<OTPVerifyPage> {
               TextSpan(
                 text: "Go back",
                 style: TextStyle(
-                  color: Colors.deepOrangeAccent,
+                  color: Colors.yellow.shade900,
                 ),
                 recognizer: TapGestureRecognizer()
                   ..onTap = () {

@@ -166,8 +166,8 @@ class _LoginOTPPageState extends State<LoginOTPPage> {
                 );
               }
             },
-            borderColor: Colors.deepOrangeAccent,
-            btnColor: Colors.deepOrangeAccent,
+            borderColor: Colors.yellow.shade900,
+            btnColor: Colors.yellow.shade900,
             txtColor: HexColor("#000000"),
             borderRadius: 20,
           ),

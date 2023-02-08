@@ -309,7 +309,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   //API REQUEST
                 }
               },
-              btnColor: Colors.deepOrange,
+              btnColor: Colors.yellow.shade900,
               borderColor: Colors.white,
               txtColor: Colors.white,
               borderRadius: 20,
@@ -330,7 +330,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   TextSpan(
                     text: "Sign In",
                     style: TextStyle(
-                      color: Colors.deepOrange,
+                      color: Colors.yellow.shade900,
                       fontWeight: FontWeight.bold,
                     ),
                     recognizer: TapGestureRecognizer()
