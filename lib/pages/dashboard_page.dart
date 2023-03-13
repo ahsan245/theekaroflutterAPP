@@ -8,6 +8,7 @@ import 'package:theek_karo/pages/user_details_page.dart';
 
 String user = "";
 String complainId = "";
+String tech = "";
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});

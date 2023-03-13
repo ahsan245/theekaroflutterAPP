@@ -66,6 +66,20 @@ class _UserDetailsPageState extends ConsumerState<UserDetailsPage> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Container(
+            margin: EdgeInsets.only(top: 50.0),
+            height: 200.0,
+            width: 200.0,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+            ),
+            child: Icon(
+              Icons.verified_user_rounded,
+              size: 100.0,
+              color: Colors.grey[300],
+            ),
+          ),
+          SizedBox(height: 20.0),
           Text(
             model.fullName,
             textAlign: TextAlign.center,
@@ -75,6 +89,21 @@ class _UserDetailsPageState extends ConsumerState<UserDetailsPage> {
               fontWeight: FontWeight.bold,
             ),
           ),
+          SizedBox(height: 10.0),
+          Text(
+            model.email,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontSize: 18,
+              color: Colors.grey,
+            ),
+          ),
+          OutlinedButton(
+            onPressed: () {
+              Navigator.pushNamed(context, '/login');
+            },
+            child: Text('Logout'),
+          )
         ],
       ),
     );

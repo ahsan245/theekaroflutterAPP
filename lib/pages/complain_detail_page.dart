@@ -65,6 +65,7 @@ class _ComplainDetailPageState extends ConsumerState<ComplainDetailPage> {
                 arguments: {
                   'complainId': complainId,
                   'userId': user,
+                  'assignedTech': assignedTech,
                 },
               );
             },

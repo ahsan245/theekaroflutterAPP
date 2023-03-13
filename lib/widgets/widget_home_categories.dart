@@ -82,9 +82,9 @@ class HomeCategoriesWidget extends ConsumerWidget {
                     width: 50,
                     height: 50,
                     alignment: Alignment.center,
-                    child: Image.network(
-                      data.fullImagePath,
-                      height: 50,
+                    child: Icon(
+                      Icons.laptop_mac_rounded,
+                      color: Colors.black,
                     ),
                   ),
                   Row(
