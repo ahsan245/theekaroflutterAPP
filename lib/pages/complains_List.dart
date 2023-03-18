@@ -17,7 +17,7 @@ class Complains extends StatelessWidget {
               behavior:
                   const MaterialScrollBehavior().copyWith(overscroll: false),
               child: cc.isLoad
-                  ? Center(
+                  ? const Center(
                       child: CircularProgressIndicator(
                         color: Colors.black,
                       ),

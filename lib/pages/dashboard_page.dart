@@ -3,6 +3,7 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:theek_karo/models/complain_response_model.dart';
 import 'package:theek_karo/pages/complain_detail_page.dart';
+import 'package:theek_karo/pages/complains_List.dart';
 import 'package:theek_karo/pages/home_page.dart';
 import 'package:theek_karo/pages/user_details_page.dart';
 
@@ -18,10 +19,10 @@ class DashboardPage extends StatefulWidget {
 }
 
 class _DashboardPageState extends State<DashboardPage> {
-  final List<Widget> widgetList = const [
-    ComplainDetailPage(),
-    HomePage(),
-    UserDetailsPage(),
+  final List<Widget> widgetList = [
+    Complains(),
+    const HomePage(),
+    const UserDetailsPage(),
   ];
   int index = 1;
 

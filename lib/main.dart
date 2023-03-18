@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:theek_karo/models/login_response_model.dart';
 import 'package:theek_karo/models/tech.dart';
 import 'package:theek_karo/pages/complain_detail_page.dart';
+import 'package:theek_karo/pages/complains_List.dart';
 import 'package:theek_karo/pages/dashboard_page.dart';
 import 'package:theek_karo/pages/home_page.dart';
 import 'package:theek_karo/pages/login_otp_page.dart';
@@ -17,6 +18,7 @@ import 'package:theek_karo/pages/user_details_page.dart';
 import 'package:theek_karo/utils/shared_service.dart';
 
 Widget _defaultHome = const LoginPage();
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   //Remember to uncomment from the API service file
@@ -54,6 +56,7 @@ class MyApp extends StatelessWidget {
             const ComplainDetailPage(),
         "/tech-details": (BuildContext context) => const TechDetailsPage(),
         "/user-details": (BuildContext context) => const UserDetailsPage(),
+        "/complain-list": (BuildContext context) => Complains(),
       },
     );
   }
