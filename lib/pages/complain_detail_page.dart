@@ -281,19 +281,6 @@ class _ComplainDetailPageState extends ConsumerState<ComplainDetailPage> {
               SizedBox(
                 width: Get.height * 0.03,
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    'Category',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(
-                    height: Get.height * 0.005,
-                  ),
-                  Text(model.complainCategory),
-                ],
-              )
             ],
           ),
           Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -301,7 +288,7 @@ class _ComplainDetailPageState extends ConsumerState<ComplainDetailPage> {
               height: Get.height * 0.02,
             ),
             const Text(
-              'Date',
+              'Category',
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             SizedBox(

@@ -45,9 +45,9 @@ class ComplainCard extends StatelessWidget {
               ),
               Spacer(),
               Text(
-                status == 'false' ? 'Inactive' : 'Active',
+                status == 'true' ? 'Inactive' : 'Active',
                 style: TextStyle(
-                    color: status == 'false' ? Colors.red : Colors.green),
+                    color: status == 'true' ? Colors.red : Colors.green),
               )
             ],
           )),

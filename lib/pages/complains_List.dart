@@ -17,7 +17,7 @@ class Complains extends StatelessWidget {
               behavior:
                   const MaterialScrollBehavior().copyWith(overscroll: false),
               child: cc.isLoad
-                  ? const Center(
+                  ? Center(
                       child: CircularProgressIndicator(
                         color: Colors.black,
                       ),
@@ -51,9 +51,9 @@ class Complains extends StatelessWidget {
                                     cc.complainList[index].status.toString(),
                                 tap: () {
                                   Navigator.of(context).pushNamed(
-                                    "/complain",
+                                    "/complain-details",
                                     arguments: {
-                                      'userId': cc.complainList[index].id,
+                                      'complainId': cc.complainList[index].id,
                                       'assignedTech':
                                           cc.complainList[index].assignedTech
                                     },

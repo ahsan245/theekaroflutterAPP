@@ -32,8 +32,8 @@ class ComplainController extends GetxController {
             name: a['complainName'] ?? '',
             desc: a['complainDescription'] ?? '',
             status: a['complainStatus'] ?? '',
-            userid: a['userId'] ?? '',
-            assignedTech: a['techId'] ?? '',
+            assignedTech: a['assignedTech']['techId'] ?? '',
+            userid: a['user']['userId'] ?? '',
             address: a['userAddress'] ?? ''));
 
         update();
