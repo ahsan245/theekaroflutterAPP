@@ -326,9 +326,15 @@ class _TestPageState extends State<TestPage> {
                   setState(() {
                     isAsyncCallProcess = true;
                   });
-                  APIService.registerComplain(user, complainName!,
-                          complainDescription!, userAddress!, complainCategory!)
-                      .then((response) {
+                  APIService.registerComplain(
+                    user,
+                    complainName!,
+                    complainDescription!,
+                    userAddress!,
+                    complainCategory!,
+                    lon.toString(),
+                    lat.toString(),
+                  ).then((response) {
                     setState(() {
                       print("afasf");
                       print(response?.complainId);
