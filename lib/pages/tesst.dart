@@ -8,6 +8,7 @@ import 'package:snippet_coder_utils/ProgressHUD.dart';
 import 'package:theek_karo/api/api_service.dart';
 import 'package:theek_karo/config.dart';
 import 'package:theek_karo/pages/dashboard_page.dart';
+import 'package:geolocator/geolocator.dart';
 
 class TestPage extends StatefulWidget {
   const TestPage({super.key});
@@ -25,6 +26,26 @@ class _TestPageState extends State<TestPage> {
   String? userContact;
   String? userAddress;
   String? complainCategory;
+  double? lon;
+  double? lat;
+  void _getLocation(BuildContext context) async {
+    try {
+      Position position = await Geolocator.getCurrentPosition(
+          desiredAccuracy: LocationAccuracy.high);
+      lat = position.latitude;
+      lon = position.longitude;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Location Reterieved Successfully')),
+      );
+      print(lat);
+      print(lon);
+    } catch (e) {
+      print(e);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Failed to get location')),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -191,6 +212,18 @@ class _TestPageState extends State<TestPage> {
           const SizedBox(
             height: 10,
           ),
+          Padding(
+            padding: const EdgeInsets.only(left: 20),
+            child: ElevatedButton(
+              onPressed: () {
+                _getLocation(context);
+              },
+              child: Text('Send Your Current Location'),
+            ),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
           const Padding(
             padding: EdgeInsets.only(left: 20),
             child: Text(
@@ -222,7 +255,7 @@ class _TestPageState extends State<TestPage> {
                         ),
                         SizedBox(width: 2.0),
                         Text(
-                          "Data Recovery",
+                          "Hardware",
                           style: TextStyle(
                             fontSize: 18.0,
                             color: Colors.black,
@@ -231,7 +264,7 @@ class _TestPageState extends State<TestPage> {
                         ),
                       ],
                     ),
-                    value: "Data Recovery",
+                    value: "Hardware",
                   ),
                   DropdownMenuItem(
                     child: Row(
@@ -239,26 +272,6 @@ class _TestPageState extends State<TestPage> {
                         Padding(
                           padding: const EdgeInsets.only(left: 10.0),
                           child: Icon(Icons.upgrade_rounded),
-                        ),
-                        SizedBox(width: 2.0),
-                        Text(
-                          "BIOS Updation",
-                          style: TextStyle(
-                            fontSize: 18.0,
-                            color: Colors.black,
-                            fontFamily: 'Roboto',
-                          ),
-                        ),
-                      ],
-                    ),
-                    value: "BIOS Updation",
-                  ),
-                  DropdownMenuItem(
-                    child: Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10.0),
-                          child: Icon(Icons.cast_connected_rounded),
                         ),
                         SizedBox(width: 2.0),
                         Text(
@@ -272,6 +285,26 @@ class _TestPageState extends State<TestPage> {
                       ],
                     ),
                     value: "Connectivity",
+                  ),
+                  DropdownMenuItem(
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10.0),
+                          child: Icon(Icons.cast_connected_rounded),
+                        ),
+                        SizedBox(width: 2.0),
+                        Text(
+                          "Software",
+                          style: TextStyle(
+                            fontSize: 18.0,
+                            color: Colors.black,
+                            fontFamily: 'Roboto',
+                          ),
+                        ),
+                      ],
+                    ),
+                    value: "Software",
                   ),
                 ],
                 onChanged: (value) {

@@ -1,9 +1,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.theek_karo">
+        <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
    <application
         android:label="theek_karo"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
