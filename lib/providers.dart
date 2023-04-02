@@ -61,6 +61,7 @@ final techDetailsProvider = FutureProvider.family<Tech?, String>(
     return apiRepository.getTechDetails(techId);
   },
 );
+
 final complainDetailsProvider = FutureProvider.family<Complain?, String>(
   (ref, complainId) {
     final apiRepository = ref.watch(apiService);

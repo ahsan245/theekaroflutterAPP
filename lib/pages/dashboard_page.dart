@@ -5,11 +5,14 @@ import 'package:theek_karo/models/complain_response_model.dart';
 import 'package:theek_karo/pages/complain_detail_page.dart';
 import 'package:theek_karo/pages/complains_List.dart';
 import 'package:theek_karo/pages/home_page.dart';
+import 'package:theek_karo/pages/tech_complains_List.dart';
 import 'package:theek_karo/pages/user_details_page.dart';
 
 String user = "";
 String complainId = "";
 String tech = "";
+String techID = "";
+String assignedTech = "";
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
@@ -20,7 +23,7 @@ class DashboardPage extends StatefulWidget {
 
 class _DashboardPageState extends State<DashboardPage> {
   final List<Widget> widgetList = [
-    Complains(),
+    TechComplains(),
     const HomePage(),
     const UserDetailsPage(),
   ];
@@ -32,12 +35,17 @@ class _DashboardPageState extends State<DashboardPage> {
 
     if (arguments != null) {
       user = arguments["userId"];
+      techID = arguments["techID"];
       complainId = arguments["complainId"];
+      assignedTech = arguments["assignedTech"];
       print("merrrr");
       print(complainId);
       print("cc");
       print(user);
-      print("Tech");
+      print("TechID");
+      print(techID);
+      print("Assigned Category");
+      print(assignedTech);
     }
     super.didChangeDependencies();
   }
@@ -51,6 +59,7 @@ class _DashboardPageState extends State<DashboardPage> {
         type: BottomNavigationBarType.fixed,
         currentIndex: index,
         onTap: (_index) {
+          print(techID);
           // Navigator.of(context).pushNamed(
           //   "/complain",
           //   arguments: {'userId': user},

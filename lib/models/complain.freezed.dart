@@ -26,6 +26,8 @@ mixin _$Complain {
   String get complainCategory => throw _privateConstructorUsedError;
   bool get complainStatus => throw _privateConstructorUsedError;
   String get complainId => throw _privateConstructorUsedError;
+  String get longitude => throw _privateConstructorUsedError;
+  String get latitude => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -44,7 +46,9 @@ abstract class $ComplainCopyWith<$Res> {
       String userAddress,
       String complainCategory,
       bool complainStatus,
-      String complainId});
+      String complainId,
+      String longitude,
+      String latitude});
 }
 
 /// @nodoc
@@ -66,6 +70,8 @@ class _$ComplainCopyWithImpl<$Res, $Val extends Complain>
     Object? complainCategory = null,
     Object? complainStatus = null,
     Object? complainId = null,
+    Object? longitude = null,
+    Object? latitude = null,
   }) {
     return _then(_value.copyWith(
       complainName: null == complainName
@@ -92,6 +98,14 @@ class _$ComplainCopyWithImpl<$Res, $Val extends Complain>
           ? _value.complainId
           : complainId // ignore: cast_nullable_to_non_nullable
               as String,
+      longitude: null == longitude
+          ? _value.longitude
+          : longitude // ignore: cast_nullable_to_non_nullable
+              as String,
+      latitude: null == latitude
+          ? _value.latitude
+          : latitude // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -109,7 +123,9 @@ abstract class _$$_ComplainCopyWith<$Res> implements $ComplainCopyWith<$Res> {
       String userAddress,
       String complainCategory,
       bool complainStatus,
-      String complainId});
+      String complainId,
+      String longitude,
+      String latitude});
 }
 
 /// @nodoc
@@ -129,6 +145,8 @@ class __$$_ComplainCopyWithImpl<$Res>
     Object? complainCategory = null,
     Object? complainStatus = null,
     Object? complainId = null,
+    Object? longitude = null,
+    Object? latitude = null,
   }) {
     return _then(_$_Complain(
       complainName: null == complainName
@@ -155,6 +173,14 @@ class __$$_ComplainCopyWithImpl<$Res>
           ? _value.complainId
           : complainId // ignore: cast_nullable_to_non_nullable
               as String,
+      longitude: null == longitude
+          ? _value.longitude
+          : longitude // ignore: cast_nullable_to_non_nullable
+              as String,
+      latitude: null == latitude
+          ? _value.latitude
+          : latitude // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -168,7 +194,9 @@ class _$_Complain implements _Complain {
       required this.userAddress,
       required this.complainCategory,
       required this.complainStatus,
-      required this.complainId});
+      required this.complainId,
+      required this.longitude,
+      required this.latitude});
 
   factory _$_Complain.fromJson(Map<String, dynamic> json) =>
       _$$_ComplainFromJson(json);
@@ -185,10 +213,14 @@ class _$_Complain implements _Complain {
   final bool complainStatus;
   @override
   final String complainId;
+  @override
+  final String longitude;
+  @override
+  final String latitude;
 
   @override
   String toString() {
-    return 'Complain(complainName: $complainName, complainDescription: $complainDescription, userAddress: $userAddress, complainCategory: $complainCategory, complainStatus: $complainStatus, complainId: $complainId)';
+    return 'Complain(complainName: $complainName, complainDescription: $complainDescription, userAddress: $userAddress, complainCategory: $complainCategory, complainStatus: $complainStatus, complainId: $complainId, longitude: $longitude, latitude: $latitude)';
   }
 
   @override
@@ -207,7 +239,11 @@ class _$_Complain implements _Complain {
             (identical(other.complainStatus, complainStatus) ||
                 other.complainStatus == complainStatus) &&
             (identical(other.complainId, complainId) ||
-                other.complainId == complainId));
+                other.complainId == complainId) &&
+            (identical(other.longitude, longitude) ||
+                other.longitude == longitude) &&
+            (identical(other.latitude, latitude) ||
+                other.latitude == latitude));
   }
 
   @JsonKey(ignore: true)
@@ -219,7 +255,9 @@ class _$_Complain implements _Complain {
       userAddress,
       complainCategory,
       complainStatus,
-      complainId);
+      complainId,
+      longitude,
+      latitude);
 
   @JsonKey(ignore: true)
   @override
@@ -242,7 +280,9 @@ abstract class _Complain implements Complain {
       required final String userAddress,
       required final String complainCategory,
       required final bool complainStatus,
-      required final String complainId}) = _$_Complain;
+      required final String complainId,
+      required final String longitude,
+      required final String latitude}) = _$_Complain;
 
   factory _Complain.fromJson(Map<String, dynamic> json) = _$_Complain.fromJson;
 
@@ -258,6 +298,10 @@ abstract class _Complain implements Complain {
   bool get complainStatus;
   @override
   String get complainId;
+  @override
+  String get longitude;
+  @override
+  String get latitude;
   @override
   @JsonKey(ignore: true)
   _$$_ComplainCopyWith<_$_Complain> get copyWith =>

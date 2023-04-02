@@ -10,6 +10,7 @@ class Config {
   static const String techAPI = "/api/tech";
   static const String registerAPI = "/api/register";
   static const String loginAPI = "/api/login";
+  static const String loginTechAPI = "/api/loginTech";
   static const String sliderAPI = "/api/slider";
   static const String complainAPI = "/api/complain";
   static const String otpLoginAPI = "/api/otpLogin";

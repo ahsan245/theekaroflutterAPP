@@ -12,6 +12,7 @@ import 'package:theek_karo/models/otp_login_response_mode.dart.dart';
 import 'package:theek_karo/models/slider.dart';
 import 'package:theek_karo/models/tech.dart';
 import 'package:theek_karo/models/tech_filter.dart';
+import 'package:theek_karo/models/tech_login_response_model.dart';
 import 'package:theek_karo/models/user.dart';
 import 'package:theek_karo/models/user_filter.dart';
 import 'package:theek_karo/utils/shared_service.dart';
@@ -133,6 +134,35 @@ class APIService {
       final data = loginResponse.data;
       // print(data.toJson());
       streamController.add(data);
+      return data;
+    } else {
+      return null;
+    }
+  }
+
+  static Future<TechData?> loginTechUser(
+    String email,
+    String password,
+  ) async {
+    Map<String, String> requestHeaders = {'Content-Type': 'application/json'};
+
+    var url = Uri.http(Config.apiURL, Config.loginTechAPI);
+
+    var response = await client.post(
+      url,
+      headers: requestHeaders,
+      body: jsonEncode(
+        {"email": email, "password": password},
+      ),
+    );
+    // print(response.body);
+
+    if (response.statusCode == 200) {
+      // SharedService.setLoginDetails(loginResponseJson(response.body));
+
+      final techloginResponse = techloginResponseJson(response.body);
+      final data = techloginResponse.data;
+      // print(data.toJson());
       return data;
     } else {
       return null;

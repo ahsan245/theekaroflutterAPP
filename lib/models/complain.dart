@@ -20,6 +20,8 @@ abstract class Complain with _$Complain {
     required String complainCategory,
     required bool complainStatus,
     required String complainId,
+    required String longitude,
+    required String latitude,
   }) = _Complain;
 
   factory Complain.fromJson(Map<String, dynamic> json) =>

@@ -6,13 +6,16 @@ class ComplainModel {
   var address;
   var userid;
   var assignedTech;
+  // var categoryassigned;
 
-  ComplainModel(
-      {this.status,
-      this.id,
-      this.name,
-      this.address,
-      this.desc,
-      this.userid,
-      this.assignedTech});
+  ComplainModel({
+    this.status,
+    this.id,
+    this.name,
+    this.address,
+    this.desc,
+    this.userid,
+    this.assignedTech,
+    // this.categoryassigned
+  });
 }
