@@ -28,6 +28,7 @@ mixin _$Complain {
   String get complainId => throw _privateConstructorUsedError;
   String get longitude => throw _privateConstructorUsedError;
   String get latitude => throw _privateConstructorUsedError;
+  List<String> get complainCheckList => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -48,7 +49,8 @@ abstract class $ComplainCopyWith<$Res> {
       bool complainStatus,
       String complainId,
       String longitude,
-      String latitude});
+      String latitude,
+      List<String> complainCheckList});
 }
 
 /// @nodoc
@@ -72,6 +74,7 @@ class _$ComplainCopyWithImpl<$Res, $Val extends Complain>
     Object? complainId = null,
     Object? longitude = null,
     Object? latitude = null,
+    Object? complainCheckList = null,
   }) {
     return _then(_value.copyWith(
       complainName: null == complainName
@@ -106,6 +109,10 @@ class _$ComplainCopyWithImpl<$Res, $Val extends Complain>
           ? _value.latitude
           : latitude // ignore: cast_nullable_to_non_nullable
               as String,
+      complainCheckList: null == complainCheckList
+          ? _value.complainCheckList
+          : complainCheckList // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ) as $Val);
   }
 }
@@ -125,7 +132,8 @@ abstract class _$$_ComplainCopyWith<$Res> implements $ComplainCopyWith<$Res> {
       bool complainStatus,
       String complainId,
       String longitude,
-      String latitude});
+      String latitude,
+      List<String> complainCheckList});
 }
 
 /// @nodoc
@@ -147,6 +155,7 @@ class __$$_ComplainCopyWithImpl<$Res>
     Object? complainId = null,
     Object? longitude = null,
     Object? latitude = null,
+    Object? complainCheckList = null,
   }) {
     return _then(_$_Complain(
       complainName: null == complainName
@@ -181,6 +190,10 @@ class __$$_ComplainCopyWithImpl<$Res>
           ? _value.latitude
           : latitude // ignore: cast_nullable_to_non_nullable
               as String,
+      complainCheckList: null == complainCheckList
+          ? _value._complainCheckList
+          : complainCheckList // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -196,7 +209,9 @@ class _$_Complain implements _Complain {
       required this.complainStatus,
       required this.complainId,
       required this.longitude,
-      required this.latitude});
+      required this.latitude,
+      required final List<String> complainCheckList})
+      : _complainCheckList = complainCheckList;
 
   factory _$_Complain.fromJson(Map<String, dynamic> json) =>
       _$$_ComplainFromJson(json);
@@ -217,10 +232,18 @@ class _$_Complain implements _Complain {
   final String longitude;
   @override
   final String latitude;
+  final List<String> _complainCheckList;
+  @override
+  List<String> get complainCheckList {
+    if (_complainCheckList is EqualUnmodifiableListView)
+      return _complainCheckList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_complainCheckList);
+  }
 
   @override
   String toString() {
-    return 'Complain(complainName: $complainName, complainDescription: $complainDescription, userAddress: $userAddress, complainCategory: $complainCategory, complainStatus: $complainStatus, complainId: $complainId, longitude: $longitude, latitude: $latitude)';
+    return 'Complain(complainName: $complainName, complainDescription: $complainDescription, userAddress: $userAddress, complainCategory: $complainCategory, complainStatus: $complainStatus, complainId: $complainId, longitude: $longitude, latitude: $latitude, complainCheckList: $complainCheckList)';
   }
 
   @override
@@ -243,7 +266,9 @@ class _$_Complain implements _Complain {
             (identical(other.longitude, longitude) ||
                 other.longitude == longitude) &&
             (identical(other.latitude, latitude) ||
-                other.latitude == latitude));
+                other.latitude == latitude) &&
+            const DeepCollectionEquality()
+                .equals(other._complainCheckList, _complainCheckList));
   }
 
   @JsonKey(ignore: true)
@@ -257,7 +282,8 @@ class _$_Complain implements _Complain {
       complainStatus,
       complainId,
       longitude,
-      latitude);
+      latitude,
+      const DeepCollectionEquality().hash(_complainCheckList));
 
   @JsonKey(ignore: true)
   @override
@@ -282,7 +308,8 @@ abstract class _Complain implements Complain {
       required final bool complainStatus,
       required final String complainId,
       required final String longitude,
-      required final String latitude}) = _$_Complain;
+      required final String latitude,
+      required final List<String> complainCheckList}) = _$_Complain;
 
   factory _Complain.fromJson(Map<String, dynamic> json) = _$_Complain.fromJson;
 
@@ -302,6 +329,8 @@ abstract class _Complain implements Complain {
   String get longitude;
   @override
   String get latitude;
+  @override
+  List<String> get complainCheckList;
   @override
   @JsonKey(ignore: true)
   _$$_ComplainCopyWith<_$_Complain> get copyWith =>

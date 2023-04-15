@@ -36,15 +36,6 @@ class TechComplainDetailPage extends ConsumerStatefulWidget {
 
 class _TechComplainDetailPageState
     extends ConsumerState<TechComplainDetailPage> {
-  static void _launchMapsUrl(double lat, double lng) async {
-    final url = 'https://www.google.com/maps/search/?api=1&query=$lat,$lng';
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
-
   double rating = 3.5;
   String complainId = "";
   String complainName = "";
@@ -55,6 +46,9 @@ class _TechComplainDetailPageState
   String ahsan = "";
   String assignedTech = "";
   bool isAsyncCallProcess = false;
+  String _comments = "";
+  bool _value = false;
+  List<int> _checkedItems = [];
 
   @override
   Widget build(BuildContext context) {
@@ -106,26 +100,6 @@ class _TechComplainDetailPageState
           SizedBox(
             height: Get.height * 0.02,
           ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const Spacer(),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  const Text(
-                    '<1 mile',
-                    textAlign: TextAlign.end,
-                  ),
-                  SizedBox(height: Get.height * 0.005),
-                  StarRating(
-                    color: AppColors.deepOrange,
-                    rating: rating,
-                  )
-                ],
-              ),
-            ],
-          ),
         ],
       ),
     );
@@ -150,13 +124,14 @@ class _TechComplainDetailPageState
       // print(userAddress);
       // print(userContact);
       // print(category);
-
-      print(complainId);
-      print(user);
-      print("Tech");
-      print(assignedTech);
     }
     super.didChangeDependencies();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _checkedItems = [];
   }
 
   Widget _complainDetails(WidgetRef ref) {
@@ -251,7 +226,7 @@ class _TechComplainDetailPageState
           Text(
             AppText.complainTitle,
             style: TextStyle(
-                fontSize: Get.height * 0.02, fontWeight: FontWeight.w500),
+                fontSize: Get.height * 0.025, fontWeight: FontWeight.w500),
           ),
           SizedBox(
             height: Get.height * 0.01,
@@ -259,7 +234,7 @@ class _TechComplainDetailPageState
           Text(
             model.complainDescription,
             style: TextStyle(
-                fontSize: Get.height * 0.016, fontWeight: FontWeight.w400),
+                fontSize: Get.height * 0.019, fontWeight: FontWeight.w400),
           ),
           Container(
             margin: EdgeInsets.symmetric(vertical: Get.height * 0.02),
@@ -275,7 +250,7 @@ class _TechComplainDetailPageState
                 children: [
                   const Text(
                     'Address',
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
                   ),
                   SizedBox(
                     height: Get.height * 0.005,
@@ -286,13 +261,6 @@ class _TechComplainDetailPageState
               SizedBox(
                 width: Get.height * 0.03,
               ),
-              ElevatedButton(
-                onPressed: () {
-                  _launchMapsUrl(double.parse(model.latitude),
-                      double.parse(model.longitude));
-                },
-                child: Text('Get User Location'),
-              ),
             ],
           ),
           Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -300,14 +268,110 @@ class _TechComplainDetailPageState
               height: Get.height * 0.02,
             ),
             const Text(
-              'Category',
-              style: TextStyle(fontWeight: FontWeight.bold),
+              'Complain Category',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
             ),
             SizedBox(
               height: Get.height * 0.005,
             ),
             Text(model.complainCategory),
           ]),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: Get.height * 0.05,
+              ),
+              const Text(
+                'Checklist',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Column(
+                    children: [
+                      SizedBox(
+                        width: 400,
+                        height: 300,
+                        child: Center(
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                border: Border.all(color: Colors.greenAccent),
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: ListView.builder(
+                                shrinkWrap: true,
+                                physics: const NeverScrollableScrollPhysics(),
+                                itemCount: model.complainCheckList.length,
+                                itemBuilder: (context, index) {
+                                  return CheckboxListTile(
+                                    title: Text(model.complainCheckList[index]),
+                                    controlAffinity:
+                                        ListTileControlAffinity.leading,
+                                    value: _checkedItems.contains(index),
+                                    onChanged: (bool? value) {
+                                      if (value != null && value) {
+                                        setState(() {
+                                          _checkedItems.add(index);
+                                        });
+                                      } else {
+                                        setState(() {
+                                          _checkedItems.remove(index);
+                                        });
+                                      }
+                                    },
+                                    activeColor: Colors.deepOrange,
+                                  );
+                                },
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 130, // set the height of the SizedBox here
+                        child: TextField(
+                          maxLines: 4, // set the number of lines to be shown
+                          onChanged: (value) {
+                            _comments = value;
+                            // handle the text field value change here
+                          },
+                          decoration: InputDecoration(
+                            hintText: 'Enter your comments here',
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(16)),
+                          ),
+                        ),
+                      ),
+                      if (_checkedItems.length ==
+                          model.complainCheckList
+                              .length) // Show button if all items are checked
+                        ElevatedButton(
+                          onPressed: () {
+                            print(_comments);
+                          },
+                          child: Text('Complete Complain'),
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.deepOrange, // Background color
+                            onPrimary: Colors.white, // Text color
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 11), // Button padding
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(
+                                  16), // Button border radius
+                            ),
+                          ),
+                        ),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
         ],
       ),
     );
