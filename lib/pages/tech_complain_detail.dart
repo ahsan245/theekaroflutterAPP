@@ -352,6 +352,36 @@ class _TechComplainDetailPageState
                               .length) // Show button if all items are checked
                         ElevatedButton(
                           onPressed: () {
+                            setState(() {
+                              isAsyncCallProcess = true;
+                            });
+                            APIService.updateComplainStatus(
+                                    complainId, true, _comments)
+                                .then((response) {
+                              setState(() {
+                                isAsyncCallProcess = false;
+                              });
+                              ;
+                              if (response != null) {
+                                FormHelper.showSimpleAlertDialog(
+                                  context,
+                                  Config.appName,
+                                  "Complain Resolved Successfully",
+                                  "Ok",
+                                  () {},
+                                );
+                              } else {
+                                FormHelper.showSimpleAlertDialog(
+                                  context,
+                                  Config.appName,
+                                  "Complain not Completed",
+                                  "Ok",
+                                  () {
+                                    Navigator.of(context).pop();
+                                  },
+                                );
+                              }
+                            });
                             print(_comments);
                           },
                           child: Text('Complete Complain'),

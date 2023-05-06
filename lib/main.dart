@@ -29,7 +29,7 @@ void main() async {
   // bool _result = await SharedService.isLoggedIn();
 
   // if (_result) {
-  _defaultHome = SplashScreen();
+  _defaultHome = const LoginPage();
   // }
   runApp(const ProviderScope(child: MyApp()));
 }
@@ -49,7 +49,8 @@ class MyApp extends StatelessWidget {
       routes: <String, WidgetBuilder>{
         "/": (context) => _defaultHome,
         "/register": (BuildContext context) => const RegisterPage(),
-        "/login": (BuildContext context) => const TechLoginPage(),
+        "/login": (BuildContext context) => const LoginPage(),
+        "/tech-login": (BuildContext context) => const LoginPage(),
         "/home": (BuildContext context) => const DashboardPage(),
         "/tech-complain-details": (BuildContext context) =>
             const TechComplainDetailPage(),
