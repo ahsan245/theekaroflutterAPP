@@ -9,7 +9,9 @@ import 'package:theek_karo/pages/home_page.dart';
 import 'package:theek_karo/pages/login_otp_page.dart';
 import 'package:theek_karo/pages/login_page.dart';
 import 'package:theek_karo/pages/otp_verify_page.dart';
+import 'package:theek_karo/pages/passwrod_reset_email.dart';
 import 'package:theek_karo/pages/register_page.dart';
+import 'package:theek_karo/pages/reset_password.dart';
 import 'package:theek_karo/pages/splash_screen.dart';
 import 'package:theek_karo/pages/tech_complain_detail.dart';
 import 'package:theek_karo/pages/tech_complains_List.dart';
@@ -50,7 +52,7 @@ class MyApp extends StatelessWidget {
         "/": (context) => _defaultHome,
         "/register": (BuildContext context) => const RegisterPage(),
         "/login": (BuildContext context) => const LoginPage(),
-        "/tech-login": (BuildContext context) => const LoginPage(),
+        "/tech-login": (BuildContext context) => const TechLoginPage(),
         "/home": (BuildContext context) => const DashboardPage(),
         "/tech-complain-details": (BuildContext context) =>
             const TechComplainDetailPage(),
@@ -62,6 +64,8 @@ class MyApp extends StatelessWidget {
             const ComplainDetailPage(),
         "/tech-details": (BuildContext context) => const TechDetailsPage(),
         "/user-details": (BuildContext context) => const UserDetailsPage(),
+        "/otpemail": (BuildContext context) => const EmailOTPPage(),
+        "/resetpassword": (BuildContext context) => const ResetPasswordPage(),
         "/complain-list": (BuildContext context) => Complains(),
       },
     );

@@ -201,13 +201,13 @@ class _LoginPageState extends State<LoginPage> {
                 text: TextSpan(
               children: <TextSpan>[
                 TextSpan(
-                  text: "Dont have an account? ",
+                  text: "Login as Tech? ",
                   style: TextStyle(
                     color: Colors.black,
                   ),
                 ),
                 TextSpan(
-                  text: "Sign Up",
+                  text: "Login In",
                   style: TextStyle(
                     color: Colors.yellow.shade900,
                   ),
@@ -225,6 +225,33 @@ class _LoginPageState extends State<LoginPage> {
           ),
           const SizedBox(
             height: 10,
+          ),
+          Center(
+            child: RichText(
+                text: TextSpan(
+              children: <TextSpan>[
+                TextSpan(
+                  text: "Forget Password?",
+                  style: TextStyle(
+                    color: Colors.black,
+                  ),
+                ),
+                TextSpan(
+                  text: "Click Here",
+                  style: TextStyle(
+                    color: Colors.yellow.shade900,
+                  ),
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () {
+                      Navigator.of(context).pushNamedAndRemoveUntil(
+                        // "/otplogin",
+                        "/otpemail",
+                        (route) => false,
+                      );
+                    },
+                )
+              ],
+            )),
           ),
         ],
       ),

@@ -8,6 +8,7 @@ import 'package:theek_karo/models/category.dart';
 import 'package:theek_karo/models/complain.dart';
 import 'package:theek_karo/models/complain_response_model.dart';
 import 'package:theek_karo/models/login_response_model.dart';
+import 'package:theek_karo/models/otp_email_password_model.dart';
 import 'package:theek_karo/models/otp_login_response_mode.dart.dart';
 import 'package:theek_karo/models/slider.dart';
 import 'package:theek_karo/models/tech.dart';
@@ -166,6 +167,29 @@ class APIService {
       return data;
     } else {
       return null;
+    }
+  }
+
+  static Future<bool> resetPassword(
+    String email,
+    String password,
+  ) async {
+    Map<String, String> requestHeaders = {'Content-Type': 'application/json'};
+
+    var url = Uri.http(Config.apiURL, Config.resetPassword);
+
+    var response = await client.post(
+      url,
+      headers: requestHeaders,
+      body: jsonEncode(
+        {"email": email, "password": password},
+      ),
+    );
+
+    if (response.statusCode == 200) {
+      return true;
+    } else {
+      return false;
     }
   }
 
@@ -357,5 +381,42 @@ class APIService {
     );
 
     return otploginResponseJson(response.body);
+  }
+
+  static Future<OtpEmailResponseModel> otpEmailLogin(String email) async {
+    Map<String, String> requestHeaders = {
+      'Content-Type': 'application/json',
+    };
+
+    var url = Uri.http(Config.apiURL, Config.otpEmailReset);
+
+    var response = await client.post(
+      url,
+      headers: requestHeaders,
+      body: jsonEncode({"email": email}),
+    );
+    print(response.body);
+
+    return otpmailResponseJson(response.body);
+  }
+
+  static Future<OtpEmailResponseModel> verifyEmailOTP(
+    String email,
+    String otpHash,
+    String otpCode,
+  ) async {
+    Map<String, String> requestHeaders = {
+      'Content-Type': 'application/json',
+    };
+
+    var url = Uri.http(Config.apiURL, Config.otpEmailVerifyAPI);
+
+    var response = await client.post(
+      url,
+      headers: requestHeaders,
+      body: jsonEncode({"email": email, "otp": otpCode, "hash": otpHash}),
+    );
+
+    return otpmailResponseJson(response.body);
   }
 }

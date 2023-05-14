@@ -15,6 +15,9 @@ class Config {
   static const String complainAPI = "/api/complain";
   static const String otpLoginAPI = "/api/otpLogin";
   static const String otpVerifyAPI = "/api/verifyOTP";
+  static const String otpEmailReset = "/api/otpEmailLogin";
+  static const String otpEmailVerifyAPI = "/api/verifyEmailOTP";
+  static const String resetPassword = "/api/resetpassword";
 
   static const int pageSize = 10;
   static const String currency = "₹";
