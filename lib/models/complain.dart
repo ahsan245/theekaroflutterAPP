@@ -22,6 +22,9 @@ abstract class Complain with _$Complain {
     required String complainId,
     required String longitude,
     required String latitude,
+    required String refBill,
+    required bool paymentStatus,
+    required bool completeUpdate,
     required List<String> complainCheckList,
   }) = _Complain;
 

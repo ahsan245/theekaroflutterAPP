@@ -41,7 +41,9 @@ class Dataa {
   late String longitude;
   late String latitude;
   late String techComment;
+  late String refBill;
   late bool completeUpdate;
+  late bool paymentStatus;
 
   Dataa({
     required this.user,
@@ -57,6 +59,8 @@ class Dataa {
     required this.latitude,
     required this.completeUpdate,
     required this.techComment,
+    required this.refBill,
+    required this.paymentStatus,
   });
 
   Dataa.fromJson(Map<String, dynamic> json) {
@@ -73,6 +77,8 @@ class Dataa {
     latitude = json["latitude"];
     completeUpdate = json["completeUpdate"];
     techComment = json["techComment"];
+    refBill = json["refBill"];
+    paymentStatus = json["paymentStatus"];
   }
 
   Map<String, dynamic> toJson() {
@@ -91,6 +97,9 @@ class Dataa {
     _data['latitude'] = latitude;
     _data['completeUpdate'] = completeUpdate;
     _data['techComment'] = techComment;
+    _data['refBill'] = refBill;
+    _data['paymentStatus'] = paymentStatus;
+
     return _data;
   }
 }

@@ -50,6 +50,13 @@ dependencies:
   geolocator: ^7.0.3
   url_launcher: ^6.0.3
   google_maps_flutter: ^2.0.12
+  location: ^4.3.0
+  intl: ^0.17.0-nullsafety.3
+  crypto: ^3.0.0
+  jazzcash_flutter: ^1.0.5
+
+ 
+
 
   
 

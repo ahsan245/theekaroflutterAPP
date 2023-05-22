@@ -347,6 +347,37 @@ class APIService {
     }
   }
 
+  static Future<Dataa?> updatePaymetStatus(
+    String complainId,
+    bool paymentStatus,
+    String refBill,
+  ) async {
+    Map<String, String> requestHeaders = {'Content-Type': 'application/json'};
+
+    var url = Uri.http(Config.apiURL, '${Config.complainAPI}/$complainId');
+
+    var response = await client.put(
+      url,
+      headers: requestHeaders,
+      body: jsonEncode(
+        {
+          "paymentStatus": paymentStatus,
+          "refBill": refBill,
+        },
+      ),
+    );
+
+    if (response.statusCode == 200) {
+      final complainResponse = complainResponseJson(response.body);
+      final data = complainResponse.data;
+
+      print(data.toJson());
+      return data;
+    } else {
+      return null;
+    }
+  }
+
   static Future<OtpLoginResponseModel> otpLogin(String mobileNO) async {
     Map<String, String> requestHeaders = {
       'Content-Type': 'application/json',

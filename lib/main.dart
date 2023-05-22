@@ -8,8 +8,10 @@ import 'package:theek_karo/pages/dashboard_page.dart';
 import 'package:theek_karo/pages/home_page.dart';
 import 'package:theek_karo/pages/login_otp_page.dart';
 import 'package:theek_karo/pages/login_page.dart';
+import 'package:theek_karo/pages/map.dart';
 import 'package:theek_karo/pages/otp_verify_page.dart';
 import 'package:theek_karo/pages/passwrod_reset_email.dart';
+import 'package:theek_karo/pages/payment.dart';
 import 'package:theek_karo/pages/register_page.dart';
 import 'package:theek_karo/pages/reset_password.dart';
 import 'package:theek_karo/pages/splash_screen.dart';
@@ -67,6 +69,7 @@ class MyApp extends StatelessWidget {
         "/otpemail": (BuildContext context) => const EmailOTPPage(),
         "/resetpassword": (BuildContext context) => const ResetPasswordPage(),
         "/complain-list": (BuildContext context) => Complains(),
+        "/payment": (BuildContext context) => const Payment(),
       },
     );
   }

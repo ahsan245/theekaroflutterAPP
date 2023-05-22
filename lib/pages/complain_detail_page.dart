@@ -14,6 +14,7 @@ import 'package:theek_karo/config.dart';
 import 'package:theek_karo/models/complain.dart';
 import 'package:theek_karo/models/complain_response_model.dart';
 import 'package:theek_karo/pages/dashboard_page.dart';
+import 'package:theek_karo/pages/payment.dart';
 import 'package:theek_karo/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -183,6 +184,11 @@ class _ComplainDetailPageState extends ConsumerState<ComplainDetailPage> {
   }
 
   Widget _complainDetailsUI(Complain model) {
+    bool paymentStatus = model.paymentStatus;
+    String refBillNo = model.refBill;
+    complainId = model.complainId;
+    print(complainId);
+
     return Container(
       color: Colors.white,
       child: Column(
@@ -194,45 +200,52 @@ class _ComplainDetailPageState extends ConsumerState<ComplainDetailPage> {
             children: [
               Container(
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(Get.height * 1),
-                    color: Colors.black12),
+                  borderRadius: BorderRadius.circular(Get.height * 1),
+                  color: Colors.black12,
+                ),
                 padding: EdgeInsets.all(Get.height * 0.015),
                 child: Icon(
                   Icons.home_repair_service,
                   size: Get.height * 0.03,
                 ),
               ),
-              const SizedBox(
-                width: 10,
-              ),
+              const SizedBox(width: 10),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     model.complainName,
                     style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: Get.height * 0.024),
+                      fontWeight: FontWeight.bold,
+                      fontSize: Get.height * 0.024,
+                    ),
                   ),
                   SizedBox(height: Get.height * 0.005),
                   Text(
                     'Monday 5th January - 11:50pm',
                     style: TextStyle(
-                        color: Colors.black54, fontSize: Get.height * 0.016),
-                  )
+                      color: Colors.black54,
+                      fontSize: Get.height * 0.016,
+                    ),
+                  ),
                 ],
               ),
               const Spacer(),
               Container(
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(Get.height * 0.02),
-                    color: AppColors.deepOrange),
+                  borderRadius: BorderRadius.circular(Get.height * 0.02),
+                  color: AppColors.deepOrange,
+                ),
                 padding: EdgeInsets.symmetric(
-                    horizontal: Get.height * 0.02, vertical: Get.height * 0.01),
+                  horizontal: Get.height * 0.02,
+                  vertical: Get.height * 0.01,
+                ),
                 child: Text(
-                  model.complainStatus ? "Not Active" : "Active",
+                  paymentStatus ? "Completed" : "In Progress",
                   style: TextStyle(
-                      color: AppColors.white, fontSize: Get.height * 0.014),
+                    color: AppColors.white,
+                    fontSize: Get.height * 0.014,
+                  ),
                 ),
               ),
             ],
@@ -240,27 +253,31 @@ class _ComplainDetailPageState extends ConsumerState<ComplainDetailPage> {
           Container(
             margin: EdgeInsets.symmetric(vertical: Get.height * 0.02),
             decoration: BoxDecoration(
-                border:
-                    Border(bottom: BorderSide(color: AppColors.dividerColors))),
+              border:
+                  Border(bottom: BorderSide(color: AppColors.dividerColors)),
+            ),
           ),
           Text(
             AppText.complainTitle,
             style: TextStyle(
-                fontSize: Get.height * 0.02, fontWeight: FontWeight.w500),
+              fontSize: Get.height * 0.02,
+              fontWeight: FontWeight.w500,
+            ),
           ),
-          SizedBox(
-            height: Get.height * 0.01,
-          ),
+          SizedBox(height: Get.height * 0.01),
           Text(
             model.complainDescription,
             style: TextStyle(
-                fontSize: Get.height * 0.016, fontWeight: FontWeight.w400),
+              fontSize: Get.height * 0.016,
+              fontWeight: FontWeight.w400,
+            ),
           ),
           Container(
             margin: EdgeInsets.symmetric(vertical: Get.height * 0.02),
             decoration: BoxDecoration(
-                border:
-                    Border(bottom: BorderSide(color: AppColors.dividerColors))),
+              border:
+                  Border(bottom: BorderSide(color: AppColors.dividerColors)),
+            ),
           ),
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -272,30 +289,61 @@ class _ComplainDetailPageState extends ConsumerState<ComplainDetailPage> {
                     'Address',
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(
-                    height: Get.height * 0.005,
-                  ),
+                  SizedBox(height: Get.height * 0.005),
                   Text(model.userAddress),
                 ],
               ),
-              SizedBox(
-                width: Get.height * 0.03,
-              ),
+              SizedBox(width: Get.height * 0.03),
             ],
           ),
-          Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            SizedBox(
-              height: Get.height * 0.02,
-            ),
-            const Text(
-              'Category',
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-            SizedBox(
-              height: Get.height * 0.005,
-            ),
-            Text(model.complainCategory),
-          ]),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: Get.height * 0.02),
+              const Text(
+                'Category',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: Get.height * 0.005),
+              Text(model.complainCategory),
+            ],
+          ),
+          Column(
+            children: [
+              if (!paymentStatus) // If paymentStatus is false
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).pushNamed(
+                      "/payment",
+                      arguments: {
+                        'complainId': model.complainId,
+                      },
+                    );
+                  },
+                  child: const Text('Pay Now'),
+                ),
+              if (paymentStatus &&
+                  model
+                      .completeUpdate) // If paymentStatus is true and complainUpdate is true
+                Text(
+                  'Payment is Paid. RefBill: ${model.refBill}',
+                  style: TextStyle(
+                    fontSize: Get.height * 0.016,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              if (!paymentStatus &&
+                  !model
+                      .completeUpdate) // If paymentStatus is false and complainUpdate is false
+                Text(
+                  'Technician Working',
+                  style: TextStyle(
+                    fontSize: Get.height * 0.016,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+            ],
+          ),
         ],
       ),
     );

@@ -361,7 +361,7 @@ class _TechComplainDetailPageState
                               setState(() {
                                 isAsyncCallProcess = false;
                               });
-                              ;
+
                               if (response != null) {
                                 FormHelper.showSimpleAlertDialog(
                                   context,
