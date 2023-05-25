@@ -16,6 +16,8 @@ _$_Complain _$$_ComplainFromJson(Map<String, dynamic> json) => _$_Complain(
       longitude: json['longitude'] as String,
       latitude: json['latitude'] as String,
       refBill: json['refBill'] as String,
+      billAmount: json['billAmount'] as String,
+      techComment: json['techComment'] as String,
       paymentStatus: json['paymentStatus'] as bool,
       completeUpdate: json['completeUpdate'] as bool,
       complainCheckList: (json['complainCheckList'] as List<dynamic>)
@@ -34,6 +36,8 @@ Map<String, dynamic> _$$_ComplainToJson(_$_Complain instance) =>
       'longitude': instance.longitude,
       'latitude': instance.latitude,
       'refBill': instance.refBill,
+      'billAmount': instance.billAmount,
+      'techComment': instance.techComment,
       'paymentStatus': instance.paymentStatus,
       'completeUpdate': instance.completeUpdate,
       'complainCheckList': instance.complainCheckList,

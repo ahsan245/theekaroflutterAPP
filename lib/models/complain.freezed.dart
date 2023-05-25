@@ -29,6 +29,8 @@ mixin _$Complain {
   String get longitude => throw _privateConstructorUsedError;
   String get latitude => throw _privateConstructorUsedError;
   String get refBill => throw _privateConstructorUsedError;
+  String get billAmount => throw _privateConstructorUsedError;
+  String get techComment => throw _privateConstructorUsedError;
   bool get paymentStatus => throw _privateConstructorUsedError;
   bool get completeUpdate => throw _privateConstructorUsedError;
   List<String> get complainCheckList => throw _privateConstructorUsedError;
@@ -54,6 +56,8 @@ abstract class $ComplainCopyWith<$Res> {
       String longitude,
       String latitude,
       String refBill,
+      String billAmount,
+      String techComment,
       bool paymentStatus,
       bool completeUpdate,
       List<String> complainCheckList});
@@ -81,6 +85,8 @@ class _$ComplainCopyWithImpl<$Res, $Val extends Complain>
     Object? longitude = null,
     Object? latitude = null,
     Object? refBill = null,
+    Object? billAmount = null,
+    Object? techComment = null,
     Object? paymentStatus = null,
     Object? completeUpdate = null,
     Object? complainCheckList = null,
@@ -122,6 +128,14 @@ class _$ComplainCopyWithImpl<$Res, $Val extends Complain>
           ? _value.refBill
           : refBill // ignore: cast_nullable_to_non_nullable
               as String,
+      billAmount: null == billAmount
+          ? _value.billAmount
+          : billAmount // ignore: cast_nullable_to_non_nullable
+              as String,
+      techComment: null == techComment
+          ? _value.techComment
+          : techComment // ignore: cast_nullable_to_non_nullable
+              as String,
       paymentStatus: null == paymentStatus
           ? _value.paymentStatus
           : paymentStatus // ignore: cast_nullable_to_non_nullable
@@ -155,6 +169,8 @@ abstract class _$$_ComplainCopyWith<$Res> implements $ComplainCopyWith<$Res> {
       String longitude,
       String latitude,
       String refBill,
+      String billAmount,
+      String techComment,
       bool paymentStatus,
       bool completeUpdate,
       List<String> complainCheckList});
@@ -180,6 +196,8 @@ class __$$_ComplainCopyWithImpl<$Res>
     Object? longitude = null,
     Object? latitude = null,
     Object? refBill = null,
+    Object? billAmount = null,
+    Object? techComment = null,
     Object? paymentStatus = null,
     Object? completeUpdate = null,
     Object? complainCheckList = null,
@@ -221,6 +239,14 @@ class __$$_ComplainCopyWithImpl<$Res>
           ? _value.refBill
           : refBill // ignore: cast_nullable_to_non_nullable
               as String,
+      billAmount: null == billAmount
+          ? _value.billAmount
+          : billAmount // ignore: cast_nullable_to_non_nullable
+              as String,
+      techComment: null == techComment
+          ? _value.techComment
+          : techComment // ignore: cast_nullable_to_non_nullable
+              as String,
       paymentStatus: null == paymentStatus
           ? _value.paymentStatus
           : paymentStatus // ignore: cast_nullable_to_non_nullable
@@ -250,6 +276,8 @@ class _$_Complain implements _Complain {
       required this.longitude,
       required this.latitude,
       required this.refBill,
+      required this.billAmount,
+      required this.techComment,
       required this.paymentStatus,
       required this.completeUpdate,
       required final List<String> complainCheckList})
@@ -277,6 +305,10 @@ class _$_Complain implements _Complain {
   @override
   final String refBill;
   @override
+  final String billAmount;
+  @override
+  final String techComment;
+  @override
   final bool paymentStatus;
   @override
   final bool completeUpdate;
@@ -291,7 +323,7 @@ class _$_Complain implements _Complain {
 
   @override
   String toString() {
-    return 'Complain(complainName: $complainName, complainDescription: $complainDescription, userAddress: $userAddress, complainCategory: $complainCategory, complainStatus: $complainStatus, complainId: $complainId, longitude: $longitude, latitude: $latitude, refBill: $refBill, paymentStatus: $paymentStatus, completeUpdate: $completeUpdate, complainCheckList: $complainCheckList)';
+    return 'Complain(complainName: $complainName, complainDescription: $complainDescription, userAddress: $userAddress, complainCategory: $complainCategory, complainStatus: $complainStatus, complainId: $complainId, longitude: $longitude, latitude: $latitude, refBill: $refBill, billAmount: $billAmount, techComment: $techComment, paymentStatus: $paymentStatus, completeUpdate: $completeUpdate, complainCheckList: $complainCheckList)';
   }
 
   @override
@@ -316,6 +348,10 @@ class _$_Complain implements _Complain {
             (identical(other.latitude, latitude) ||
                 other.latitude == latitude) &&
             (identical(other.refBill, refBill) || other.refBill == refBill) &&
+            (identical(other.billAmount, billAmount) ||
+                other.billAmount == billAmount) &&
+            (identical(other.techComment, techComment) ||
+                other.techComment == techComment) &&
             (identical(other.paymentStatus, paymentStatus) ||
                 other.paymentStatus == paymentStatus) &&
             (identical(other.completeUpdate, completeUpdate) ||
@@ -337,6 +373,8 @@ class _$_Complain implements _Complain {
       longitude,
       latitude,
       refBill,
+      billAmount,
+      techComment,
       paymentStatus,
       completeUpdate,
       const DeepCollectionEquality().hash(_complainCheckList));
@@ -366,6 +404,8 @@ abstract class _Complain implements Complain {
       required final String longitude,
       required final String latitude,
       required final String refBill,
+      required final String billAmount,
+      required final String techComment,
       required final bool paymentStatus,
       required final bool completeUpdate,
       required final List<String> complainCheckList}) = _$_Complain;
@@ -390,6 +430,10 @@ abstract class _Complain implements Complain {
   String get latitude;
   @override
   String get refBill;
+  @override
+  String get billAmount;
+  @override
+  String get techComment;
   @override
   bool get paymentStatus;
   @override

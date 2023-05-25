@@ -10,33 +10,33 @@ class Complains extends StatelessWidget {
     return GetBuilder<ComplainController>(
         init: ComplainController(),
         builder: (cc) => Scaffold(
-            appBar: AppBar(
-              title: Text('Complains'),
-            ),
-            body: ScrollConfiguration(
-              behavior:
-                  const MaterialScrollBehavior().copyWith(overscroll: false),
-              child: cc.isLoad
-                  ? Center(
-                      child: CircularProgressIndicator(
-                        color: Colors.black,
-                      ),
-                    )
-                  : ListView(
-                      padding: EdgeInsets.symmetric(
-                          vertical: Get.height * 0.02,
-                          horizontal: Get.height * 0.02),
-                      children: [
-                        Center(
-                          child: Text(
-                            "Complain Lists",
-                            style: TextStyle(fontSize: Get.width * 0.06),
+              appBar: AppBar(
+                title: Text('Complains'),
+              ),
+              body: ScrollConfiguration(
+                behavior:
+                    const MaterialScrollBehavior().copyWith(overscroll: false),
+                child: cc.isLoad
+                    ? Center(
+                        child: CircularProgressIndicator(
+                          color: Colors.black,
+                        ),
+                      )
+                    : ListView(
+                        padding: EdgeInsets.symmetric(
+                            vertical: Get.height * 0.02,
+                            horizontal: Get.height * 0.02),
+                        children: [
+                          Center(
+                            child: Text(
+                              "Complain Lists",
+                              style: TextStyle(fontSize: Get.width * 0.06),
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                          height: Get.height * 0.02,
-                        ),
-                        Container(
+                          SizedBox(
+                            height: Get.height * 0.02,
+                          ),
+                          Container(
                             height: Get.height,
                             child: ListView.separated(
                               separatorBuilder: (context, index) => SizedBox(
@@ -60,9 +60,11 @@ class Complains extends StatelessWidget {
                                   );
                                 },
                               ),
-                            )),
-                      ],
-                    ),
-            )));
+                            ),
+                          ),
+                        ],
+                      ),
+              ),
+            ));
   }
 }

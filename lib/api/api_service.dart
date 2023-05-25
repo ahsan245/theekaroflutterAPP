@@ -351,6 +351,7 @@ class APIService {
     String complainId,
     bool paymentStatus,
     String refBill,
+    String billAmount,
   ) async {
     Map<String, String> requestHeaders = {'Content-Type': 'application/json'};
 
@@ -363,6 +364,7 @@ class APIService {
         {
           "paymentStatus": paymentStatus,
           "refBill": refBill,
+          "billAmount": billAmount
         },
       ),
     );

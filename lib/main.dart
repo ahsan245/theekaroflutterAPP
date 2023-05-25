@@ -62,8 +62,7 @@ class MyApp extends StatelessWidget {
         "/complain": (BuildContext context) => const TestPage(),
         "/otplogin": (BuildContext context) => const LoginOTPPage(),
         "/otpverify": (BuildContext context) => OTPVerifyPage(),
-        "/complain-details": (BuildContext context) =>
-            const ComplainDetailPage(),
+        "/complain-details": (BuildContext context) => ComplainDetailPage(),
         "/tech-details": (BuildContext context) => const TechDetailsPage(),
         "/user-details": (BuildContext context) => const UserDetailsPage(),
         "/otpemail": (BuildContext context) => const EmailOTPPage(),

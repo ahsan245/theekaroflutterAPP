@@ -310,7 +310,8 @@ class _ComplainDetailPageState extends ConsumerState<ComplainDetailPage> {
           ),
           Column(
             children: [
-              if (!paymentStatus) // If paymentStatus is false
+              if (!paymentStatus &&
+                  model.completeUpdate) // If paymentStatus is false
                 ElevatedButton(
                   onPressed: () {
                     Navigator.of(context).pushNamed(
@@ -326,15 +327,14 @@ class _ComplainDetailPageState extends ConsumerState<ComplainDetailPage> {
                   model
                       .completeUpdate) // If paymentStatus is true and complainUpdate is true
                 Text(
-                  'Payment is Paid. RefBill: ${model.refBill}',
+                  'Payment is Paid. RefBill: ${model.refBill} Amount Paid:${model.billAmount}Rs',
                   style: TextStyle(
                     fontSize: Get.height * 0.016,
                     fontWeight: FontWeight.w400,
                   ),
                 ),
-              if (!paymentStatus &&
-                  !model
-                      .completeUpdate) // If paymentStatus is false and complainUpdate is false
+              if (!model
+                  .completeUpdate) // If paymentStatus is false and complainUpdate is false
                 Text(
                   'Technician Working',
                   style: TextStyle(

@@ -63,9 +63,13 @@ final techDetailsProvider = FutureProvider.family<Tech?, String>(
 );
 
 final complainDetailsProvider = FutureProvider.family<Complain?, String>(
-  (ref, complainId) {
+  (ref, complainId) async {
     final apiRepository = ref.watch(apiService);
-    return apiRepository.getcomplainDetails(complainId);
+    final details = await apiRepository.getcomplainDetails(complainId);
+
+    // Process the details if needed
+
+    return details;
   },
 );
 
