@@ -12,7 +12,7 @@ class TechComplains extends StatelessWidget {
         init: TechComplainController(),
         builder: (cc) => Scaffold(
             appBar: AppBar(
-              title: Text('Complains'),
+              title: Text('Complain'),
             ),
             body: ScrollConfiguration(
               behavior:

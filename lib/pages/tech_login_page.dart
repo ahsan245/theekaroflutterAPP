@@ -162,7 +162,7 @@ class _TechLoginPageState extends State<TechLoginPage> {
                         () {
                           Navigator.of(context).pop();
                           Navigator.of(context).pushNamedAndRemoveUntil(
-                            '/home',
+                            '/tech-home',
                             arguments: {'techID': res.techID},
                             (route) => false,
                           );

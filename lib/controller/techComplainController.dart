@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:theek_karo/api/api_requests.dart';
 import 'package:theek_karo/models/complain_model.dart';
-import 'package:theek_karo/pages/dashboard_page.dart';
+import 'package:theek_karo/pages/dashboard_tech_page.dart';
 
 class TechComplainController extends GetxController {
   @override

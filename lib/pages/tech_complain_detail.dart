@@ -47,6 +47,7 @@ class _TechComplainDetailPageState
   String assignedTech = "";
   bool isAsyncCallProcess = false;
   String _comments = "";
+  String _billAmount = "";
   bool _value = false;
   List<int> _checkedItems = [];
 
@@ -333,17 +334,35 @@ class _TechComplainDetailPageState
                         ),
                       ),
                       SizedBox(
-                        height: 130, // set the height of the SizedBox here
+                        height: 130, // Set the height of the SizedBox here
                         child: TextField(
-                          maxLines: 4, // set the number of lines to be shown
+                          maxLines: 4, // Set the number of lines to be shown
                           onChanged: (value) {
                             _comments = value;
-                            // handle the text field value change here
+                            // Handle the text field value change here
                           },
                           decoration: InputDecoration(
                             hintText: 'Enter your comments here',
                             border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(16)),
+                              borderRadius: BorderRadius.circular(16),
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 70, // Set the height of the SizedBox here
+                        child: TextField(
+                          onChanged: (value) {
+                            _billAmount = value;
+                            // Handle the text field value change here
+                          },
+                          keyboardType: TextInputType
+                              .number, // Set the keyboard type to number
+                          decoration: InputDecoration(
+                            hintText: 'Enter the bill amount',
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(16),
+                            ),
                           ),
                         ),
                       ),
@@ -356,7 +375,7 @@ class _TechComplainDetailPageState
                               isAsyncCallProcess = true;
                             });
                             APIService.updateComplainStatus(
-                                    complainId, true, _comments)
+                                    complainId, true, _comments, _billAmount)
                                 .then((response) {
                               setState(() {
                                 isAsyncCallProcess = false;
@@ -368,7 +387,10 @@ class _TechComplainDetailPageState
                                   Config.appName,
                                   "Complain Resolved Successfully",
                                   "Ok",
-                                  () {},
+                                  () {
+                                    Navigator.of(context)
+                                        .pushNamed("/tech-home");
+                                  },
                                 );
                               } else {
                                 FormHelper.showSimpleAlertDialog(

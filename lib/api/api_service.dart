@@ -320,6 +320,7 @@ class APIService {
     String complainId,
     bool completeUpdate,
     String techComment,
+    String billAmount,
   ) async {
     Map<String, String> requestHeaders = {'Content-Type': 'application/json'};
 
@@ -332,6 +333,7 @@ class APIService {
         {
           "completeUpdate": completeUpdate,
           "techComment": techComment,
+          "billAmount": billAmount,
         },
       ),
     );

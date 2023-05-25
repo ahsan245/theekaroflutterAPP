@@ -5,6 +5,7 @@ import 'package:theek_karo/models/tech.dart';
 import 'package:theek_karo/pages/complain_detail_page.dart';
 import 'package:theek_karo/pages/complains_List.dart';
 import 'package:theek_karo/pages/dashboard_page.dart';
+import 'package:theek_karo/pages/dashboard_tech_page.dart';
 import 'package:theek_karo/pages/home_page.dart';
 import 'package:theek_karo/pages/login_otp_page.dart';
 import 'package:theek_karo/pages/login_page.dart';
@@ -68,6 +69,7 @@ class MyApp extends StatelessWidget {
         "/otpemail": (BuildContext context) => const EmailOTPPage(),
         "/resetpassword": (BuildContext context) => const ResetPasswordPage(),
         "/complain-list": (BuildContext context) => Complains(),
+        "/tech-home": (BuildContext context) => const TechDashBoardPage(),
         "/payment": (BuildContext context) => const Payment(),
       },
     );
