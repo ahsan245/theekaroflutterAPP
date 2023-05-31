@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:theek_karo/models/login_response_model.dart';
 import 'package:theek_karo/models/tech.dart';
 import 'package:theek_karo/pages/complain_detail_page.dart';
@@ -22,10 +23,13 @@ import 'package:theek_karo/pages/tech_details_page.dart';
 import 'package:theek_karo/pages/tech_login_page.dart';
 import 'package:theek_karo/pages/techs_page.dart';
 import 'package:theek_karo/pages/tesst.dart';
+import 'package:theek_karo/pages/test_map.dart';
 import 'package:theek_karo/pages/user_details_page.dart';
 import 'package:theek_karo/utils/shared_service.dart';
 
 Widget _defaultHome = const TechLoginPage();
+
+//bsdk aur agey piche rkh files routes kon banata hay direct Get.to,m kia krn bc,idhr 4 min sabar rakh ye build hny m saal lagata hy
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -34,7 +38,8 @@ void main() async {
   // bool _result = await SharedService.isLoggedIn();
 
   // if (_result) {
-  _defaultHome = const LoginPage();
+
+  _defaultHome = LoginPage();
   // }
   runApp(const ProviderScope(child: MyApp()));
 }
@@ -44,7 +49,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Theek Karo',
       theme: ThemeData(

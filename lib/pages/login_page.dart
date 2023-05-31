@@ -2,6 +2,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:snippet_coder_utils/FormHelper.dart';
 import 'package:snippet_coder_utils/ProgressHUD.dart';
 import 'package:theek_karo/api/api_service.dart';
@@ -9,6 +11,8 @@ import 'package:theek_karo/config.dart';
 import 'package:theek_karo/models/login_response_model.dart';
 import 'package:theek_karo/models/user_filter.dart';
 import 'package:theek_karo/pages/dashboard_page.dart';
+
+import '../google_map/view_map.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -257,6 +261,17 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
+
+  // void navigateToViewRoute() {
+  //   Get.to(() => ViewRoute(), arguments: [
+  //     'Gulshan-e-Hadeed',
+  //     "24.8773708",
+  //     "67.3295537",
+  //     'Gulshan-e-Iqbal',
+  //     "24.9210887",
+  //     "67.0524369"
+  //   ]);
+  // }
 
   bool validateSave() {
     final form = globalKey.currentState;

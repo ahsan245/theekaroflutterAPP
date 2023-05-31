@@ -5,5 +5,7 @@ class AppColors {
   static Color deepOrange = Colors.deepOrangeAccent;
   static Color white = Colors.white;
   static Color placeHolder = Colors.black38;
+  static Color green = Colors.black;
+
   static Color dividerColors = HexColor('##dddddd');
 }

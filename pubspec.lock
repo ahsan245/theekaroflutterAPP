@@ -520,6 +520,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.0"
+  maps_curved_line:
+    dependency: "direct main"
+    description:
+      name: maps_curved_line
+      sha256: "483c6ac2700fad7a79026c8ec789eff0f0f0a34f2109cefc13b2eb0d0ca438ba"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.2"
   matcher:
     dependency: transitive
     description:

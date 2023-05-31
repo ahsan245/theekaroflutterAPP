@@ -54,6 +54,10 @@ dependencies:
   intl: ^0.17.0-nullsafety.3
   crypto: ^3.0.0
   jazzcash_flutter: ^1.0.5
+  maps_curved_line: ^1.0.2
+
+
+
 
  
 

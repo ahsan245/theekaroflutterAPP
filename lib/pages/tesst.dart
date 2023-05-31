@@ -9,6 +9,7 @@ import 'package:theek_karo/api/api_service.dart';
 import 'package:theek_karo/config.dart';
 import 'package:theek_karo/pages/dashboard_page.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:theek_karo/pages/test_map.dart';
 
 class TestPage extends StatefulWidget {
   const TestPage({super.key});
@@ -28,23 +29,12 @@ class _TestPageState extends State<TestPage> {
   String? complainCategory;
   double? lon;
   double? lat;
-  void _getLocation(BuildContext context) async {
-    try {
-      Position position = await Geolocator.getCurrentPosition(
-          desiredAccuracy: LocationAccuracy.high);
-      lat = position.latitude;
-      lon = position.longitude;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Location Reterieved Successfully')),
-      );
-      print(lat);
-      print(lon);
-    } catch (e) {
-      print(e);
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Failed to get location')),
-      );
-    }
+
+  void _updateLocation(double latitude, double longitude) {
+    setState(() {
+      lon = longitude;
+      lat = latitude;
+    });
   }
 
   @override
@@ -212,18 +202,6 @@ class _TestPageState extends State<TestPage> {
           const SizedBox(
             height: 10,
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 20),
-            child: ElevatedButton(
-              onPressed: () {
-                _getLocation(context);
-              },
-              child: Text('Send Your Current Location'),
-            ),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
           const Padding(
             padding: EdgeInsets.only(left: 20),
             child: Text(
@@ -313,6 +291,23 @@ class _TestPageState extends State<TestPage> {
                   });
                 },
               ),
+            ),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Center(
+            child: Column(
+              children: [
+                // Your other widgets...
+                UserLocationMap(onLocationChanged: _updateLocation),
+                // ...
+                // Your other widgets here
+                // ...
+                Text('Latitude: $lat'),
+                Text('Longitude: $lon'),
+                // Your other widgets...
+              ],
             ),
           ),
           const SizedBox(
