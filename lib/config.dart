@@ -18,6 +18,7 @@ class Config {
   static const String otpEmailReset = "/api/otpEmailLogin";
   static const String otpEmailVerifyAPI = "/api/verifyEmailOTP";
   static const String resetPassword = "/api/resetpassword";
+  static const String sendMail = "/api/complainMail";
 
   static const int pageSize = 10;
   static const String currency = "₹";

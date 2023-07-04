@@ -484,4 +484,41 @@ class APIService {
 
     return otpmailResponseJson(response.body);
   }
+
+  static Future<void> sendComplainEmail(
+    String email,
+    String fullName,
+    String techName,
+    String complainName,
+    String complainId,
+  ) async {
+    // Create the JSON body for the request
+    var requestBody = jsonEncode({
+      'email': email,
+      'fullName': fullName,
+      'techName': techName,
+      'complainName': complainName,
+      'complainId': complainId
+    });
+
+    // Set the headers and endpoint URL
+    var requestHeaders = {
+      'Content-Type': 'application/json',
+    };
+    var apiUrl = 'https://theek-karo-api.herokuapp.com/api/complainMail';
+
+    // Send the POST request
+    var response = await http.post(
+      Uri.parse(apiUrl),
+      headers: requestHeaders,
+      body: requestBody,
+    );
+
+    // Handle the response as needed
+    if (response.statusCode == 200) {
+      print('Complain email sent successfully.');
+    } else {
+      print('Failed to send complain email. Error: ${response.body}');
+    }
+  }
 }

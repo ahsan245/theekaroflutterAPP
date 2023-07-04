@@ -50,7 +50,14 @@ class _ComplainDetailPageState extends ConsumerState<ComplainDetailPage> {
   String category = "";
   String ahsan = "";
   String assignedTech = "";
+  String emailemail = "";
+  String emailfullName = "";
+  String emailtechName = "";
+  String emailComplainName = "";
+  String emailComplainId = "";
   bool isAsyncCallProcess = false;
+
+  bool _dataLoaded = false;
 
   File? image;
   final _picker = ImagePicker();
@@ -148,6 +155,8 @@ class _ComplainDetailPageState extends ConsumerState<ComplainDetailPage> {
                   border: Border(
                       bottom: BorderSide(color: AppColors.dividerColors))),
             ),
+            Text(emailemail),
+
             const Text(
               "Technician",
               style: TextStyle(fontWeight: FontWeight.bold),
@@ -242,8 +251,16 @@ class _ComplainDetailPageState extends ConsumerState<ComplainDetailPage> {
   Widget _complainDetailsUI(Complain model) {
     bool paymentStatus = model.paymentStatus;
     String refBillNo = model.refBill;
-    complainId = model.complainId;
-    print(complainId);
+    emailComplainName = model.complainName;
+    emailComplainId = model.complainId;
+    print("ss :" + emailComplainId);
+    if (_dataLoaded) {
+      // Call the sendComplainEmail function here
+      APIService.sendComplainEmail(emailemail, emailfullName, emailtechName,
+          emailComplainName, complainId);
+
+      // Set the dataLoaded flag to true to prevent multiple invocations
+    }
 
     return Container(
       color: Colors.white,
@@ -507,6 +524,10 @@ class _ComplainDetailPageState extends ConsumerState<ComplainDetailPage> {
   }
 
   Widget _techDetailsUI(Tech model) {
+    emailtechName = model.techName;
+    setState(() {
+      _dataLoaded = true;
+    });
     return Container(
       color: Colors.white,
       child: Column(
@@ -540,6 +561,9 @@ class _ComplainDetailPageState extends ConsumerState<ComplainDetailPage> {
   }
 
   Widget _userDetailsUI(User model) {
+    emailfullName = model.fullName;
+    emailemail = model.email;
+
     return Container(
       color: Colors.white,
       child: Column(
@@ -616,10 +640,6 @@ class _ComplainDetailPageState extends ConsumerState<ComplainDetailPage> {
               Text(model.contact),
             ],
           ),
-          // Text(
-          //   model.fullName,
-          //   style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
-          // ),
           Container(
             margin: EdgeInsets.symmetric(vertical: Get.height * 0.02),
             decoration: BoxDecoration(
