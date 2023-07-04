@@ -7,6 +7,7 @@ import 'package:theek_karo/pages/complain_detail_page.dart';
 import 'package:theek_karo/pages/complains_List.dart';
 import 'package:theek_karo/pages/dashboard_page.dart';
 import 'package:theek_karo/pages/dashboard_tech_page.dart';
+import 'package:theek_karo/pages/firstpage.dart';
 import 'package:theek_karo/pages/home_page.dart';
 import 'package:theek_karo/pages/image.dart';
 import 'package:theek_karo/pages/login_otp_page.dart';
@@ -78,6 +79,7 @@ class MyApp extends StatelessWidget {
         "/complain-list": (BuildContext context) => Complains(),
         "/tech-home": (BuildContext context) => const TechDashBoardPage(),
         "/payment": (BuildContext context) => const Payment(),
+        "/firstpage": (BuildContext context) => FirstPage(),
       },
     );
   }

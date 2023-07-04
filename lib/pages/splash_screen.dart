@@ -19,7 +19,7 @@ class _SplashScreenState extends State<SplashScreen>
     _animation = Tween<double>(begin: 0.0, end: 1.0).animate(_controller);
     _controller.forward();
     Future.delayed(Duration(seconds: 3), () {
-      Navigator.pushReplacementNamed(context, '/login');
+      Navigator.pushReplacementNamed(context, '/firstpage');
     });
   }
 

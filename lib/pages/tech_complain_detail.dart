@@ -203,7 +203,7 @@ class _TechComplainDetailPageState
                     ),
                     SizedBox(height: Get.height * 0.005),
                     Text(
-                      'Monday 5th January - 11:50pm',
+                      model.createdAt,
                       style: TextStyle(
                         color: Colors.black54,
                         fontSize: Get.height * 0.016,
@@ -281,7 +281,28 @@ class _TechComplainDetailPageState
                 SizedBox(width: Get.height * 0.03),
               ],
             ),
-            const SizedBox(height: 10),
+            SizedBox(height: 16),
+            if (model.complainImage != "")
+              Text(
+                'Complain Image',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+            if (model.complainImage != "")
+              Column(
+                children: [
+                  SizedBox(height: 16), // Space between text and image
+                  if (model.complainImage != "")
+                    Container(
+                      height: 100,
+                      width: 200,
+                      child: Image.network(
+                        model.fullImagePath,
+                        fit: BoxFit.fitHeight,
+                      ),
+                    ),
+                ],
+              ),
+            if (model.complainImage != "") const SizedBox(height: 10),
             Center(
               child: Column(
                 children: [
@@ -431,7 +452,7 @@ class _TechComplainDetailPageState
                     ),
                     SizedBox(height: Get.height * 0.005),
                     Text(
-                      'Monday 5th January - 11:50pm',
+                      model.createdAt,
                       style: TextStyle(
                           color: Colors.black54, fontSize: Get.height * 0.016),
                     )
