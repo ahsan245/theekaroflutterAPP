@@ -44,6 +44,8 @@ class Dataa {
   late String refBill;
   late bool completeUpdate;
   late bool paymentStatus;
+  late bool startComplain;
+  late String complainImage;
 
   Dataa({
     required this.user,
@@ -61,6 +63,8 @@ class Dataa {
     required this.techComment,
     required this.refBill,
     required this.paymentStatus,
+    required this.startComplain,
+    required this.complainImage,
   });
 
   Dataa.fromJson(Map<String, dynamic> json) {
@@ -79,6 +83,8 @@ class Dataa {
     techComment = json["techComment"];
     refBill = json["refBill"];
     paymentStatus = json["paymentStatus"];
+    startComplain = json["startComplain"];
+    complainImage = json["complainImage"];
   }
 
   Map<String, dynamic> toJson() {
@@ -99,6 +105,8 @@ class Dataa {
     _data['techComment'] = techComment;
     _data['refBill'] = refBill;
     _data['paymentStatus'] = paymentStatus;
+    _data['startComplain'] = startComplain;
+    _data['complainImage'] = complainImage;
 
     return _data;
   }

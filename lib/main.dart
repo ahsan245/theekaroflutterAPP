@@ -8,6 +8,7 @@ import 'package:theek_karo/pages/complains_List.dart';
 import 'package:theek_karo/pages/dashboard_page.dart';
 import 'package:theek_karo/pages/dashboard_tech_page.dart';
 import 'package:theek_karo/pages/home_page.dart';
+import 'package:theek_karo/pages/image.dart';
 import 'package:theek_karo/pages/login_otp_page.dart';
 import 'package:theek_karo/pages/login_page.dart';
 import 'package:theek_karo/pages/map.dart';
@@ -39,7 +40,7 @@ void main() async {
 
   // if (_result) {
 
-  _defaultHome = LoginPage();
+  _defaultHome = SplashScreen();
   // }
   runApp(const ProviderScope(child: MyApp()));
 }
@@ -49,7 +50,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Theek Karo',
       theme: ThemeData(
@@ -65,6 +66,7 @@ class MyApp extends StatelessWidget {
         "/tech-complain-details": (BuildContext context) =>
             const TechComplainDetailPage(),
         "/techs": (BuildContext context) => const TechsPage(),
+        "/techs-complain-list": (BuildContext context) => TechComplains(),
         "/complain": (BuildContext context) => const TestPage(),
         "/otplogin": (BuildContext context) => const LoginOTPPage(),
         "/otpverify": (BuildContext context) => OTPVerifyPage(),

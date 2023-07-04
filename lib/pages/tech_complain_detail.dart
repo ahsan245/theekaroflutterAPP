@@ -68,7 +68,7 @@ class _TechComplainDetailPageState
           leading: IconButton(
             onPressed: () {
               Navigator.of(context).pushNamed(
-                "/home",
+                "/techs-complain-list",
                 arguments: {
                   'complainId': complainId,
                   'userId': user,
@@ -198,7 +198,7 @@ class _TechComplainDetailPageState
                       model.complainName,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: Get.height * 0.024,
+                        fontSize: Get.height * 0.020,
                       ),
                     ),
                     SizedBox(height: Get.height * 0.005),
@@ -427,7 +427,7 @@ class _TechComplainDetailPageState
                       model.complainName,
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          fontSize: Get.height * 0.024),
+                          fontSize: Get.height * 0.020),
                     ),
                     SizedBox(height: Get.height * 0.005),
                     Text(
@@ -437,18 +437,74 @@ class _TechComplainDetailPageState
                     )
                   ],
                 ),
-                const Spacer(),
+                const SizedBox(
+                  width: 10,
+                ),
                 Container(
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(Get.height * 0.02),
-                      color: AppColors.deepOrange),
+                    borderRadius: BorderRadius.circular(Get.height * 0.02),
+                    color: AppColors.green,
+                  ),
                   padding: EdgeInsets.symmetric(
-                      horizontal: Get.height * 0.02,
-                      vertical: Get.height * 0.01),
-                  child: Text(
-                    model.complainStatus ? "Not Active" : "Active",
-                    style: TextStyle(
-                        color: AppColors.white, fontSize: Get.height * 0.014),
+                    horizontal: Get.height * 0.01,
+                    vertical: Get.height * 0.000001,
+                  ),
+                  child: Row(
+                    children: [
+                      Switch(
+                        value: model.startComplain,
+                        onChanged: (newValue) {
+                          setState(() {
+                            isAsyncCallProcess =
+                                true; // Set the async call process to true
+                          });
+
+                          // Call the API to update the complain status
+                          APIService.updateStartStatus(complainId, newValue)
+                              .then((response) {
+                            setState(() {
+                              isAsyncCallProcess =
+                                  false; // Set the async call process to false
+                            });
+
+                            if (response != null) {
+                              FormHelper.showSimpleAlertDialog(
+                                context,
+                                Config.appName,
+                                "Status Updated Successfully",
+                                "Ok",
+                                () {
+                                  Navigator.of(context).popAndPushNamed(
+                                    "/tech-complain-details",
+                                    arguments: {
+                                      'complainId': complainId,
+                                      'assignedTech': assignedTech,
+                                      'user': user,
+                                      // 'categoryassigned': cc
+                                      //     .complainList[index].categoryassigned
+                                    },
+                                  );
+                                },
+                              );
+                            } else {
+                              FormHelper.showSimpleAlertDialog(
+                                context,
+                                Config.appName,
+                                "Status not Updated",
+                                "Ok",
+                                () {
+                                  Navigator.of(context).pop();
+                                },
+                              );
+                            }
+                          });
+                        },
+                        activeTrackColor: Colors.lightGreenAccent,
+                        activeColor: Colors.green,
+                        inactiveTrackColor: Colors.white,
+                        inactiveThumbColor: Colors.red,
+                      ),
+                    ],
                   ),
                 ),
               ],

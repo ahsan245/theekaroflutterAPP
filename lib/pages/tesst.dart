@@ -1,8 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:snippet_coder_utils/FormHelper.dart';
 import 'package:snippet_coder_utils/ProgressHUD.dart';
 import 'package:theek_karo/api/api_service.dart';
@@ -23,12 +26,33 @@ class _TestPageState extends State<TestPage> {
   bool isAsyncCallProcess = false;
   String? complainName;
   String? complainDescription;
+  String? complainImage;
   String? confirmPassword;
   String? userContact;
   String? userAddress;
   String? complainCategory;
   double? lon;
   double? lat;
+  String _imagePath = '';
+
+  Future<void> _getImageFromCamera() async {
+    final pickedFile = await ImagePicker().getImage(source: ImageSource.camera);
+    if (pickedFile != null) {
+      setState(() {
+        _imagePath = pickedFile.path;
+      });
+    }
+  }
+
+  Future<void> _getImageFromGallery() async {
+    final pickedFile =
+        await ImagePicker().getImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      setState(() {
+        _imagePath = pickedFile.path;
+      });
+    }
+  }
 
   void _updateLocation(double latitude, double longitude) {
     setState(() {
@@ -299,13 +323,34 @@ class _TestPageState extends State<TestPage> {
           Center(
             child: Column(
               children: [
+                ElevatedButton(
+                  onPressed: _getImageFromCamera,
+                  child: Text('Take Picture'),
+                ),
+                ElevatedButton(
+                  onPressed: _getImageFromGallery,
+                  child: Text('Choose from Gallery'),
+                ),
+                SizedBox(height: 16.0),
+                Text(
+                  'Image Path: $_imagePath',
+                  style: TextStyle(fontSize: 16),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Center(
+            child: Column(
+              children: [
                 // Your other widgets...
                 UserLocationMap(onLocationChanged: _updateLocation),
                 // ...
                 // Your other widgets here
                 // ...
-                Text('Latitude: $lat'),
-                Text('Longitude: $lon'),
+
                 // Your other widgets...
               ],
             ),
@@ -321,6 +366,7 @@ class _TestPageState extends State<TestPage> {
                   setState(() {
                     isAsyncCallProcess = true;
                   });
+
                   APIService.registerComplain(
                     user,
                     complainName!,
@@ -333,6 +379,8 @@ class _TestPageState extends State<TestPage> {
                     setState(() {
                       print("afasf");
                       print(response?.complainId);
+                      print(complainImage);
+
                       isAsyncCallProcess = false;
                     });
 

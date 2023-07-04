@@ -5,6 +5,9 @@ import 'package:theek_karo/controller/ComplainController.dart';
 import 'package:theek_karo/controller/techComplainController.dart';
 import 'package:theek_karo/pages/complain_detail_page.dart';
 
+import '../utils/appcolors.dart';
+import 'dashboard_tech_page.dart';
+
 class TechComplains extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -12,8 +15,26 @@ class TechComplains extends StatelessWidget {
         init: TechComplainController(),
         builder: (cc) => Scaffold(
             appBar: AppBar(
-              title: Text('Complain'),
-            ),
+                backgroundColor: AppColors.deepOrange,
+                titleSpacing: 0,
+                elevation: 0,
+                title: Text(
+                  "Complain List",
+                  style: TextStyle(
+                      color: AppColors.white, fontSize: Get.height * 0.024),
+                ),
+                leading: IconButton(
+                  onPressed: () {
+                    Navigator.of(context).pushNamed(
+                      "/tech-home",
+                      arguments: {'techID': techID},
+                    );
+                  },
+                  icon: const Icon(
+                    Icons.arrow_back_ios_new,
+                    color: Colors.white,
+                  ),
+                )),
             body: ScrollConfiguration(
               behavior:
                   const MaterialScrollBehavior().copyWith(overscroll: false),

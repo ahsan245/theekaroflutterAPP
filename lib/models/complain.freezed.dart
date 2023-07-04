@@ -33,6 +33,9 @@ mixin _$Complain {
   String get techComment => throw _privateConstructorUsedError;
   bool get paymentStatus => throw _privateConstructorUsedError;
   bool get completeUpdate => throw _privateConstructorUsedError;
+  bool get startComplain => throw _privateConstructorUsedError;
+  String get complainImage => throw _privateConstructorUsedError;
+  String get createdAt => throw _privateConstructorUsedError;
   List<String> get complainCheckList => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -60,6 +63,9 @@ abstract class $ComplainCopyWith<$Res> {
       String techComment,
       bool paymentStatus,
       bool completeUpdate,
+      bool startComplain,
+      String complainImage,
+      String createdAt,
       List<String> complainCheckList});
 }
 
@@ -89,6 +95,9 @@ class _$ComplainCopyWithImpl<$Res, $Val extends Complain>
     Object? techComment = null,
     Object? paymentStatus = null,
     Object? completeUpdate = null,
+    Object? startComplain = null,
+    Object? complainImage = null,
+    Object? createdAt = null,
     Object? complainCheckList = null,
   }) {
     return _then(_value.copyWith(
@@ -144,6 +153,18 @@ class _$ComplainCopyWithImpl<$Res, $Val extends Complain>
           ? _value.completeUpdate
           : completeUpdate // ignore: cast_nullable_to_non_nullable
               as bool,
+      startComplain: null == startComplain
+          ? _value.startComplain
+          : startComplain // ignore: cast_nullable_to_non_nullable
+              as bool,
+      complainImage: null == complainImage
+          ? _value.complainImage
+          : complainImage // ignore: cast_nullable_to_non_nullable
+              as String,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as String,
       complainCheckList: null == complainCheckList
           ? _value.complainCheckList
           : complainCheckList // ignore: cast_nullable_to_non_nullable
@@ -173,6 +194,9 @@ abstract class _$$_ComplainCopyWith<$Res> implements $ComplainCopyWith<$Res> {
       String techComment,
       bool paymentStatus,
       bool completeUpdate,
+      bool startComplain,
+      String complainImage,
+      String createdAt,
       List<String> complainCheckList});
 }
 
@@ -200,6 +224,9 @@ class __$$_ComplainCopyWithImpl<$Res>
     Object? techComment = null,
     Object? paymentStatus = null,
     Object? completeUpdate = null,
+    Object? startComplain = null,
+    Object? complainImage = null,
+    Object? createdAt = null,
     Object? complainCheckList = null,
   }) {
     return _then(_$_Complain(
@@ -255,6 +282,18 @@ class __$$_ComplainCopyWithImpl<$Res>
           ? _value.completeUpdate
           : completeUpdate // ignore: cast_nullable_to_non_nullable
               as bool,
+      startComplain: null == startComplain
+          ? _value.startComplain
+          : startComplain // ignore: cast_nullable_to_non_nullable
+              as bool,
+      complainImage: null == complainImage
+          ? _value.complainImage
+          : complainImage // ignore: cast_nullable_to_non_nullable
+              as String,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as String,
       complainCheckList: null == complainCheckList
           ? _value._complainCheckList
           : complainCheckList // ignore: cast_nullable_to_non_nullable
@@ -280,6 +319,9 @@ class _$_Complain implements _Complain {
       required this.techComment,
       required this.paymentStatus,
       required this.completeUpdate,
+      required this.startComplain,
+      required this.complainImage,
+      required this.createdAt,
       required final List<String> complainCheckList})
       : _complainCheckList = complainCheckList;
 
@@ -312,6 +354,12 @@ class _$_Complain implements _Complain {
   final bool paymentStatus;
   @override
   final bool completeUpdate;
+  @override
+  final bool startComplain;
+  @override
+  final String complainImage;
+  @override
+  final String createdAt;
   final List<String> _complainCheckList;
   @override
   List<String> get complainCheckList {
@@ -323,7 +371,7 @@ class _$_Complain implements _Complain {
 
   @override
   String toString() {
-    return 'Complain(complainName: $complainName, complainDescription: $complainDescription, userAddress: $userAddress, complainCategory: $complainCategory, complainStatus: $complainStatus, complainId: $complainId, longitude: $longitude, latitude: $latitude, refBill: $refBill, billAmount: $billAmount, techComment: $techComment, paymentStatus: $paymentStatus, completeUpdate: $completeUpdate, complainCheckList: $complainCheckList)';
+    return 'Complain(complainName: $complainName, complainDescription: $complainDescription, userAddress: $userAddress, complainCategory: $complainCategory, complainStatus: $complainStatus, complainId: $complainId, longitude: $longitude, latitude: $latitude, refBill: $refBill, billAmount: $billAmount, techComment: $techComment, paymentStatus: $paymentStatus, completeUpdate: $completeUpdate, startComplain: $startComplain, complainImage: $complainImage, createdAt: $createdAt, complainCheckList: $complainCheckList)';
   }
 
   @override
@@ -356,6 +404,12 @@ class _$_Complain implements _Complain {
                 other.paymentStatus == paymentStatus) &&
             (identical(other.completeUpdate, completeUpdate) ||
                 other.completeUpdate == completeUpdate) &&
+            (identical(other.startComplain, startComplain) ||
+                other.startComplain == startComplain) &&
+            (identical(other.complainImage, complainImage) ||
+                other.complainImage == complainImage) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
             const DeepCollectionEquality()
                 .equals(other._complainCheckList, _complainCheckList));
   }
@@ -377,6 +431,9 @@ class _$_Complain implements _Complain {
       techComment,
       paymentStatus,
       completeUpdate,
+      startComplain,
+      complainImage,
+      createdAt,
       const DeepCollectionEquality().hash(_complainCheckList));
 
   @JsonKey(ignore: true)
@@ -408,6 +465,9 @@ abstract class _Complain implements Complain {
       required final String techComment,
       required final bool paymentStatus,
       required final bool completeUpdate,
+      required final bool startComplain,
+      required final String complainImage,
+      required final String createdAt,
       required final List<String> complainCheckList}) = _$_Complain;
 
   factory _Complain.fromJson(Map<String, dynamic> json) = _$_Complain.fromJson;
@@ -438,6 +498,12 @@ abstract class _Complain implements Complain {
   bool get paymentStatus;
   @override
   bool get completeUpdate;
+  @override
+  bool get startComplain;
+  @override
+  String get complainImage;
+  @override
+  String get createdAt;
   @override
   List<String> get complainCheckList;
   @override

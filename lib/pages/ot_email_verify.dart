@@ -136,7 +136,8 @@ class _OTPEmailVerifyPageState extends State<OTPEmailVerifyPage> {
                   isAPIcallProcess = true;
                 });
 
-                APIService.verifyOTP(widget.email!, widget.otpHash!, _otpCode)
+                APIService.verifyEmailOTP(
+                        widget.email!, widget.otpHash!, _otpCode)
                     .then((response) {
                   setState(() {
                     isAPIcallProcess = false;
@@ -186,7 +187,7 @@ class _OTPEmailVerifyPageState extends State<OTPEmailVerifyPage> {
               text: TextSpan(
             children: <TextSpan>[
               TextSpan(
-                text: "Want to Update Number ",
+                text: "Want to Update Email ",
                 style: TextStyle(
                   color: Colors.black,
                 ),

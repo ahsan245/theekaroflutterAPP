@@ -27,9 +27,16 @@ abstract class Complain with _$Complain {
     required String techComment,
     required bool paymentStatus,
     required bool completeUpdate,
+    required bool startComplain,
+    required String complainImage,
+    required String createdAt,
     required List<String> complainCheckList,
   }) = _Complain;
 
   factory Complain.fromJson(Map<String, dynamic> json) =>
       _$ComplainFromJson(json);
+}
+
+extension ComplainExt on Complain {
+  String get fullImagePath => Config.imageURL + complainImage;
 }

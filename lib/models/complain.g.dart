@@ -20,6 +20,9 @@ _$_Complain _$$_ComplainFromJson(Map<String, dynamic> json) => _$_Complain(
       techComment: json['techComment'] as String,
       paymentStatus: json['paymentStatus'] as bool,
       completeUpdate: json['completeUpdate'] as bool,
+      startComplain: json['startComplain'] as bool,
+      complainImage: json['complainImage'] as String,
+      createdAt: json['createdAt'] as String,
       complainCheckList: (json['complainCheckList'] as List<dynamic>)
           .map((e) => e as String)
           .toList(),
@@ -40,5 +43,8 @@ Map<String, dynamic> _$$_ComplainToJson(_$_Complain instance) =>
       'techComment': instance.techComment,
       'paymentStatus': instance.paymentStatus,
       'completeUpdate': instance.completeUpdate,
+      'startComplain': instance.startComplain,
+      'complainImage': instance.complainImage,
+      'createdAt': instance.createdAt,
       'complainCheckList': instance.complainCheckList,
     };

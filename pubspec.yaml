@@ -55,6 +55,8 @@ dependencies:
   crypto: ^3.0.0
   jazzcash_flutter: ^1.0.5
   maps_curved_line: ^1.0.2
+  image_picker: ^0.8.4+4
+  modal_progress_hud_nsn: ^0.1.0-nullsafety-1
 
 
 

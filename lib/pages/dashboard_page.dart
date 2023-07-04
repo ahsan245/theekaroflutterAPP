@@ -24,8 +24,8 @@ class DashboardPage extends StatefulWidget {
 class _DashboardPageState extends State<DashboardPage> {
   final List<Widget> widgetList = [
     Complains(),
-    const HomePage(),
-    const UserDetailsPage(),
+    HomePage(),
+    UserDetailsPage(),
   ];
   int index = 1;
 

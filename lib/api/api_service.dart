@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:core';
+import 'dart:io';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
 import 'package:theek_karo/config.dart';
@@ -334,6 +335,35 @@ class APIService {
           "completeUpdate": completeUpdate,
           "techComment": techComment,
           "billAmount": billAmount,
+        },
+      ),
+    );
+
+    if (response.statusCode == 200) {
+      final complainResponse = complainResponseJson(response.body);
+      final data = complainResponse.data;
+
+      print(data.toJson());
+      return data;
+    } else {
+      return null;
+    }
+  }
+
+  static Future<Dataa?> updateStartStatus(
+    String complainId,
+    bool startComplain,
+  ) async {
+    Map<String, String> requestHeaders = {'Content-Type': 'application/json'};
+
+    var url = Uri.http(Config.apiURL, '${Config.complainAPI}/$complainId');
+
+    var response = await client.put(
+      url,
+      headers: requestHeaders,
+      body: jsonEncode(
+        {
+          "startComplain": startComplain,
         },
       ),
     );
