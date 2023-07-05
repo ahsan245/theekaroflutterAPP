@@ -1,8 +1,48 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:theek_karo/models/login_response_model.dart';
+import 'package:theek_karo/models/tech.dart';
+import 'package:theek_karo/pages/complain_detail_page.dart';
+import 'package:theek_karo/pages/complains_List.dart';
+import 'package:theek_karo/pages/dashboard_page.dart';
+import 'package:theek_karo/pages/dashboard_tech_page.dart';
+import 'package:theek_karo/pages/firstpage.dart';
 import 'package:theek_karo/pages/home_page.dart';
+import 'package:theek_karo/pages/image.dart';
+import 'package:theek_karo/pages/login_otp_page.dart';
+import 'package:theek_karo/pages/login_page.dart';
+import 'package:theek_karo/pages/map.dart';
+import 'package:theek_karo/pages/otp_verify_page.dart';
+import 'package:theek_karo/pages/passwrod_reset_email.dart';
+import 'package:theek_karo/pages/payment.dart';
+import 'package:theek_karo/pages/register_page.dart';
+import 'package:theek_karo/pages/reset_password.dart';
+import 'package:theek_karo/pages/splash_screen.dart';
+import 'package:theek_karo/pages/tech_complain_detail.dart';
+import 'package:theek_karo/pages/tech_complains_List.dart';
+import 'package:theek_karo/pages/tech_details_page.dart';
+import 'package:theek_karo/pages/tech_login_page.dart';
+import 'package:theek_karo/pages/techs_page.dart';
+import 'package:theek_karo/pages/tesst.dart';
+import 'package:theek_karo/pages/test_map.dart';
+import 'package:theek_karo/pages/user_details_page.dart';
+import 'package:theek_karo/utils/shared_service.dart';
 
-void main() {
+Widget _defaultHome = const TechLoginPage();
+
+//bsdk aur agey piche rkh files routes kon banata hay direct Get.to,m kia krn bc,idhr 4 min sabar rakh ye build hny m saal lagata hy
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  //Remember to uncomment from the API service file
+  ///poora aik din zaya kia tha us comment k chakkar m
+  // bool _result = await SharedService.isLoggedIn();
+
+  // if (_result) {
+
+  _defaultHome = SplashScreen();
+  // }
   runApp(const ProviderScope(child: MyApp()));
 }
 
@@ -12,11 +52,35 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Theek Karo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const HomePage(),
+      // home: _defaultHome,
+      routes: <String, WidgetBuilder>{
+        "/": (context) => _defaultHome,
+        "/register": (BuildContext context) => const RegisterPage(),
+        "/login": (BuildContext context) => const LoginPage(),
+        "/tech-login": (BuildContext context) => const TechLoginPage(),
+        "/home": (BuildContext context) => const DashboardPage(),
+        "/tech-complain-details": (BuildContext context) =>
+            const TechComplainDetailPage(),
+        "/techs": (BuildContext context) => const TechsPage(),
+        "/techs-complain-list": (BuildContext context) => TechComplains(),
+        "/complain": (BuildContext context) => const TestPage(),
+        "/otplogin": (BuildContext context) => const LoginOTPPage(),
+        "/otpverify": (BuildContext context) => OTPVerifyPage(),
+        "/complain-details": (BuildContext context) => ComplainDetailPage(),
+        "/tech-details": (BuildContext context) => const TechDetailsPage(),
+        "/user-details": (BuildContext context) => const UserDetailsPage(),
+        "/otpemail": (BuildContext context) => const EmailOTPPage(),
+        "/resetpassword": (BuildContext context) => const ResetPasswordPage(),
+        "/complain-list": (BuildContext context) => Complains(),
+        "/tech-home": (BuildContext context) => const TechDashBoardPage(),
+        "/payment": (BuildContext context) => const Payment(),
+        "/firstpage": (BuildContext context) => FirstPage(),
+      },
     );
   }
 }
