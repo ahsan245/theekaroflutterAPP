@@ -18,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen>
         AnimationController(vsync: this, duration: Duration(seconds: 2));
     _animation = Tween<double>(begin: 0.0, end: 1.0).animate(_controller);
     _controller.forward();
-    Future.delayed(Duration(seconds: 3), () {
+    Future.delayed(Duration(seconds: 4), () {
       Navigator.pushReplacementNamed(context, '/firstpage');
     });
   }

@@ -23,7 +23,7 @@ class TechDashBoardPage extends StatefulWidget {
 
 class _TechDashBoardPageState extends State<TechDashBoardPage> {
   final List<Widget> widgetList = [
-    TechComplains(),
+    const TechComplains(),
     const HomePage(),
     const UserDetailsPage(),
   ];

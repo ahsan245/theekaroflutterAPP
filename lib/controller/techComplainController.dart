@@ -5,14 +5,6 @@ import 'package:theek_karo/models/complain_model.dart';
 import 'package:theek_karo/pages/dashboard_tech_page.dart';
 
 class TechComplainController extends GetxController {
-  @override
-  void onInit() {
-    // TODO: implement onInit
-    super.onInit();
-
-    getUserComplains();
-  }
-
   List<ComplainModel> complainList = [];
 
   var isLoad = false;
@@ -26,6 +18,8 @@ class TechComplainController extends GetxController {
         (success) {
       jsonData = json.decode(success);
 
+      complainList.clear();
+
       for (var a in jsonData['data']) {
         complainList.add(ComplainModel(
             id: a['complainId'] ?? '',
@@ -36,8 +30,6 @@ class TechComplainController extends GetxController {
             userid: a['user']['userId'] ?? '',
             // categoryassigned: a['categoryassigned']['categoryId'] ?? '',
             address: a['userAddress'] ?? ''));
-
-        update();
       }
       print(success);
 
@@ -48,5 +40,16 @@ class TechComplainController extends GetxController {
       update();
       print(fail);
     });
+  }
+
+  void fetchData() {
+    getUserComplains();
+  }
+
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
+    fetchData();
   }
 }

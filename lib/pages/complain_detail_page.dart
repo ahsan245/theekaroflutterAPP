@@ -439,15 +439,6 @@ class _ComplainDetailPageState extends ConsumerState<ComplainDetailPage> {
                         ),
                       ),
                     ),
-                  if (model.complainImage != "")
-                    SizedBox(
-                      child: Image.network(
-                        model.fullImagePath,
-                        fit: BoxFit.fitHeight,
-                      ),
-                      height: 100,
-                      width: 200,
-                    ),
                 ],
               ),
             ],
@@ -455,6 +446,26 @@ class _ComplainDetailPageState extends ConsumerState<ComplainDetailPage> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              if (model.complainImage != "")
+                Text(
+                  'Complain Image',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+              if (model.complainImage != "")
+                Column(
+                  children: [
+                    SizedBox(height: 16), // Space between text and image
+                    if (model.complainImage != "")
+                      Container(
+                        height: 100,
+                        width: 200,
+                        child: Image.network(
+                          model.fullImagePath,
+                          fit: BoxFit.fitHeight,
+                        ),
+                      ),
+                  ],
+                ),
               SizedBox(height: Get.height * 0.02),
               const Text(
                 'Category',

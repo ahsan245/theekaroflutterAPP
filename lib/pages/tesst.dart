@@ -322,25 +322,6 @@ class _TestPageState extends State<TestPage> {
           const SizedBox(
             height: 10,
           ),
-          Center(
-            child: Column(
-              children: [
-                ElevatedButton(
-                  onPressed: _getImageFromCamera,
-                  child: Text('Take Picture'),
-                ),
-                ElevatedButton(
-                  onPressed: _getImageFromGallery,
-                  child: Text('Choose from Gallery'),
-                ),
-                SizedBox(height: 16.0),
-                Text(
-                  'Image Path: $_imagePath',
-                  style: TextStyle(fontSize: 16),
-                ),
-              ],
-            ),
-          ),
           const SizedBox(
             height: 10,
           ),
