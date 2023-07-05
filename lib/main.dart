@@ -13,6 +13,7 @@ import 'package:theek_karo/pages/image.dart';
 import 'package:theek_karo/pages/login_otp_page.dart';
 import 'package:theek_karo/pages/login_page.dart';
 import 'package:theek_karo/pages/map.dart';
+import 'package:theek_karo/pages/menupage.dart';
 import 'package:theek_karo/pages/otp_verify_page.dart';
 import 'package:theek_karo/pages/passwrod_reset_email.dart';
 import 'package:theek_karo/pages/payment.dart';
@@ -80,6 +81,7 @@ class MyApp extends StatelessWidget {
         "/tech-home": (BuildContext context) => const TechDashBoardPage(),
         "/payment": (BuildContext context) => const Payment(),
         "/firstpage": (BuildContext context) => FirstPage(),
+        "/menu": (BuildContext context) => MenuPage(),
       },
     );
   }

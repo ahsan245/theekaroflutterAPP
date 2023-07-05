@@ -20,6 +20,24 @@ class HomePage extends StatelessWidget {
             const HomeSliderWidget(),
             const HomeCategoriesWidget(),
             const HomeTechsWidget(),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/menu');
+              },
+              child: Text(
+                'Menu Bar',
+                style: TextStyle(fontSize: 18),
+              ),
+              style: ElevatedButton.styleFrom(
+                padding: EdgeInsets.symmetric(
+                    horizontal: 60,
+                    vertical: 16), // Adjust the padding as desired
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(
+                      30), // Adjust the border radius as desired
+                ),
+              ),
+            ),
             Padding(
               padding: const EdgeInsets.only(
                   left: 290, top: 10, right: 20, bottom: 20),
