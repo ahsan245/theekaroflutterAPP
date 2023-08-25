@@ -717,8 +717,8 @@ class _TechComplainDetailPageState
                           ),
                         ),
                         if (_checkedItems.length ==
-                            model.complainCheckList
-                                .length) // Show button if all items are checked
+                            model.complainCheckList.length -
+                                1) // Show button if all items are checked
                           ElevatedButton(
                             onPressed: () {
                               setState(() {

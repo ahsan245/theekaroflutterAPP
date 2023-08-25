@@ -334,9 +334,7 @@ class _ComplainDetailPageState extends ConsumerState<ComplainDetailPage> {
               vertical: Get.height * 0.01,
             ),
             child: Text(
-              !model.startComplain
-                  ? "Complain Not Started"
-                  : "Complain In Progress",
+              !model.startComplain ? "Complain Not Started" : "Complain Solved",
               style: TextStyle(
                 color: AppColors.white,
                 fontSize: Get.height * 0.014,
@@ -399,7 +397,7 @@ class _ComplainDetailPageState extends ConsumerState<ComplainDetailPage> {
                         getImageFromCamera();
                       },
                       child: Padding(
-                        padding: const EdgeInsets.only(left: 100, top: 10),
+                        padding: const EdgeInsets.only(left: 40, top: 10),
                         child: Container(
                           child: image == null
                               ? Center(
@@ -429,7 +427,7 @@ class _ComplainDetailPageState extends ConsumerState<ComplainDetailPage> {
                       },
                       child: Padding(
                         padding: const EdgeInsets.only(
-                          left: 100,
+                          left: 40,
                         ),
                         child: Container(
                           height: 30,
@@ -494,7 +492,7 @@ class _ComplainDetailPageState extends ConsumerState<ComplainDetailPage> {
                   model
                       .completeUpdate) // If paymentStatus is true and complainUpdate is true
                 Text(
-                  'Payment is Paid. RefBill: ${model.refBill} Amount Paid:${model.billAmount}Rs',
+                  'Payment is Paid.\nRefBill: ${model.refBill}\nAmount Paid:${model.billAmount}Rs',
                   style: TextStyle(
                     fontSize: Get.height * 0.016,
                     fontWeight: FontWeight.w400,

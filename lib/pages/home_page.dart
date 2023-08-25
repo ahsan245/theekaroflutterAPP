@@ -29,12 +29,13 @@ class HomePage extends StatelessWidget {
                 style: TextStyle(fontSize: 18),
               ),
               style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.yellow.shade900,
                 padding: EdgeInsets.symmetric(
-                    horizontal: 60,
+                    horizontal: 5,
                     vertical: 16), // Adjust the padding as desired
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(
-                      30), // Adjust the border radius as desired
+                      10), // Adjust the border radius as desired
                 ),
               ),
             ),
